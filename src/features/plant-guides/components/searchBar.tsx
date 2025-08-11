@@ -57,7 +57,7 @@ export default function SearchBar() {
 
         {(searchTerm || selectedCategory !== "all") && (
           <div className="flex flex-wrap items-center gap-2 mt-4">
-            <span className="text-sm text-gray-600">Aktiva filter:</span>
+            <span className="text-sm text-gray-600">Active filters:</span>
             {searchTerm && (
               <span className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-sm">
                 Sökning: "{searchTerm}"
