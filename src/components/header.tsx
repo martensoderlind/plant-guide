@@ -1,7 +1,10 @@
-import { Leaf } from "lucide-react";
+"use client";
+import { Leaf, Menu, X } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <nav>
       <div className="flex items-center justify-between">
@@ -39,6 +42,16 @@ export default function Header() {
             Start Today
           </button>
         </div>
+        <button
+          className="md:hidden"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
+        </button>
       </div>
     </nav>
   );
