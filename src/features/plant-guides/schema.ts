@@ -23,7 +23,7 @@ export const plantTable = pgTable("plants", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: varchar({ length: 255 }).notNull(),
   scientific_name: varchar({ length: 255 }).notNull(),
-  description: varchar({ length: 255 }).notNull(),
+  description: varchar(),
   water_frequency_days: integer().notNull(),
   temperature_min: integer().notNull(),
   temperature_max: integer().notNull(),
