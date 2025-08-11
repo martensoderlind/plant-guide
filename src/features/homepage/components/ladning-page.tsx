@@ -4,8 +4,8 @@ import ToolsContainer from "./toolsContainer";
 export default function LandingPage() {
   return (
     <div>
-      <QuickViewContainer />
       <ToolsContainer />
+      <QuickViewContainer />
     </div>
   );
 }
