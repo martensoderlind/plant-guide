@@ -4,7 +4,7 @@ import createPlantGuidesRepository from "./repository";
 export default function createPlantGuidesService(db: Db) {
   const repository = createPlantGuidesRepository(db);
   return {
-    async getAll() {
+    async getAllPlantGuides() {
       return await repository.getAllPlantGuides();
     },
   };
