@@ -27,9 +27,11 @@ export const plantTable = pgTable("plants", {
   water_frequency_days: integer().notNull(),
   temperature_min: integer().notNull(),
   temperature_max: integer().notNull(),
-  image_url: varchar({ length: 255 }).notNull(),
-  created_at: timestamp("timestamp1").notNull().defaultNow(),
+  image_url: varchar({ length: 255 }),
   care_level: careLevelEnum().notNull(),
   light_requirement: lightRequirementEnum().notNull(),
   humidity_preference: humidityPreferenceEnum().notNull(),
+  created_at: timestamp("timestamp1").notNull().defaultNow(),
 });
+
+export type Plant = typeof plantTable.$inferSelect;
