@@ -7,7 +7,7 @@ export default function Header() {
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-8">
           <Leaf className="h-8 w-8 text-emerald-600" />
-          <span>Plant guide</span>
+          <span className="text-2xl font-bold">Plant guide</span>
         </div>
 
         <div className="hidden md:flex items-center space-x-8">
