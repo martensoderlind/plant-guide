@@ -53,6 +53,40 @@ export default function Header() {
           )}
         </button>
       </div>
+
+      {isMenuOpen && (
+        <div className="md:hidden bg-gray-700 border-t">
+          <div className="flex flex-col px-4 py-4 space-y-4">
+            <Link
+              href={"/"}
+              className="text-gray-200 hover:text-emerald-400 transition-colors"
+            >
+              Home
+            </Link>
+            <Link
+              href={"/guides"}
+              className="text-gray-200 hover:text-emerald-400 transition-colors"
+            >
+              Guides
+            </Link>
+            <Link
+              href={"/Tools"}
+              className="text-gray-200 hover:text-emerald-400 transition-colors"
+            >
+              Tools
+            </Link>
+            <Link
+              href={"/about-us"}
+              className="text-gray-200 hover:text-emerald-400 transition-colors"
+            >
+              About us
+            </Link>
+            <button className="bg-emerald-600 text-white px-6 py-2 rounded-full hover:bg-emerald-700 transition-colors">
+              Start Today
+            </button>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
