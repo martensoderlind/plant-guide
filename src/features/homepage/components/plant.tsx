@@ -1,12 +1,18 @@
+import Link from "next/link";
+
 type Props = {
+  id: number;
   image: string | undefined;
   name: string;
   color: string;
   status: string;
 };
-export default function Plant({ image, name, color, status }: Props) {
+export default function Plant({ id, image, name, color, status }: Props) {
   return (
-    <div className="bg-gray-50 rounded-xl px-4 pt-4 pb-14 hover:shadow-md transition-all duration-300">
+    <Link
+      href={"/plant-guide/" + id}
+      className="bg-gray-50 rounded-xl px-4 pt-4 pb-14 hover:shadow-md transition-all duration-300"
+    >
       {image && (
         <img
           src={image}
@@ -28,6 +34,6 @@ export default function Plant({ image, name, color, status }: Props) {
           {status}
         </p>
       </div>
-    </div>
+    </Link>
   );
 }

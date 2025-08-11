@@ -3,24 +3,28 @@ import Plant from "./plant";
 export default function QuickViewContainer() {
   const plants = [
     {
+      id: 1,
       image: "/monstrea.png",
       name: "Monstera",
       status: "Frisk",
       color: "emerald",
     },
     {
+      id: 2,
       image: "/fikus.png",
       name: "Fikus",
       status: "Vattna imorgon",
       color: "yellow",
     },
     {
+      id: 3,
       image: "/glacier-pothos.png",
       name: "Pothos",
       status: "Perfekt",
       color: "emerald",
     },
     {
+      id: 4,
       image: "/sansevieria.jpg",
       name: "Sansevieria",
       status: "Behöver ljus",
@@ -33,6 +37,7 @@ export default function QuickViewContainer() {
         <div className="grid md:grid-cols-2 gap-6">
           {plants.map((plant, idx) => (
             <Plant
+              id={plant.id}
               image={plant.image}
               key={idx}
               name={plant.name}
