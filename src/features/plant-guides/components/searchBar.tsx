@@ -28,20 +28,18 @@ export default function SearchBar() {
     <section className="py-8 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-6">
-          {/* Search */}
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
                 type="text"
-                placeholder="Sök efter guider, tips eller ämnen..."
+                placeholder="Search for plants"
                 className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
           </div>
-          {/* Category Filter */}
           <div className="lg:w-64">
             <select
               className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
@@ -57,7 +55,6 @@ export default function SearchBar() {
           </div>{" "}
         </div>
 
-        {/* Active Filters */}
         {(searchTerm || selectedCategory !== "all") && (
           <div className="flex flex-wrap items-center gap-2 mt-4">
             <span className="text-sm text-gray-600">Aktiva filter:</span>
