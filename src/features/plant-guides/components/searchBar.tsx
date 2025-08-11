@@ -60,7 +60,7 @@ export default function SearchBar() {
             <span className="text-sm text-gray-600">Active filters:</span>
             {searchTerm && (
               <span className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-sm">
-                Sökning: "{searchTerm}"
+                Search: "{searchTerm}"
                 <button
                   onClick={() => setSearchTerm("")}
                   className="ml-2 text-emerald-600 hover:text-emerald-800"

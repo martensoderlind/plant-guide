@@ -1,3 +1,4 @@
+import PlantContainer from "./plant-container";
 import SearchBar from "./searchBar";
 
 export default function PlantGuides() {
@@ -5,6 +6,7 @@ export default function PlantGuides() {
     <div>
       <p>plants</p>
       <SearchBar />
+      <PlantContainer />
     </div>
   );
 }

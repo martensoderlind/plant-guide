@@ -1,5 +1,5 @@
 import { Db } from "../../db/index";
-import { plantTable } from "./schema";
+import { plantTable } from "../plant-guides/schema";
 
 export default function createArticlesRepository(db: Db) {
   return {
