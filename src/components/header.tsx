@@ -10,7 +10,7 @@ export default function Header() {
           <span>Plant guide</span>
         </div>
 
-        <div>
+        <div className="hidden md:flex items-center space-x-8">
           <Link
             href={"/"}
             className="text-gray-200 hover:text-emerald-400 transition-colors"
@@ -35,6 +35,9 @@ export default function Header() {
           >
             About us
           </Link>
+          <button className="bg-emerald-600 text-white px-6 py-2 rounded-full hover:bg-emerald-700 transition-colors">
+            Start Today
+          </button>
         </div>
       </div>
     </nav>
