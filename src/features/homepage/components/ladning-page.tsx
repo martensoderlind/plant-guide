@@ -3,7 +3,9 @@ import QuickViewContainer from "./quick-view-container";
 export default function LandingPage() {
   return (
     <div>
-      <QuickViewContainer />
+      <section>
+        <QuickViewContainer />
+      </section>
     </div>
   );
 }

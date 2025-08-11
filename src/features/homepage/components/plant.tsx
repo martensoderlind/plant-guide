@@ -1,12 +1,15 @@
 type Props = {
+  image: string | undefined;
   name: string;
   color: string;
   status: string;
 };
-export default function Plant({ name, color, status }: Props) {
+export default function Plant({ image, name, color, status }: Props) {
   return (
     <div className="bg-gray-50 rounded-xl p-4 hover:shadow-md transition-all duration-300">
-      <div className="w-full h-16 bg-gradient-to-br from-green-200 to-emerald-300 rounded-lg mb-3"></div>
+      <div className="w-full h-16 bg-gradient-to-br from-green-200 to-emerald-300 rounded-lg mb-3">
+        {image && <img src={image} alt="" className="rounded-lg h-16" />}{" "}
+      </div>
       <h3 className="font-semibold text-gray-800">{name}</h3>
       <p
         className={`text-sm ${

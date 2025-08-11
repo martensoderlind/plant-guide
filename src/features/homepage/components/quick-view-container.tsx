@@ -2,10 +2,30 @@ import Plant from "./plant";
 
 export default function QuickViewContainer() {
   const plants = [
-    { name: "Monstera", status: "Frisk", color: "emerald" },
-    { name: "Fikus", status: "Vattna imorgon", color: "yellow" },
-    { name: "Pothos", status: "Perfekt", color: "emerald" },
-    { name: "Sansevieria", status: "Behöver ljus", color: "orange" },
+    {
+      image: "/monstrea.png",
+      name: "Monstera",
+      status: "Frisk",
+      color: "emerald",
+    },
+    {
+      image: "/fikus.png",
+      name: "Fikus",
+      status: "Vattna imorgon",
+      color: "yellow",
+    },
+    {
+      image: "/glacier-pothos.png",
+      name: "Pothos",
+      status: "Perfekt",
+      color: "emerald",
+    },
+    {
+      image: "/sansevieria.jpg",
+      name: "Sansevieria",
+      status: "Behöver ljus",
+      color: "orange",
+    },
   ];
   return (
     <div className="relative">
@@ -13,6 +33,7 @@ export default function QuickViewContainer() {
         <div className="grid grid-cols-2 gap-6">
           {plants.map((plant, idx) => (
             <Plant
+              image={plant.image}
               key={idx}
               name={plant.name}
               color={plant.color}
