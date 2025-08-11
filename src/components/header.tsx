@@ -27,7 +27,7 @@ export default function Header() {
             Guides
           </Link>
           <Link
-            href={"/Tools"}
+            href={"/tools"}
             className="text-gray-200 hover:text-emerald-400 transition-colors"
           >
             Tools
@@ -70,7 +70,7 @@ export default function Header() {
               Guides
             </Link>
             <Link
-              href={"/Tools"}
+              href={"/tools"}
               className="text-gray-200 hover:text-emerald-400 transition-colors"
             >
               Tools
