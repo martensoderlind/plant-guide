@@ -5,18 +5,18 @@ export default function ToolsContainer() {
   const features = [
     {
       icon: <Leaf className="w-8 h-8" />,
-      title: "Expertråd",
-      description: "Professionella skötselguider för över 500 växtarter",
+      title: "Expert Advice",
+      description: "Professional care guides for over 500 plant species",
     },
     {
       icon: <Droplets className="w-8 h-8" />,
-      title: "Bevattningsschema",
-      description: "Personliga påminnelser för varje växts unika behov",
+      title: "Watering Schedule",
+      description: "Personalized reminders for each plant's unique needs",
     },
     {
       icon: <Sun className="w-8 h-8" />,
-      title: "Ljusoptimering",
-      description: "Hitta den perfekta platsen för dina växter hemma",
+      title: "Light Optimization",
+      description: "Find the perfect spot for your plants at home",
     },
   ];
   return (
@@ -24,11 +24,11 @@ export default function ToolsContainer() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-100 mb-4">
-            Allt du behöver för att lyckas
+            All you need to succeed
           </h2>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-            Våra verktyg och guider är designade för att göra växtskötsel enkelt
-            och roligt, oavsett om du är nybörjare eller expert.
+            Our tools and guides are designed to make plant care easy and fun,
+            whether you're a beginner or an expert.
           </p>
         </div>
 
