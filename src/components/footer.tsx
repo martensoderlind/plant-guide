@@ -16,7 +16,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Guider</h3>
+            <h3 className="text-lg font-semibold mb-4">Guides</h3>
             <div className="space-y-2">
               <a
                 href="#"
@@ -40,7 +40,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Verktyg</h3>
+            <h3 className="text-lg font-semibold mb-4">Tools</h3>
             <div className="space-y-2">
               <a
                 href="#"
