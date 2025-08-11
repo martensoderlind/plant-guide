@@ -1,0 +1,97 @@
+import { Leaf } from "lucide-react";
+
+export default function Footer() {
+  return (
+    <footer className=" text-white py-12 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-4 gap-8">
+          <div>
+            <div className="flex items-center space-x-2 mb-4">
+              <Leaf className="h-8 w-8 text-emerald-400" />
+              <span className="text-2xl font-bold">Plant guide</span>
+            </div>
+            <p className="text-gray-400">
+              Your partner for a greener home and a healthier lifestyle.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Guider</h3>
+            <div className="space-y-2">
+              <a
+                href="#"
+                className="block text-gray-400 hover:text-white transition-colors"
+              >
+                Indoor plants
+              </a>
+              <a
+                href="#"
+                className="block text-gray-400 hover:text-white transition-colors"
+              >
+                Outdoor plants
+              </a>
+              <a
+                href="#"
+                className="block text-gray-400 hover:text-white transition-colors"
+              >
+                Plant diseases
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Verktyg</h3>
+            <div className="space-y-2">
+              <a
+                href="#"
+                className="block text-gray-400 hover:text-white transition-colors"
+              >
+                Watering calendar
+              </a>
+              <a
+                href="#"
+                className="block text-gray-400 hover:text-white transition-colors"
+              >
+                Plant identification{" "}
+              </a>
+              <a
+                href="#"
+                className="block text-gray-400 hover:text-white transition-colors"
+              >
+                Light Meter
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Contact</h3>
+            <div className="space-y-2">
+              <a
+                href="#"
+                className="block text-gray-400 hover:text-white transition-colors"
+              >
+                Support
+              </a>
+              <a
+                href="#"
+                className="block text-gray-400 hover:text-white transition-colors"
+              >
+                Community
+              </a>
+              <a
+                href="#"
+                className="block text-gray-400 hover:text-white transition-colors"
+              >
+                Newsletter
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; 2025 Plant guide. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
