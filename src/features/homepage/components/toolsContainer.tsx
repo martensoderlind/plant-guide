@@ -1,4 +1,5 @@
 import { Droplets, Leaf, Sun } from "lucide-react";
+import ToolCard from "./tool-card";
 
 export default function ToolsContainer() {
   const features = [
@@ -33,20 +34,12 @@ export default function ToolsContainer() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, idx) => (
-            <div
+            <ToolCard
+              icon={feature.icon}
+              title={feature.title}
+              description={feature.description}
               key={idx}
-              className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-            >
-              <div className="w-16 h-16 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <div className="text-emerald-600">{feature.icon}</div>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
+            />
           ))}
         </div>
       </div>
