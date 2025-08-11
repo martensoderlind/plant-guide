@@ -29,8 +29,8 @@ export default function QuickViewContainer() {
   ];
   return (
     <section className="relative">
-      <div className="relative z-10 bg-white rounded-3xl p-8 shadow-2xl">
-        <div className="grid grid-cols-2 gap-6">
+      <div className="relative z-10 bg-white rounded-3xl p-8 shadow-2xl max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6">
           {plants.map((plant, idx) => (
             <Plant
               image={plant.image}
