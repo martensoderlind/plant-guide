@@ -22,7 +22,7 @@ export default function Header() {
               Home
             </Link>
             <Link
-              href={"/plants"}
+              href={"/plant-guides"}
               className="text-gray-200 hover:text-emerald-400 transition-colors"
             >
               Plants
@@ -70,6 +70,10 @@ export default function Header() {
             >
               Home
             </Link>
+            <Link
+              href={"/plant-guides"}
+              className="text-gray-200 hover:text-emerald-400 transition-colors"
+            ></Link>
             <Link
               href={"/articles"}
               className="text-gray-200 hover:text-emerald-400 transition-colors"
