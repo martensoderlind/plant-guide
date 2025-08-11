@@ -31,7 +31,8 @@ export const plantTable = pgTable("plants", {
   care_level: careLevelEnum().notNull(),
   light_requirement: lightRequirementEnum().notNull(),
   humidity_preference: humidityPreferenceEnum().notNull(),
-  created_at: timestamp("timestamp1").notNull().defaultNow(),
+  updated_at: timestamp("updated_at").defaultNow(),
+  created_at: timestamp("created_at").notNull().defaultNow(),
 });
 
 export type Plant = typeof plantTable.$inferSelect;
