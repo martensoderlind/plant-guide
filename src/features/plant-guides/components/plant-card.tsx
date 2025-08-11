@@ -31,17 +31,17 @@ export default function PlantCard({ plant }: Props) {
 
         <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
           <div className="flex items-center gap-1">
-            <Droplets size={16} className="text-blue-500" />
+            <Droplets size={16} className="" />
             <span>{plant.water_frequency_days}d</span>
           </div>
           <div className="flex items-center gap-1">
-            <Sun size={16} className="text-yellow-500" />
+            <Sun size={16} className="" />
             <span>{plant.light_requirement}</span>
           </div>
           <div className="flex items-center gap-1">
-            <Thermometer size={16} className="text-red-500" />
+            <Thermometer size={16} className="" />
             <span>
-              {plant.temperature_min}°–{plant.temperature_max}°
+              {plant.temperature_min}°– {plant.temperature_max}°
             </span>
           </div>
         </div>
@@ -53,7 +53,7 @@ export default function PlantCard({ plant }: Props) {
         <div className="flex-1"></div>
         <Link
           href={"/plant-guides/" + plant.id}
-          className="mt-4 text-emerald-700 hover:underline text-sm font-medium self-start"
+          className="mt-4 text-gray-700 hover:underline text-sm font-medium self-start"
         >
           Learn more →
         </Link>
