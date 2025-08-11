@@ -7,22 +7,6 @@ type Props = {
 };
 
 export default function PlantCard({ plant }: Props) {
-  //   return (
-  //     <div className="bg-gray-50 rounded-xl px-4 pt-4 pb-14 hover:shadow-md transition-all duration-300">
-  //       {plant.image_url && (
-  //         <img
-  //           src={plant.image_url}
-  //           alt=""
-  //           className="rounded-lg object-contain w-full h-full"
-  //         />
-  //       )}
-  //       <div className="">
-  //         <h3 className="font-semibold text-gray-800">{plant.name}</h3>
-  //         <p className="text-gray-800 text-xs">{plant.scientific_name}</p>
-  //         <p className="text-gray-700">{plant.description}</p>
-  //       </div>
-  //     </div>
-  //   );
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer flex flex-col">
       <div className="relative h-48 w-full bg-gradient-to-br from-green-100 to-emerald-200">
