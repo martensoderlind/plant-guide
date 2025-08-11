@@ -22,10 +22,10 @@ export default function Header() {
               Home
             </Link>
             <Link
-              href={"/guides"}
+              href={"/articles"}
               className="text-gray-200 hover:text-emerald-400 transition-colors"
             >
-              Guides
+              Articles
             </Link>
             <Link
               href={"/tools"}
@@ -65,10 +65,10 @@ export default function Header() {
               Home
             </Link>
             <Link
-              href={"/guides"}
+              href={"/articles"}
               className="text-gray-200 hover:text-emerald-400 transition-colors"
             >
-              Guides
+              Articles
             </Link>
             <Link
               href={"/tools"}
