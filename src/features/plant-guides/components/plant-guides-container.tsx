@@ -10,7 +10,7 @@ type Props = {
 
 export default function PlantGuidesContainer({ plantGuides }: Props) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   const filteredPlantGuides = plantGuides.filter(
     (plantGuide) =>
@@ -23,8 +23,8 @@ export default function PlantGuidesContainer({ plantGuides }: Props) {
       <SearchBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
+        selectedCategories={selectedCategories}
+        setSelectedCategories={setSelectedCategories}
       />
       <PlantContainer plantGuides={filteredPlantGuides} />
     </div>
