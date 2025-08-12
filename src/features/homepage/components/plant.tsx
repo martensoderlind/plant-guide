@@ -9,10 +9,7 @@ type Props = {
 };
 export default function Plant({ id, image, name, color, status }: Props) {
   return (
-    <Link
-      href={"/plant-guide/" + id}
-      className="bg-gray-50 rounded-xl px-4 pt-4 pb-14 hover:shadow-md transition-all duration-300"
-    >
+    <div className="bg-gray-50 rounded-xl px-4 pt-4 pb-14 hover:shadow-md transition-all duration-300">
       {image && (
         <img
           src={image}
@@ -20,20 +17,28 @@ export default function Plant({ id, image, name, color, status }: Props) {
           className="rounded-lg object-contain w-full h-full"
         />
       )}
-      <div className="ml-auto">
-        <h3 className="font-semibold text-gray-800">{name}</h3>
-        <p
-          className={`text-sm ${
-            color === "emerald"
-              ? "text-emerald-600"
-              : color === "yellow"
-              ? "text-yellow-600"
-              : "text-orange-600"
-          }`}
+      <div className="ml-auto flex flex-row justify-between">
+        <div>
+          <h3 className="font-semibold text-gray-800">{name}</h3>
+          <p
+            className={`text-sm ${
+              color === "emerald"
+                ? "text-emerald-600"
+                : color === "yellow"
+                ? "text-yellow-600"
+                : "text-orange-600"
+            }`}
+          >
+            {status}
+          </p>
+        </div>
+        <Link
+          href={"/plant-guides/" + id}
+          className="mt-4 text-gray-700 hover:underline text-sm font-medium self-start justify-center"
         >
-          {status}
-        </p>
+          Learn more →
+        </Link>
       </div>
-    </Link>
+    </div>
   );
 }
