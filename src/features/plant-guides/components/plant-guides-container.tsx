@@ -12,11 +12,18 @@ export default function PlantGuidesContainer({ plantGuides }: Props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
-  const filteredPlantGuides = plantGuides.filter(
-    (plantGuide) =>
+  const filteredPlantGuides = plantGuides.filter((plant) => {
+    const matchesSearch =
       searchTerm === "" ||
-      plantGuide.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+      plant.name.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesCategory =
+      selectedCategories.length === 0 ||
+      selectedCategories.includes(plant.plant_category);
+    console.log("selected C:", selectedCategories);
+    return matchesSearch && matchesCategory;
+  });
+
   return (
     <div>
       <p>plants</p>

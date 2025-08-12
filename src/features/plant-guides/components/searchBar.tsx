@@ -19,11 +19,11 @@ export default function SearchBar({
 
   const categories = [
     {
-      value: "Indoor plants",
+      value: "indoor plant",
       label: "Indoor Plants",
     },
     {
-      value: "outdoor plants",
+      value: "outdoor plant",
       label: "Outdoor Plants",
     },
     {
@@ -31,7 +31,7 @@ export default function SearchBar({
       label: "Succulents",
     },
     {
-      value: "flowering",
+      value: "flowering plants",
       label: "Flowering Plants",
     },
   ];
