@@ -10,18 +10,15 @@ export default function SearchBar() {
     {
       value: "all",
       label: "All Categories",
-      icon: <BookOpen className="w-4 h-4" />,
     },
     {
       value: "Indoor plants",
       label: "Indoor Plants",
-      icon: <Leaf className="w-4 h-4" />,
     },
 
     {
       value: "outdoor plants",
       label: "Outdoor Plants",
-      icon: <Leaf className="w-4 h-4" />,
     },
   ];
   return (
