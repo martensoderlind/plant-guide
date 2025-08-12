@@ -1,8 +1,12 @@
 import { plantGuidesService } from "../instance";
+import { Plant } from "../schema";
 import PlantCard from "./plant-card";
 
-export default async function PlantContainer() {
-  const plantGuides = await plantGuidesService.getAllPlantGuides();
+type Props = {
+  plantGuides: Plant[];
+};
+
+export default function PlantContainer({ plantGuides }: Props) {
   return (
     <section className="relative">
       <div className="relative z-10 bg-white rounded-3xl p-8 shadow-2xl max-w-7xl mx-auto">

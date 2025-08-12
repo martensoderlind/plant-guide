@@ -2,10 +2,19 @@
 import { BookOpen, Droplets, Leaf, Search, Star, Sun } from "lucide-react";
 import { useState } from "react";
 
-export default function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
+type Props = {
+  searchTerm: string;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  selectedCategory: string;
+  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+};
 
+export default function SearchBar({
+  searchTerm,
+  setSearchTerm,
+  selectedCategory,
+  setSelectedCategory,
+}: Props) {
   const categories = [
     {
       value: "all",
