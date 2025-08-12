@@ -17,7 +17,6 @@ export default function PlantGuides({ plantGuides }: Props) {
       searchTerm === "" ||
       plantGuide.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  console.log("searchterm:", filteredPlantGuides);
   return (
     <div>
       <p>plants</p>
