@@ -2,16 +2,17 @@ export type Plants = {
   id: number;
   name: string;
   scientific_name: string;
-  description: string;
+  description: string | null;
   water_frequency_days: number;
   temperature_min: number;
   temperature_max: number;
-  image_url: string;
+  image_url: string | null;
   care_level: string;
   light_requirement: string;
   humidity_preference: string;
   plant_category: string;
-  created_at: string;
+  updated_at: Date | null;
+  created_at: Date;
 };
 
 export type Article = {
@@ -27,6 +28,6 @@ export type Article = {
   reading_time_minutes: number;
   views: number;
   likes: number;
-  published_at: string | null;
-  created_at: string;
+  published_at: Date | null;
+  created_at: Date;
 };

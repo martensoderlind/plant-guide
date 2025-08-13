@@ -24,6 +24,7 @@ export default function AdminPlants({ plants, setPlants, searchTerm }: Props) {
     humidity_preference: "medium",
     plant_category: "indoor plant",
   });
+
   const careLevels = ["easy", "medium", "hard"];
   const lightRequirements = ["low", "medium", "bright", "direct"];
   const humidityPreferences = ["low", "medium", "high"];
@@ -38,18 +39,23 @@ export default function AdminPlants({ plants, setPlants, searchTerm }: Props) {
   const handleDeletePlant = (id: number) => {
     setPlants(plants.filter((plant) => plant.id !== id));
   };
+
   const filteredPlants = plants.filter(
     (plant) =>
       plant.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       plant.scientific_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   const handleAddPlant = () => {
     const plant = {
       ...newPlant,
       id: Date.now(),
-      created_at: new Date().toISOString().split("T")[0],
+      updated_at: new Date(),
+      created_at: new Date(),
     };
+
     setPlants([plant, ...plants]);
+
     setNewPlant({
       name: "",
       scientific_name: "",

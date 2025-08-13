@@ -60,11 +60,8 @@ export default function AdminArticles({
       reading_time_minutes: Math.ceil(
         newArticle.content.split(" ").length / 200
       ),
-      published_at:
-        newArticle.status === "published"
-          ? new Date().toISOString().split("T")[0]
-          : null,
-      created_at: new Date().toISOString().split("T")[0],
+      published_at: newArticle.status === "published" ? new Date() : null,
+      created_at: new Date(),
     };
     setArticles([article, ...articles]);
     setNewArticle({
@@ -416,7 +413,9 @@ export default function AdminArticles({
                     {article.views.toLocaleString()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {article.created_at}
+                    {article.created_at instanceof Date
+                      ? article.created_at.toDateString()
+                      : new Date(article.created_at).toDateString()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <div className="flex space-x-2">

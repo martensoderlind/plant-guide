@@ -5,12 +5,13 @@ import AdminPlants from "./admin-plants";
 import AdminDashboardHeader from "./admin-dashboard-header";
 import AdminArticles from "./admin-articles";
 import AdminNavbar from "./admin-navbar";
+import { Plants } from "../types";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("overview");
   const [searchTerm, setSearchTerm] = useState("");
   //mock plants
-  const [plants, setPlants] = useState([
+  const [plants, setPlants] = useState<Plants[]>([
     {
       id: 1,
       name: "Monstera Deliciosa",
@@ -24,7 +25,8 @@ export default function AdminDashboard() {
       light_requirement: "medium",
       humidity_preference: "medium",
       plant_category: "indoor plant",
-      created_at: "2024-08-10",
+      updated_at: new Date("2024-08-11"),
+      created_at: new Date("2024-08-10"),
     },
     {
       id: 2,
@@ -39,7 +41,8 @@ export default function AdminDashboard() {
       light_requirement: "low",
       humidity_preference: "low",
       plant_category: "indoor plant",
-      created_at: "2024-08-08",
+      updated_at: new Date("2024-08-09"),
+      created_at: new Date("2024-08-08"),
     },
   ]);
   //mock article
@@ -58,8 +61,8 @@ export default function AdminDashboard() {
       reading_time_minutes: 8,
       views: 2847,
       likes: 124,
-      published_at: "2024-08-10",
-      created_at: "2024-08-09",
+      published_at: new Date("2024-08-10"),
+      created_at: new Date("2024-08-09"),
     },
     {
       id: 2,
@@ -75,7 +78,7 @@ export default function AdminDashboard() {
       views: 0,
       likes: 0,
       published_at: null,
-      created_at: "2024-08-08",
+      created_at: new Date("2024-08-08"),
     },
   ]);
 
