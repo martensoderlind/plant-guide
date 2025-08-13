@@ -6,7 +6,7 @@ export default async function AdminDashboardPlantContainer() {
   const plants = await getAllPlantGuides();
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto rounded-xl shadow-sm border">
       <table className="w-full">
         <thead className="bg-gray-50">
           <tr>
