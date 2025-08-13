@@ -1,10 +1,14 @@
 "use client";
+import { usePathname } from "next/navigation";
 import { Leaf, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isActive = (path: string) => pathname === path;
+  console.log("isActive", isActive("/plant-guides"));
   return (
     <nav>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,31 +21,44 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href={"/"}
-              className="text-gray-200 hover:text-emerald-400 transition-colors"
+              className={`text-gray-200 hover:text-emerald-400 transition-colors ${
+                isActive("/") ? "border-b border-b-gray-200 border-solid" : ""
+              } `}
             >
               Home
             </Link>
             <Link
               href={"/plant-guides"}
-              className="text-gray-200 hover:text-emerald-400 transition-colors"
+              className={`text-gray-200 hover:text-emerald-400 transition-colors ${
+                isActive("/plant-guides") &&
+                "border-b border-b-gray-200 border-solid"
+              } `}
             >
               Plants
             </Link>
             <Link
               href={"/articles"}
-              className="text-gray-200 hover:text-emerald-400 transition-colors"
+              className={`text-gray-200 hover:text-emerald-400 transition-colors ${
+                isActive("/articles") &&
+                "border-b border-b-gray-200 border-solid"
+              } `}
             >
               Articles
             </Link>
             <Link
               href={"/tools"}
-              className="text-gray-200 hover:text-emerald-400 transition-colors"
+              className={`text-gray-200 hover:text-emerald-400 transition-colors ${
+                isActive("/tools") && "border-b border-b-gray-200 border-solid"
+              } `}
             >
               Tools
             </Link>
             <Link
               href={"/about-us"}
-              className="text-gray-200 hover:text-emerald-400 transition-colors"
+              className={`text-gray-200 hover:text-emerald-400 transition-colors ${
+                isActive("/about-us") &&
+                "border-b border-b-gray-200 border-solid"
+              } `}
             >
               About us
             </Link>
