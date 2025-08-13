@@ -1,6 +1,4 @@
-import { Edit3, Trash2 } from "lucide-react";
 import { getAllPlantGuides } from "../actions";
-import AdminPlantsButtons from "./admin-plants-buttons";
 import PlantTableRow from "./plant-table-row";
 
 export default async function AdminDashboardPlantContainer() {
