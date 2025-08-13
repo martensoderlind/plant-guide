@@ -1,18 +1,13 @@
 import { BookOpen, Eye, Leaf, TrendingUp } from "lucide-react";
 import RecentActivity from "./recent-activity";
 
-type OverviewStats = {
-  totalPlants: number;
-  totalArticles: number;
-  publishedArticles: number;
-  totalViews: number;
+const stats = {
+  totalPlants: 500,
+  totalArticles: 226,
+  publishedArticles: 180,
+  totalViews: 156000,
 };
-
-type Props = {
-  stats: OverviewStats;
-};
-
-export default function AdminOverview({ stats }: Props) {
+export default function AdminOverview() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

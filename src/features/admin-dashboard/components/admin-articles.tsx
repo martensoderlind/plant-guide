@@ -1,12 +1,6 @@
 "use client";
 import { Edit3, Eye, Plus, Save, Trash2, X } from "lucide-react";
-import { Article } from "../types";
 import { useState } from "react";
-type Props = {
-  articles: Article[];
-  setArticles: React.Dispatch<React.SetStateAction<Article[]>>;
-  searchTerm: string;
-};
 
 const articleCategories = [
   "basics",
@@ -19,11 +13,7 @@ const articleCategories = [
 ];
 const difficultyLevels = ["beginner", "intermediate", "advanced"];
 const articleStatuses = ["draft", "published", "archived"];
-export default function AdminArticles({
-  articles,
-  setArticles,
-  searchTerm,
-}: Props) {
+export default function AdminArticles() {
   const [isAddingArticle, setIsAddingArticle] = useState(false);
   const [newArticle, setNewArticle] = useState({
     title: "",
@@ -38,7 +28,41 @@ export default function AdminArticles({
     meta_title: "",
     meta_description: "",
   });
-
+  const [articles, setArticles] = useState([
+    {
+      id: 1,
+      title: "Plant Care Basics for Beginners",
+      slug: "plant-care-basics-beginners",
+      excerpt:
+        "Learn the essential principles to succeed with your first houseplants.",
+      content: "Full article content here...",
+      category: "basics",
+      difficulty_level: "beginner",
+      status: "published",
+      is_featured: true,
+      reading_time_minutes: 8,
+      views: 2847,
+      likes: 124,
+      published_at: new Date("2024-08-10"),
+      created_at: new Date("2024-08-09"),
+    },
+    {
+      id: 2,
+      title: "Watering Techniques: When and How Much?",
+      slug: "watering-techniques-when-how-much",
+      excerpt: "Discover the secrets behind proper watering.",
+      content: "Full article content here...",
+      category: "watering",
+      difficulty_level: "beginner",
+      status: "draft",
+      is_featured: false,
+      reading_time_minutes: 6,
+      views: 0,
+      likes: 0,
+      published_at: null,
+      created_at: new Date("2024-08-08"),
+    },
+  ]);
   const generateSlug = (title: string) => {
     return title
       .toLowerCase()
@@ -80,11 +104,7 @@ export default function AdminArticles({
 
     setIsAddingArticle(false);
   };
-  const filteredArticles = articles.filter(
-    (article) =>
-      article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      article.excerpt.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -341,7 +361,7 @@ export default function AdminArticles({
       <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
         <div className="px-6 py-4 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">
-            All Articles ({filteredArticles.length})
+            All Articles ({articles.length})
           </h3>
         </div>
 
@@ -370,7 +390,7 @@ export default function AdminArticles({
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {filteredArticles.map((article) => (
+              {articles.map((article) => (
                 <tr key={article.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4">
                     <div className="flex items-center">
