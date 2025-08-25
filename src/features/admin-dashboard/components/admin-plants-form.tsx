@@ -85,7 +85,7 @@ export default function AdminPlantForm() {
               </label>
               <input
                 type="text"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-3 py-2 border text-gray-500 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newPlant.name}
                 onChange={(e) =>
                   setNewPlant({ ...newPlant, name: e.target.value })
@@ -99,7 +99,7 @@ export default function AdminPlantForm() {
               </label>
               <input
                 type="text"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-3 py-2 border text-gray-500 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newPlant.scientific_name}
                 onChange={(e) =>
                   setNewPlant({
@@ -116,7 +116,7 @@ export default function AdminPlantForm() {
               </label>
               <textarea
                 rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newPlant.description}
                 onChange={(e) =>
                   setNewPlant({
@@ -133,7 +133,7 @@ export default function AdminPlantForm() {
               </label>
               <input
                 type="number"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newPlant.water_frequency_days}
                 onChange={(e) =>
                   setNewPlant({
@@ -149,7 +149,7 @@ export default function AdminPlantForm() {
                 Care Level
               </label>
               <select
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newPlant.care_level}
                 onChange={(e) =>
                   setNewPlant({ ...newPlant, care_level: e.target.value })
@@ -168,7 +168,7 @@ export default function AdminPlantForm() {
                 Light Requirement
               </label>
               <select
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newPlant.light_requirement}
                 onChange={(e) =>
                   setNewPlant({
@@ -190,7 +190,7 @@ export default function AdminPlantForm() {
                 Humidity Preference
               </label>
               <select
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newPlant.humidity_preference}
                 onChange={(e) =>
                   setNewPlant({
@@ -213,7 +213,7 @@ export default function AdminPlantForm() {
               </label>
               <input
                 type="number"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newPlant.temperature_min}
                 onChange={(e) =>
                   setNewPlant({
@@ -230,7 +230,7 @@ export default function AdminPlantForm() {
               </label>
               <input
                 type="number"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newPlant.temperature_max}
                 onChange={(e) =>
                   setNewPlant({
