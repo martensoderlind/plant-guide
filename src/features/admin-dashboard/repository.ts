@@ -5,7 +5,6 @@ import { Plants, NewPlant } from "./types";
 export default function createAdminDashboardRepository(db: Db) {
   return {
     async addPlant(newPlant: NewPlant) {
-      // console.log("newPlant: ", newPlant);
       await db.insert(plantTable).values(newPlant);
       return { message: "Ok" };
     },

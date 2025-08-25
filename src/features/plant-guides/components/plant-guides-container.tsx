@@ -20,7 +20,6 @@ export default function PlantGuidesContainer({ plantGuides }: Props) {
     const matchesCategory =
       selectedCategories.length === 0 ||
       selectedCategories.includes(plant.plant_category);
-    console.log("selected C:", selectedCategories);
     return matchesSearch && matchesCategory;
   });
 

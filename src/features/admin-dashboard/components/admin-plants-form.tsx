@@ -10,12 +10,11 @@ import {
   humidityPreferenceEnum,
   plantCategoryEnum,
 } from "../../plant-guides/schema";
-import {
-  CareLevel,
-  HumidityPreference,
-  LightRequirement,
-  PlantCategory,
-} from "@/features/plant-guides/types";
+// Typer för enums
+type CareLevel = (typeof careLevelEnum.enumValues)[number];
+type LightRequirement = (typeof lightRequirementEnum.enumValues)[number];
+type HumidityPreference = (typeof humidityPreferenceEnum.enumValues)[number];
+type PlantCategory = (typeof plantCategoryEnum.enumValues)[number];
 
 export default function AdminPlantForm() {
   const [isAddingPlant, setIsAddingPlant] = useState(false);
@@ -43,30 +42,38 @@ export default function AdminPlantForm() {
   const humidityPreferences = humidityPreferenceEnum.enumValues;
   const plantCategories = plantCategoryEnum.enumValues;
 
-  const handleAddPlant = async () => {
-    const plant = {
-      ...newPlant,
-      description: newPlant.description.trim() || null,
-      image_url: newPlant.image_url.trim() || null,
-    };
-    const message = await addPlant(plant);
-    if (message === "Ok") {
-      setNewPlant({
-        name: "",
-        scientific_name: "",
-        description: "",
-        water_frequency_days: 7,
-        temperature_min: 18,
-        temperature_max: 25,
-        image_url: "",
-        care_level: "easy" as const,
-        light_requirement: "medium" as const,
-        humidity_preference: "medium" as const,
-        plant_category: "indoor plant" as const,
-      });
-      setIsAddingPlant(false);
-    } else {
-      console.log("there was a problem adding the new plant.");
+  const handleAddPlant = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const plant = {
+        ...newPlant,
+        description: newPlant.description.trim() || null,
+        image_url: newPlant.image_url.trim() || null,
+      };
+
+      const result = await addPlant(plant);
+
+      if (result === "Ok") {
+        setNewPlant({
+          name: "",
+          scientific_name: "",
+          description: "",
+          water_frequency_days: 7,
+          temperature_min: 18,
+          temperature_max: 25,
+          image_url: "",
+          care_level: "easy" as const,
+          light_requirement: "medium" as const,
+          humidity_preference: "medium" as const,
+          plant_category: "indoor plant" as const,
+        });
+        setIsAddingPlant(false);
+      } else {
+        console.log("Problem while adding the new plant. result:", result);
+      }
+    } catch (error) {
+      console.error("Problem while adding the new plant:", error);
     }
   };
   return (
@@ -83,12 +90,16 @@ export default function AdminPlantForm() {
       </div>
 
       {isAddingPlant && (
-        <div className="bg-white rounded-xl shadow-sm border p-6">
+        <form
+          onSubmit={handleAddPlant}
+          className="bg-white rounded-xl shadow-sm border p-6"
+        >
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-lg font-semibold text-gray-900">
               Add New Plant
             </h3>
             <button
+              type="button"
               onClick={() => setIsAddingPlant(false)}
               className="text-gray-400 hover:text-gray-600"
             >
@@ -108,6 +119,7 @@ export default function AdminPlantForm() {
                 onChange={(e) =>
                   setNewPlant({ ...newPlant, name: e.target.value })
                 }
+                required
               />
             </div>
 
@@ -305,20 +317,21 @@ export default function AdminPlantForm() {
 
           <div className="flex justify-end space-x-4 mt-6">
             <button
+              type="button"
               onClick={() => setIsAddingPlant(false)}
               className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
             >
               Cancel
             </button>
             <button
-              onClick={handleAddPlant}
+              type="submit"
               className="bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700 transition-colors flex items-center space-x-2"
             >
               <Save className="w-4 h-4" />
               <span>Save Plant</span>
             </button>
           </div>
-        </div>
+        </form>
       )}
     </>
   );
