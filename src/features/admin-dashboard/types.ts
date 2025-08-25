@@ -1,19 +1,8 @@
-export type Plants = {
-  id: number;
-  name: string;
-  scientific_name: string;
-  description: string | null;
-  water_frequency_days: number;
-  temperature_min: number;
-  temperature_max: number;
-  image_url: string | null;
-  care_level: string;
-  light_requirement: string;
-  humidity_preference: string;
-  plant_category: string;
-  updated_at: Date | null;
-  created_at: Date;
-};
+import { Plant } from "../plant-guides/schema";
+
+export type Plants = Plant;
+
+export type NewPlant = Omit<Plant, "id" | "created_at" | "updated_at">;
 
 export type Article = {
   id: number;

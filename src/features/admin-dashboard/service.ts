@@ -1,6 +1,6 @@
 import { Db } from "@/db";
 import createAdminDashboardRepository from "./repository";
-import { Plants } from "./types";
+import { Plants, NewPlant } from "./types";
 
 export default function createAdminDashboardService(
   db: Db,
@@ -9,8 +9,12 @@ export default function createAdminDashboardService(
   const repository = createAdminDashboardRepository(db);
   return {
     async getAllPlants() {
-      const plants = await getAllPlantsGuides();
+      const plants = await repository.getAllPlants();
       return plants;
+    },
+    async addPlant(plant: NewPlant) {
+      const result = await repository.addPlant(plant);
+      return result;
     },
   };
 }

@@ -2,10 +2,29 @@
 
 import { Plus, Save, X } from "lucide-react";
 import { useState } from "react";
+import addPlant from "../actions";
+import { NewPlant } from "../types";
+import {
+  careLevelEnum,
+  lightRequirementEnum,
+  humidityPreferenceEnum,
+  plantCategoryEnum,
+} from "../../plant-guides/schema";
+import {
+  CareLevel,
+  HumidityPreference,
+  LightRequirement,
+  PlantCategory,
+} from "@/features/plant-guides/types";
 
 export default function AdminPlantForm() {
   const [isAddingPlant, setIsAddingPlant] = useState(false);
-  const [newPlant, setNewPlant] = useState({
+  const [newPlant, setNewPlant] = useState<
+    Omit<NewPlant, "description" | "image_url"> & {
+      description: string;
+      image_url: string;
+    }
+  >({
     name: "",
     scientific_name: "",
     description: "",
@@ -18,38 +37,37 @@ export default function AdminPlantForm() {
     humidity_preference: "medium",
     plant_category: "indoor plant",
   });
-  const careLevels = ["easy", "medium", "hard"];
-  const lightRequirements = ["low", "medium", "bright", "direct"];
-  const humidityPreferences = ["low", "medium", "high"];
-  const plantCategories = [
-    "indoor plant",
-    "outdoor plant",
-    "succulent",
-    "herb",
-    "flowering",
-  ];
-  const handleAddPlant = () => {
+
+  const careLevels = careLevelEnum.enumValues;
+  const lightRequirements = lightRequirementEnum.enumValues;
+  const humidityPreferences = humidityPreferenceEnum.enumValues;
+  const plantCategories = plantCategoryEnum.enumValues;
+
+  const handleAddPlant = async () => {
     const plant = {
       ...newPlant,
-      id: Date.now(),
-      updated_at: new Date(),
-      created_at: new Date(),
+      description: newPlant.description.trim() || null,
+      image_url: newPlant.image_url.trim() || null,
     };
-
-    setNewPlant({
-      name: "",
-      scientific_name: "",
-      description: "",
-      water_frequency_days: 7,
-      temperature_min: 18,
-      temperature_max: 25,
-      image_url: "",
-      care_level: "easy",
-      light_requirement: "medium",
-      humidity_preference: "medium",
-      plant_category: "indoor plant",
-    });
-    setIsAddingPlant(false);
+    const message = await addPlant(plant);
+    if (message === "Ok") {
+      setNewPlant({
+        name: "",
+        scientific_name: "",
+        description: "",
+        water_frequency_days: 7,
+        temperature_min: 18,
+        temperature_max: 25,
+        image_url: "",
+        care_level: "easy" as const,
+        light_requirement: "medium" as const,
+        humidity_preference: "medium" as const,
+        plant_category: "indoor plant" as const,
+      });
+      setIsAddingPlant(false);
+    } else {
+      console.log("there was a problem adding the new plant.");
+    }
   };
   return (
     <>
@@ -152,7 +170,10 @@ export default function AdminPlantForm() {
                 className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newPlant.care_level}
                 onChange={(e) =>
-                  setNewPlant({ ...newPlant, care_level: e.target.value })
+                  setNewPlant({
+                    ...newPlant,
+                    care_level: e.target.value as CareLevel,
+                  })
                 }
               >
                 {careLevels.map((level) => (
@@ -173,7 +194,7 @@ export default function AdminPlantForm() {
                 onChange={(e) =>
                   setNewPlant({
                     ...newPlant,
-                    light_requirement: e.target.value,
+                    light_requirement: e.target.value as LightRequirement,
                   })
                 }
               >
@@ -195,7 +216,7 @@ export default function AdminPlantForm() {
                 onChange={(e) =>
                   setNewPlant({
                     ...newPlant,
-                    humidity_preference: e.target.value,
+                    humidity_preference: e.target.value as HumidityPreference,
                   })
                 }
               >
@@ -238,6 +259,46 @@ export default function AdminPlantForm() {
                     temperature_max: parseInt(e.target.value),
                   })
                 }
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Plant Category
+              </label>
+              <select
+                className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                value={newPlant.plant_category}
+                onChange={(e) =>
+                  setNewPlant({
+                    ...newPlant,
+                    plant_category: e.target.value as PlantCategory,
+                  })
+                }
+              >
+                {plantCategories.map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Image URL
+              </label>
+              <input
+                type="url"
+                className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                value={newPlant.image_url}
+                onChange={(e) =>
+                  setNewPlant({
+                    ...newPlant,
+                    image_url: e.target.value,
+                  })
+                }
+                placeholder="https://example.com/plant-image.jpg"
               />
             </div>
           </div>

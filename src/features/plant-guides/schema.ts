@@ -18,7 +18,7 @@ export const humidityPreferenceEnum = pgEnum("humidity_preference", [
   "medium",
   "hard",
 ]);
-export const plantCategory = pgEnum("plant_category", [
+export const plantCategoryEnum = pgEnum("plant_category", [
   "indoor plant",
   "outdoor plant",
   "succulents",
@@ -37,7 +37,7 @@ export const plantTable = pgTable("plants", {
   care_level: careLevelEnum().notNull(),
   light_requirement: lightRequirementEnum().notNull(),
   humidity_preference: humidityPreferenceEnum().notNull(),
-  plant_category: plantCategory().default("indoor plant").notNull(),
+  plant_category: plantCategoryEnum().default("indoor plant").notNull(),
   updated_at: timestamp("updated_at").defaultNow(),
   created_at: timestamp("created_at").notNull().defaultNow(),
 });
