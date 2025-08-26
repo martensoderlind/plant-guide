@@ -10,7 +10,6 @@ import {
   humidityPreferenceEnum,
   plantCategoryEnum,
 } from "../../plant-guides/schema";
-// Typer för enums
 type CareLevel = (typeof careLevelEnum.enumValues)[number];
 type LightRequirement = (typeof lightRequirementEnum.enumValues)[number];
 type HumidityPreference = (typeof humidityPreferenceEnum.enumValues)[number];

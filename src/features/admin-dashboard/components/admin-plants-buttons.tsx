@@ -1,14 +1,15 @@
 "use client";
 import { Edit3, Trash2 } from "lucide-react";
+import { adminDashboardService } from "../instance";
 
 type Props = {
   id: number;
 };
 
 export default function AdminPlantsButtons({ id }: Props) {
-  const handleDeletePlant = (id: number) => {
-    //delete functionality
-  };
+  function handleDeletePlant(id: number) {
+    adminDashboardService.deletePlant(id);
+  }
 
   return (
     <div className="flex space-x-2">
