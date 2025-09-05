@@ -14,3 +14,8 @@ export default async function addPlant(plant: NewPlant) {
   revalidatePath("/admin-dashboard/plants");
   return message.message;
 }
+
+export async function deletePlant(id: number) {
+  await adminDashboardService.deletePlant(id);
+  revalidatePath("/admin-dashboard/plants");
+}
