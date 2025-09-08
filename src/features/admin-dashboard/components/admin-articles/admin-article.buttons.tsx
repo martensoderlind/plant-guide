@@ -5,9 +5,10 @@ import { deleteArticle } from "../../actions";
 
 type Props = {
   id: number;
+  slug: string;
 };
 
-export default function AdminArticleButtons({ id }: Props) {
+export default function AdminArticleButtons({ id, slug }: Props) {
   function handleDeleteArticle(id: number) {
     const message = deleteArticle(id);
   }
@@ -17,7 +18,7 @@ export default function AdminArticleButtons({ id }: Props) {
         <Edit3 className="w-4 h-4" />
       </button>
       <Link
-        href={`/articles/${id}`}
+        href={`/articles/${slug}`}
         className="text-blue-600 hover:text-blue-900"
       >
         <Eye className="w-4 h-4" />

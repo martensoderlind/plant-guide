@@ -7,5 +7,11 @@ export default function createArticlesService(db: Db) {
     async getAll() {
       return await repository.getAllArticles();
     },
+    async getArticle(slug: string) {
+      return await repository.getArticle(slug);
+    },
+    async incrementLikes(id: number) {
+      return await repository.incrementLikes(id);
+    },
   };
 }
