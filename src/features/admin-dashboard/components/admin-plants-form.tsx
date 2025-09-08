@@ -53,7 +53,7 @@ export default function AdminPlantForm() {
 
       const result = await addPlant(plant);
 
-      if (result === "Ok") {
+      if (result.success) {
         setNewPlant({
           name: "",
           scientific_name: "",
@@ -69,7 +69,10 @@ export default function AdminPlantForm() {
         });
         setIsAddingPlant(false);
       } else {
-        console.log("Problem while adding the new plant. result:", result);
+        console.log(
+          "Problem while adding the new plant. result:",
+          result.message
+        );
       }
     } catch (error) {
       console.error("Problem while adding the new plant:", error);

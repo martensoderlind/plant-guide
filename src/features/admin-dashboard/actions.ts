@@ -12,7 +12,7 @@ export async function getAllPlantGuides() {
 export default async function addPlant(plant: NewPlant) {
   const message = await adminDashboardService.addPlant(plant);
   revalidatePath("/admin-dashboard/plants");
-  return message.message;
+  return message;
 }
 
 export async function deletePlant(id: number) {
