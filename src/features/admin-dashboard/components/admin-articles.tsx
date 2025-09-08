@@ -1,5 +1,6 @@
 "use client";
 import { Edit3, Eye, Plus, Save, Trash2, X } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 const articleCategories = [
@@ -442,9 +443,12 @@ export default function AdminArticles() {
                       <button className="text-emerald-600 hover:text-emerald-900">
                         <Edit3 className="w-4 h-4" />
                       </button>
-                      <button className="text-blue-600 hover:text-blue-900">
+                      <Link
+                        href={`/articles/${id}`}
+                        className="text-blue-600 hover:text-blue-900"
+                      >
                         <Eye className="w-4 h-4" />
-                      </button>
+                      </Link>
                       <button
                         onClick={() => handleDeleteArticle(article.id)}
                         className="text-red-600 hover:text-red-900"

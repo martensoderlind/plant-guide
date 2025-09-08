@@ -1,6 +1,7 @@
 "use client";
-import { Edit3, Trash2 } from "lucide-react";
+import { Edit3, Eye, Trash2 } from "lucide-react";
 import { deletePlant } from "../actions";
+import Link from "next/link";
 
 type Props = {
   id: number;
@@ -15,6 +16,12 @@ export default function AdminPlantsButtons({ id }: Props) {
       <button className="text-emerald-600 hover:text-emerald-900">
         <Edit3 className="w-4 h-4" />
       </button>
+      <Link
+        href={`/plant-guides/${id}`}
+        className="text-blue-600 hover:text-blue-900"
+      >
+        <Eye className="w-4 h-4" />
+      </Link>
       <button
         onClick={() => handleDeletePlant(id)}
         className="text-red-600 hover:text-red-900"
