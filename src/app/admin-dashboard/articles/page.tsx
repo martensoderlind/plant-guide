@@ -1,4 +1,4 @@
-import AdminArticles from "@/features/admin-dashboard/components/admin-articles";
+import AdminArticles from "@/features/admin-dashboard/components/admin-articles/admin-articles";
 
 export default function Page() {
   return (
