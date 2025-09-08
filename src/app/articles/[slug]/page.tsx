@@ -1,4 +1,4 @@
-import Article from "@/features/articles/components/articles";
+import Article from "@/features/articles/components/article";
 
 export default async function Page({
   params,

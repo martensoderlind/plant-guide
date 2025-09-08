@@ -6,7 +6,7 @@ import { articleTable } from "./schema";
 export default function createArticlesRepository(db: Db) {
   return {
     async getAllArticles() {
-      return await db.select().from(plantTable);
+      return await db.select().from(articleTable);
     },
     async getArticle(slug: string) {
       const article = await db
