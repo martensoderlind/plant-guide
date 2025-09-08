@@ -4,6 +4,7 @@ import { plantTable } from "../plant-guides/schema";
 import { Plants, NewPlant, NewArticle } from "./types";
 
 import { articleTable } from "../articles/schema";
+import { deleteArticle } from "./actions";
 
 export default function createAdminDashboardRepository(db: Db) {
   return {
@@ -77,6 +78,9 @@ export default function createAdminDashboardRepository(db: Db) {
     },
     async deletePlant(PlantId: number) {
       await db.delete(plantTable).where(eq(plantTable.id, PlantId));
+    },
+    async deleteArticle(articleId: number) {
+      await db.delete(articleTable).where(eq(articleTable.id, articleId));
     },
   };
 }

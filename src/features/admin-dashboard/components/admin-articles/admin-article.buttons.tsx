@@ -1,13 +1,16 @@
 "use client";
 import { Edit3, Eye, Trash2 } from "lucide-react";
 import Link from "next/link";
+import { deleteArticle } from "../../actions";
 
 type Props = {
   id: number;
 };
 
 export default function AdminArticleButtons({ id }: Props) {
-  function handleDeleteArticle(id: number) {}
+  function handleDeleteArticle(id: number) {
+    const message = deleteArticle(id);
+  }
   return (
     <div className="flex space-x-2">
       <button className="text-emerald-600 hover:text-emerald-900">

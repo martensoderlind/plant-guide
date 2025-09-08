@@ -44,5 +44,8 @@ export default function createAdminDashboardService(
     async deletePlant(id: number) {
       const result = await repository.deletePlant(id);
     },
+    async deleteArticle(id: number) {
+      const result = await repository.deleteArticle(id);
+    },
   };
 }

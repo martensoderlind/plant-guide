@@ -27,3 +27,8 @@ export async function deletePlant(id: number) {
   await adminDashboardService.deletePlant(id);
   revalidatePath("/admin-dashboard/plants");
 }
+
+export async function deleteArticle(id: number) {
+  await adminDashboardService.deleteArticle(id);
+  revalidatePath("/admin-dashboard/articles");
+}
