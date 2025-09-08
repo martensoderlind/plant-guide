@@ -14,7 +14,7 @@ export default function createArticlesRepository(db: Db) {
         .from(articleTable)
         .where(eq(articleTable.slug, slug))
         .limit(1);
-      if (article) {
+      if (article && article[0].status === "published") {
         return article[0];
       }
       return undefined;
