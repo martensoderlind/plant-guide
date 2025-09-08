@@ -11,8 +11,10 @@ export default async function Article({ slug }: Prop) {
 
   if (!article) {
     return (
-      <div>
-        <p>No article with that name exist.</p>
+      <div className="max-w-4xl mx-auto py-8 flex flex-col justify-items-center">
+        <h1 className="text-xl md:text-2xl font-bold text-gray-200 mb-4 leading-tight mx-auto">
+          No article with that name exist.
+        </h1>
       </div>
     );
   }
