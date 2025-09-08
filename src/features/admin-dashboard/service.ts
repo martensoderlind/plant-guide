@@ -17,7 +17,6 @@ export default function createAdminDashboardService(
     async addPlant(plant: NewPlant) {
       const validatedPlant = plantSchema.safeParse(plant);
       if (validatedPlant.success) {
-        console.log("validation successful!");
         const result = await repository.addPlant(plant);
         return result;
       } else {
