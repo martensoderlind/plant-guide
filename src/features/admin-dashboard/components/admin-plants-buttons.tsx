@@ -1,6 +1,5 @@
 "use client";
 import { Edit3, Trash2 } from "lucide-react";
-import { adminDashboardService } from "../instance";
 import { deletePlant } from "../actions";
 
 type Props = {
