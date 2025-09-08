@@ -3,8 +3,8 @@ import { Db } from "../../db/index";
 import { plantTable } from "../plant-guides/schema";
 import { Plants, NewPlant, NewArticle } from "./types";
 
-import { articleTable } from "../articles/schema";
-import { deleteArticle } from "./actions";
+import { articleStatusEnum, articleTable } from "../articles/schema";
+import { ArticleStatusType } from "../articles/types";
 
 export default function createAdminDashboardRepository(db: Db) {
   return {
@@ -81,6 +81,15 @@ export default function createAdminDashboardRepository(db: Db) {
     },
     async deleteArticle(articleId: number) {
       await db.delete(articleTable).where(eq(articleTable.id, articleId));
+    },
+    async updateArticleStatus(articleId: number, status: ArticleStatusType) {
+      await db
+        .update(articleTable)
+        .set({
+          status: status,
+        })
+        .where(eq(articleTable.id, articleId))
+        .returning({ status: articleTable.status });
     },
   };
 }

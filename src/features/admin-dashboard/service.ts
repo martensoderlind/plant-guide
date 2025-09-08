@@ -2,6 +2,7 @@ import { Db } from "@/db";
 import createAdminDashboardRepository from "./repository";
 import { Plants, NewPlant, NewArticle } from "./types";
 import { plantSchema, articleSchema } from "./validate";
+import { ArticleStatusType } from "../articles/types";
 
 export default function createAdminDashboardService(
   db: Db,
@@ -46,6 +47,9 @@ export default function createAdminDashboardService(
     },
     async deleteArticle(id: number) {
       const result = await repository.deleteArticle(id);
+    },
+    async updateStatus(id: number, newStatus: ArticleStatusType) {
+      await repository.updateArticleStatus(id, newStatus);
     },
   };
 }

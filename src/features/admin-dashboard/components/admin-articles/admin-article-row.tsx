@@ -1,5 +1,6 @@
 import { Article } from "@/features/articles/schema";
 import AdminArticleButtons from "./admin-article.buttons";
+import AdminArticleStatus from "./admin-article-status";
 
 type Props = {
   article: Article;
@@ -31,17 +32,7 @@ export default function AdminArticleRow({ article }: Props) {
         </span>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
-        <span
-          className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-            article.status === "published"
-              ? "bg-green-100 text-green-800"
-              : article.status === "draft"
-              ? "bg-yellow-100 text-yellow-800"
-              : "bg-gray-100 text-gray-800"
-          }`}
-        >
-          {article.status}
-        </span>
+        <AdminArticleStatus id={article.id} status={article.status} />
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
         {article.views ? article.views.toLocaleString() : 0}

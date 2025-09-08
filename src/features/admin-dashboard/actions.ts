@@ -2,6 +2,7 @@
 import { revalidatePath } from "next/cache";
 import { adminDashboardService } from "./instance";
 import { NewPlant, NewArticle } from "./types";
+import { ArticleStatusType } from "../articles/types";
 
 export async function getAllPlantGuides() {
   const plants = await adminDashboardService.getAllPlants();
@@ -30,5 +31,10 @@ export async function deletePlant(id: number) {
 
 export async function deleteArticle(id: number) {
   await adminDashboardService.deleteArticle(id);
+  revalidatePath("/admin-dashboard/articles");
+}
+
+export async function updateStatus(id: number, newStatus: ArticleStatusType) {
+  await adminDashboardService.updateStatus(id, newStatus);
   revalidatePath("/admin-dashboard/articles");
 }
