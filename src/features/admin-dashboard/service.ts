@@ -1,6 +1,8 @@
 import { Db } from "@/db";
 import createAdminDashboardRepository from "./repository";
 import { Plants, NewPlant } from "./types";
+import { plantSchema } from "./validate";
+import { success } from "zod";
 
 export default function createAdminDashboardService(
   db: Db,
@@ -13,8 +15,17 @@ export default function createAdminDashboardService(
       return plants;
     },
     async addPlant(plant: NewPlant) {
-      const result = await repository.addPlant(plant);
-      return result;
+      const validatedPlant = plantSchema.safeParse(plant);
+      if (validatedPlant.success) {
+        console.log("validation successful!");
+        const result = await repository.addPlant(plant);
+        return result;
+      } else {
+        return {
+          success: false,
+          message: validatedPlant.error.issues[0].message,
+        };
+      }
     },
     async deletePlant(id: number) {
       const result = await repository.deletePlant(id);
