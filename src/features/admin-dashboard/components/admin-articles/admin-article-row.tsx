@@ -1,4 +1,4 @@
-import { Article } from "../../types";
+import { Article } from "@/features/articles/schema";
 import AdminArticleButtons from "./admin-article.buttons";
 
 type Props = {
@@ -44,7 +44,7 @@ export default function AdminArticleRow({ article }: Props) {
         </span>
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-        {article.views.toLocaleString()}
+        {article.views ? article.views.toLocaleString() : 0}
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
         {article.created_at instanceof Date

@@ -1,7 +1,9 @@
 import { eq } from "drizzle-orm";
 import { Db } from "../../db/index";
 import { plantTable } from "../plant-guides/schema";
-import { Plants, NewPlant } from "./types";
+import { Plants, NewPlant, NewArticle } from "./types";
+
+import { articleTable } from "../articles/schema";
 
 export default function createAdminDashboardRepository(db: Db) {
   return {
@@ -20,7 +22,37 @@ export default function createAdminDashboardRepository(db: Db) {
             "There was a problem with adding the plant to the database, please try again.",
         };
       } catch (error) {
-        if ((error as any).code === "23505") {
+        if ((error as { code: string }).code === "23505") {
+          return {
+            success: false,
+            message: "plant already registered.",
+            error,
+          };
+        }
+        return {
+          success: false,
+          message:
+            "There was a problem with adding the plant to the database, please try again.",
+          error,
+        };
+      }
+    },
+    async addArticle(newArticle: NewArticle) {
+      try {
+        const result = await db
+          .insert(articleTable)
+          .values(newArticle)
+          .returning({ id: articleTable.id });
+        if (result.length > 0) {
+          return { success: true, message: "Article inserted successfully" };
+        }
+        return {
+          success: false,
+          message:
+            "There was a problem with adding the article to the database, please try again.",
+        };
+      } catch (error) {
+        if ((error as { code: string }).code === "23505") {
           return {
             success: false,
             message: "plant already registered.",
@@ -38,6 +70,10 @@ export default function createAdminDashboardRepository(db: Db) {
     async getAllPlants(): Promise<Plants[]> {
       const plants = await db.select().from(plantTable);
       return plants;
+    },
+    async getAllArticles() {
+      const articles = await db.select().from(articleTable);
+      return articles;
     },
     async deletePlant(PlantId: number) {
       await db.delete(plantTable).where(eq(plantTable.id, PlantId));

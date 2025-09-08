@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { articleCategoryEnum, difficultyLevelEnum, articleStatusEnum } from "../articles/schema";
 
 export const plantSchema = z
   .object({
@@ -36,3 +37,17 @@ export const plantSchema = z
     message: "Minimum temperature cannot be higher than maximum temperature",
     path: ["temperature_min"],
   });
+
+export const articleSchema = z.object({
+  title: z.string().min(1, "Title cannot be empty").max(255, "Title too long"),
+  slug: z.string().min(1, "Slug cannot be empty").max(255, "Slug too long"),
+  excerpt: z.string().max(1000, "Excerpt too long").nullable(),
+  content: z.string().min(1, "Content cannot be empty"),
+  featured_image_url: z.string().url("Invalid URL format").optional().nullable(),
+  category: z.enum(articleCategoryEnum.enumValues),
+  difficulty_level: z.enum(difficultyLevelEnum.enumValues),
+  status: z.enum(articleStatusEnum.enumValues),
+  is_featured: z.boolean().optional(),
+  meta_title: z.string().max(255, "Meta title too long").nullable(),
+  meta_description: z.string().max(500, "Meta description too long").nullable(),
+});
