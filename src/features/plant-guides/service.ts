@@ -7,5 +7,8 @@ export default function createPlantGuidesService(db: Db) {
     async getAllPlantGuides() {
       return await repository.getAllPlantGuides();
     },
+    async totalPlantGuideCount() {
+      return await repository.totalPlantGuideCount();
+    },
   };
 }

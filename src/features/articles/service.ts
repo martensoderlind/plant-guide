@@ -16,5 +16,8 @@ export default function createArticlesService(db: Db) {
     async incrementArticleViews(slug: string) {
       await repository.incrementArticleViews(slug);
     },
+    async totalArticleCount() {
+      await repository.totalArticlesCount();
+    },
   };
 }

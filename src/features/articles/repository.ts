@@ -41,5 +41,11 @@ export default function createArticlesRepository(db: Db) {
         })
         .where(eq(articleTable.slug, slug));
     },
+    async totalArticlesCount() {
+      const articleCount = await db
+        .select({ count: sql<number>`count(*)` })
+        .from(articleTable);
+      return articleCount[0].count;
+    },
   };
 }
