@@ -9,7 +9,6 @@ type Prop = {
 
 export default async function Article({ slug }: Prop) {
   const article = await articlesService.getArticle(slug);
-
   if (!article) {
     return (
       <div className="max-w-4xl mx-auto py-8 flex flex-col justify-items-center">
@@ -19,6 +18,7 @@ export default async function Article({ slug }: Prop) {
       </div>
     );
   }
+  await articlesService.incrementArticleViews(slug);
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("sv-SE", {
       year: "numeric",

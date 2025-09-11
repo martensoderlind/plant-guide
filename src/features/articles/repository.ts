@@ -30,5 +30,13 @@ export default function createArticlesRepository(db: Db) {
         .returning({ likes: articleTable.likes });
       return result;
     },
+    async incrementArticleViews(slug: string) {
+      await db
+        .update(articleTable)
+        .set({
+          views: sql`COALESCE(${articleTable.likes}, 0) + 1`,
+        })
+        .where(eq(articleTable.slug, slug));
+    },
   };
 }

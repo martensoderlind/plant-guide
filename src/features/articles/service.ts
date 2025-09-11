@@ -13,5 +13,8 @@ export default function createArticlesService(db: Db) {
     async incrementLikes(id: number) {
       return await repository.incrementLikes(id);
     },
+    async incrementArticleViews(slug: string) {
+      await repository.incrementArticleViews(slug);
+    },
   };
 }
