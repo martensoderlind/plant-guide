@@ -19,6 +19,7 @@ interface ArticleFormData {
   slug: string;
   excerpt: string;
   content: string;
+  reading_time_minutes: number;
   category: ArticleCategory;
   difficulty_level: DifficultyLevel;
   status: ArticleStatus;
@@ -35,6 +36,7 @@ export default function AdminArticleForm() {
     slug: "",
     excerpt: "",
     content: "",
+    reading_time_minutes: 0,
     category: "basics",
     difficulty_level: "beginner",
     status: "draft",
@@ -77,6 +79,7 @@ export default function AdminArticleForm() {
           slug: "",
           excerpt: "",
           content: "",
+          reading_time_minutes: 0,
           category: "basics" as const,
           difficulty_level: "beginner" as const,
           status: "draft" as const,
@@ -199,7 +202,23 @@ export default function AdminArticleForm() {
                 required
               />
             </div>
-
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Estimated reading time
+              </label>
+              <input
+                type="number"
+                min={0}
+                className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                value={newArticle.reading_time_minutes}
+                onChange={(e) =>
+                  setNewArticle({
+                    ...newArticle,
+                    reading_time_minutes: parseInt(e.target.value),
+                  })
+                }
+              />
+            </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Category
@@ -252,9 +271,9 @@ export default function AdminArticleForm() {
                 className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newArticle.status}
                 onChange={(e) =>
-                  setNewArticle({ 
-                    ...newArticle, 
-                    status: e.target.value as ArticleStatus 
+                  setNewArticle({
+                    ...newArticle,
+                    status: e.target.value as ArticleStatus,
                   })
                 }
               >
