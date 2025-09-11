@@ -4,8 +4,8 @@ import createArticlesRepository from "./repository";
 export default function createArticlesService(db: Db) {
   const repository = createArticlesRepository(db);
   return {
-    async getAll() {
-      return await repository.getAllArticles();
+    async getAllPublishedArticles() {
+      return await repository.getAllPublishedArticles();
     },
     async getArticle(slug: string) {
       return await repository.getArticle(slug);

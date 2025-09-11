@@ -5,8 +5,11 @@ import { articleTable } from "./schema";
 
 export default function createArticlesRepository(db: Db) {
   return {
-    async getAllArticles() {
-      return await db.select().from(articleTable);
+    async getAllPublishedArticles() {
+      return await db
+        .select()
+        .from(articleTable)
+        .where(eq(articleTable.status, "published" as const));
     },
     async getArticle(slug: string) {
       const article = await db
