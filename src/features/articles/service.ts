@@ -1,7 +1,11 @@
 import { Db } from "@/db";
 import createArticlesRepository from "./repository";
+import { PlantGuideService } from "../plant-guides/types";
 
-export default function createArticlesService(db: Db) {
+export default function createArticlesService(
+  db: Db,
+  plantService: PlantGuideService
+) {
   const repository = createArticlesRepository(db);
   return {
     async getAllPublishedArticles() {
@@ -18,6 +22,9 @@ export default function createArticlesService(db: Db) {
     },
     async totalArticleCount() {
       await repository.totalArticlesCount();
+    },
+    async getPlantCount() {
+      return await plantService.plantCount();
     },
   };
 }
