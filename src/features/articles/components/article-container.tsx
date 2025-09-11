@@ -1,9 +1,20 @@
 import { Article } from "../schema";
+import ArticleCard from "@/features/articles/components/article-card";
 
 type Props = {
-  article: Article[];
+  articles: Article[];
 };
 
-export default function ArticleContainer({ article }: Props) {
-  return <div></div>;
+export default function ArticleContainer({ articles }: Props) {
+  return (
+      <section className="relative">
+          <div className="relative z-10 bg-white rounded-3xl p-8 shadow-2xl max-w-7xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                  {articles.map((article, idx) => (
+                      <ArticleCard key={idx} article={article} />
+                  ))}
+              </div>
+          </div>
+      </section>
+  );
 }

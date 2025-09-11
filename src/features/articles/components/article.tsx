@@ -1,6 +1,7 @@
 import { Calendar, Clock, Eye, Heart } from "lucide-react";
 import { articlesService } from "../instance";
 import ArticleFooter from "./article-footer";
+import Image from "next/image";
 
 type Prop = {
   slug: string;
@@ -53,10 +54,12 @@ export default async function Article({ slug }: Prop) {
     <article className="max-w-4xl mx-auto px-4 py-8">
       {article.featured_image_url && (
         <div className="mb-8 rounded-lg overflow-hidden shadow-lg">
-          <img
+          <Image
+            width={500}
+            height={500}
+            className="w-full h-64 md:h-96 object-cover"
             src={article.featured_image_url}
             alt={article.title}
-            className="w-full h-64 md:h-96 object-cover"
           />
         </div>
       )}

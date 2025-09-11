@@ -1,7 +1,9 @@
+import Articles from "@/features/articles/components/articles";
+
 export default function Page() {
   return (
     <div>
-      <p>Articles</p>
+      <Articles />
     </div>
   );
 }

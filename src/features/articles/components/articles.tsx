@@ -5,7 +5,7 @@ export default async function Articles() {
   const articles = await articlesService.getAll();
   return (
     <div>
-      <ArticleContainer article={articles} />
+      <ArticleContainer articles={articles} />
     </div>
   );
 }
