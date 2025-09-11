@@ -103,7 +103,7 @@ export default async function Article({ slug }: Prop) {
           {article.reading_time_minutes && (
             <div className="flex items-center gap-1">
               <Clock size={16} />
-              <span>{article.reading_time_minutes} my reading</span>
+              <span>{article.reading_time_minutes} estimated reading time</span>
             </div>
           )}
           {article.views && (
