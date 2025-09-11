@@ -49,6 +49,10 @@ export default function createAdminDashboardService(
       const result = await repository.deleteArticle(id);
     },
     async updateStatus(id: number, newStatus: ArticleStatusType) {
+      if (newStatus === "published") {
+        const published_at = new Date();
+        repository.updateArticleStatusPublished(id, newStatus, published_at);
+      }
       await repository.updateArticleStatus(id, newStatus);
     },
   };

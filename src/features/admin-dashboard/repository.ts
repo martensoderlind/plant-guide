@@ -91,5 +91,19 @@ export default function createAdminDashboardRepository(db: Db) {
         .where(eq(articleTable.id, articleId))
         .returning({ status: articleTable.status });
     },
+    async updateArticleStatusPublished(
+      articleId: number,
+      status: ArticleStatusType,
+      published_at: Date
+    ) {
+      await db
+        .update(articleTable)
+        .set({
+          status: status,
+          published_at: published_at,
+        })
+        .where(eq(articleTable.id, articleId))
+        .returning({ status: articleTable.status });
+    },
   };
 }
