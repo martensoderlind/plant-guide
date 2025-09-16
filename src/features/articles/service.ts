@@ -1,6 +1,5 @@
 import { Db } from "@/db";
 import createArticlesRepository from "./repository";
-import { PlantGuideService } from "../plant-guides/types";
 import { NewArticle } from "../admin-dashboard/types";
 import { ArticleStatusType } from "./types";
 
