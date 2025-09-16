@@ -33,16 +33,13 @@ export default function createIamRepository(db: Db) {
         .from(rolesTable)
         .where(eq(rolesTable.id, newRoleId))
         .limit(1);
-
       if (!roleExists) {
         throw new Error(`Role '${newRoleId}' does not exist`);
       }
-
       await db
         .update(userRolesTable)
         .set({ roleId: newRoleId })
         .where(eq(userRolesTable.userId, userId));
-
       return { success: true };
     },
   };

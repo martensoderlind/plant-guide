@@ -15,5 +15,8 @@ export default function createIamService(db: Db) {
       const result = await repository.deleteUser(id);
       return result;
     },
+    async UpdateUserRole(id: string, roleId: string) {
+      const result = repository.updateUserRole(id, roleId);
+    },
   };
 }
