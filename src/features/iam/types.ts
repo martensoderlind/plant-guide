@@ -15,6 +15,7 @@ export type User = {
   avatarUrl: string;
   roleId: string;
   role?: string;
+  created_at?: Date;
 };
 
 type iamService = ReturnType<typeof createIamService>;

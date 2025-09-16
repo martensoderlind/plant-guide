@@ -13,6 +13,7 @@ export default function createIamRepository(db: Db) {
           username: usersTable.username,
           fullName: usersTable.fullName,
           avatarUrl: usersTable.avatarUrl,
+          created_at: usersTable.createdAt,
           roleId: userRolesTable.roleId,
           role: rolesTable.description,
         })
@@ -28,6 +29,7 @@ export default function createIamRepository(db: Db) {
         avatarUrl: row.avatarUrl || "",
         roleId: row.roleId || "",
         role: row.role || undefined,
+        created_at: row.created_at,
       }));
     },
     async createUser(newUser: User) {

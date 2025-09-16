@@ -1,10 +1,12 @@
 import { User } from "@/features/iam/types";
+import { log } from "console";
 
 type Props = {
   user: User;
 };
 
 export default function AdminUserRow({ user }: Props) {
+  console.log("user:", user);
   return (
     <tr key={user.id} className="hover:bg-gray-50">
       <td className="px-6 py-4">
@@ -46,7 +48,13 @@ export default function AdminUserRow({ user }: Props) {
           </span>
         )}
       </td>
-      <td className="px-6 py-4 text-sm text-gray-500">{user.id}</td>
+      {user.created_at ? (
+        <td className="px-6 py-4 text-sm text-gray-500">
+          {user.created_at.toDateString()}
+        </td>
+      ) : (
+        <td className="px-6 py-4 text-sm text-gray-500">-</td>
+      )}
       <td className="px-6 py-4 text-right text-sm font-medium">
         <div className="flex justify-end space-x-2">
           <button className="text-indigo-600 hover:text-indigo-900 px-3 py-1 rounded-md hover:bg-indigo-50 transition-colors">

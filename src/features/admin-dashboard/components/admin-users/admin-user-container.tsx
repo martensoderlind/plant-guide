@@ -16,19 +16,13 @@ export default async function AdminUserContainer() {
           <thead className="bg-gray-50">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Article
+                User
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Category
+                Role
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Status
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Views
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Created
+                joined
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Actions
@@ -37,7 +31,7 @@ export default async function AdminUserContainer() {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {users.map((user, idx) => (
-              <AdminUserRow user={user} />
+              <AdminUserRow key={idx} user={user} />
             ))}
           </tbody>
         </table>
