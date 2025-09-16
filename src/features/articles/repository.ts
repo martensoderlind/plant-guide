@@ -1,10 +1,14 @@
 import { Db } from "../../db/index";
 import { eq, sql } from "drizzle-orm";
-import { plantTable } from "../plant-guides/schema";
 import { articleTable } from "./schema";
+import { NewArticle } from "../admin-dashboard/types";
 
 export default function createArticlesRepository(db: Db) {
   return {
+    async getAllArticles() {
+      const articles = await db.select().from(articleTable);
+      return articles;
+    },
     async getAllPublishedArticles() {
       return await db
         .select()
@@ -21,6 +25,36 @@ export default function createArticlesRepository(db: Db) {
         return article[0];
       }
       return undefined;
+    },
+    async addArticle(newArticle: NewArticle) {
+      try {
+        const result = await db
+          .insert(articleTable)
+          .values(newArticle)
+          .returning({ id: articleTable.id });
+        if (result.length > 0) {
+          return { success: true, message: "Article inserted successfully" };
+        }
+        return {
+          success: false,
+          message:
+            "There was a problem with adding the article to the database, please try again.",
+        };
+      } catch (error) {
+        if ((error as { code: string }).code === "23505") {
+          return {
+            success: false,
+            message: "plant already registered.",
+            error,
+          };
+        }
+        return {
+          success: false,
+          message:
+            "There was a problem with adding the plant to the database, please try again.",
+          error,
+        };
+      }
     },
     async incrementLikes(articleId: number) {
       const result = await db
@@ -46,6 +80,9 @@ export default function createArticlesRepository(db: Db) {
         .select({ count: sql<number>`count(*)` })
         .from(articleTable);
       return articleCount[0].count;
+    },
+    async deleteArticle(articleId: number) {
+      await db.delete(articleTable).where(eq(articleTable.id, articleId));
     },
   };
 }

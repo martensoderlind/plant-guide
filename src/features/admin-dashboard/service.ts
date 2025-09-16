@@ -2,13 +2,13 @@ import { Db } from "@/db";
 import createAdminDashboardRepository from "./repository";
 import { NewPlant, NewArticle } from "./types";
 import { plantSchema, articleSchema } from "./validate";
-import { ArticleStatusType } from "../articles/types";
-import addPlant from "./actions";
+import { ArticleService, ArticleStatusType } from "../articles/types";
 import { PlantGuideService } from "../plant-guides/types";
 
 export default function createAdminDashboardService(
   db: Db,
-  plantGuideService: PlantGuideService
+  plantGuideService: PlantGuideService,
+  articleService: ArticleService
 ) {
   const repository = createAdminDashboardRepository(db);
   return {
@@ -17,7 +17,7 @@ export default function createAdminDashboardService(
       return plants;
     },
     async getAllArticles() {
-      const articles = await repository.getAllArticles();
+      const articles = await articleService.getAllArticles();
       return articles;
     },
     async addPlant(plant: NewPlant) {
@@ -35,7 +35,7 @@ export default function createAdminDashboardService(
     async addArticle(article: NewArticle) {
       const validatedArticle = articleSchema.safeParse(article);
       if (validatedArticle.success) {
-        const result = await repository.addArticle(article);
+        const result = await articleService.addArticle(article);
         return result;
       } else {
         return {
@@ -48,7 +48,7 @@ export default function createAdminDashboardService(
       await plantGuideService.deletePlantGuide(id);
     },
     async deleteArticle(id: number) {
-      await repository.deleteArticle(id);
+      await articleService.deleteArticle(id);
     },
     async updateStatus(id: number, newStatus: ArticleStatusType) {
       //change name to updateArticleStatus

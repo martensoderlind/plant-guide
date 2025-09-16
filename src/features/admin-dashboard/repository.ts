@@ -38,10 +38,6 @@ export default function createAdminDashboardRepository(db: Db) {
         };
       }
     },
-    async getAllArticles() {
-      const articles = await db.select().from(articleTable);
-      return articles;
-    },
 
     async deleteArticle(articleId: number) {
       await db.delete(articleTable).where(eq(articleTable.id, articleId));
