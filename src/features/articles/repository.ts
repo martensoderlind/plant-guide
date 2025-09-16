@@ -87,7 +87,6 @@ export default function createArticlesRepository(db: Db) {
         .select({ count: sql<number>`count(*)` })
         .from(articleTable)
         .where(eq(articleTable.status, "published" as const));
-      console.log("articleCount:", articleCount);
       return articleCount[0].count;
     },
     async deleteArticle(articleId: number) {
