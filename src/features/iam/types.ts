@@ -1,3 +1,5 @@
+import createIamService from "./service";
+
 export type NewUser = {
   email: string;
   username: string;
@@ -12,4 +14,12 @@ export type User = {
   fullName: string;
   avatarUrl: string;
   roleId: string;
+};
+
+type iamService = ReturnType<typeof createIamService>;
+
+export type IamService = {
+  createUser: iamService["createUser"];
+  deleteUser: iamService["deleteUser"];
+  updateUserRole: iamService["UpdateUserRole"];
 };
