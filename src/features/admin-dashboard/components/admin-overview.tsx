@@ -10,6 +10,7 @@ const stats = {
 };
 export default async function AdminOverview() {
   const totalPlants = await adminDashboardService.getPlantGuideCount();
+  const totalArticles = await adminDashboardService.getArticleCount();
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -30,7 +31,7 @@ export default async function AdminOverview() {
                 Total Articles
               </p>
               <p className="text-3xl font-bold text-gray-900">
-                {stats.totalArticles}
+                {totalArticles}
               </p>
             </div>
             <BookOpen className="h-12 w-12 text-blue-500" />

@@ -22,9 +22,6 @@ export default function createArticlesService(db: Db) {
     async incrementArticleViews(slug: string) {
       await repository.incrementArticleViews(slug);
     },
-    async totalArticleCount() {
-      await repository.totalArticlesCount();
-    },
     async addArticle(article: NewArticle) {
       await repository.addArticle(article);
     },
@@ -40,6 +37,10 @@ export default function createArticlesService(db: Db) {
     },
     async updateArticleStatus(id: number, newStatus: ArticleStatusType) {
       repository.updateArticleStatus(id, newStatus);
+    },
+    async totalArticleCount() {
+      const articleCount = await repository.totalArticlesCount();
+      return articleCount;
     },
   };
 }

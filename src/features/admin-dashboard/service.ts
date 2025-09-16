@@ -65,5 +65,9 @@ export default function createAdminDashboardService(
       const plantGuideCount = await plantGuideService.plantCount();
       return plantGuideCount;
     },
+    async getArticleCount() {
+      const articleCount = await articleService.articleCount();
+      return articleCount;
+    },
   };
 }
