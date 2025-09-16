@@ -50,7 +50,7 @@ export default function createAdminDashboardService(
     async deleteArticle(id: number) {
       await articleService.deleteArticle(id);
     },
-    async updateStatus(id: number, newStatus: ArticleStatusType) {
+    async updateArticleStatus(id: number, newStatus: ArticleStatusType) {
       //change name to updateArticleStatus
       if (newStatus === "published") {
         const published_at = new Date();

@@ -35,6 +35,6 @@ export async function deleteArticle(id: number) {
 }
 
 export async function updateStatus(id: number, newStatus: ArticleStatusType) {
-  await adminDashboardService.updateStatus(id, newStatus);
+  await adminDashboardService.updateArticleStatus(id, newStatus);
   revalidatePath("/admin-dashboard/articles");
 }
