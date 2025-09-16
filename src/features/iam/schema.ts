@@ -1,6 +1,6 @@
 import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
-export const users = pgTable("users", {
+export const usersTable = pgTable("users", {
   id: text("id").primaryKey(),
   email: text("email").notNull(),
   username: text("username").notNull(),
@@ -10,16 +10,16 @@ export const users = pgTable("users", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
-export const roles = pgTable("roles", {
+export const rolesTable = pgTable("roles", {
   id: text("id").primaryKey(),
   description: text("description"),
 });
 
-export const userRoles = pgTable("user_roles", {
+export const userRolesTable = pgTable("user_roles", {
   userId: text("user_id")
     .notNull()
-    .references(() => users.id, { onDelete: "cascade" }),
+    .references(() => usersTable.id, { onDelete: "cascade" }),
   roleId: text("role_id")
     .notNull()
-    .references(() => roles.id, { onDelete: "cascade" }),
+    .references(() => rolesTable.id, { onDelete: "cascade" }),
 });
