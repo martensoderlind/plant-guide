@@ -9,6 +9,8 @@ const stats = {
 export default async function AdminOverview() {
   const totalPlants = await adminDashboardService.getPlantGuideCount();
   const totalArticles = await adminDashboardService.getArticleCount();
+  const totalPublishedArticles =
+    await adminDashboardService.getPublishedArticleCount();
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -41,7 +43,7 @@ export default async function AdminOverview() {
             <div>
               <p className="text-sm font-medium text-gray-600">Published</p>
               <p className="text-3xl font-bold text-gray-900">
-                {stats.publishedArticles}
+                {totalPublishedArticles}
               </p>
             </div>
             <Eye className="h-12 w-12 text-green-500" />
