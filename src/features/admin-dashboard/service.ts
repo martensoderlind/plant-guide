@@ -51,7 +51,6 @@ export default function createAdminDashboardService(
       await articleService.deleteArticle(id);
     },
     async updateArticleStatus(id: number, newStatus: ArticleStatusType) {
-      //change name to updateArticleStatus
       if (newStatus === "published") {
         const published_at = new Date();
         repository.updateArticleStatusPublished(id, newStatus, published_at);
