@@ -56,7 +56,7 @@ export default function AdminUserRow({ user }: Props) {
         <td className="px-6 py-4 text-sm text-gray-500">-</td>
       )}
       <td className="px-6 py-4 text-right text-sm font-medium">
-        <div className="flex justify-end space-x-2">
+        <div className="flex justify-center space-x-2">
           <button className="text-indigo-600 hover:text-indigo-900 px-3 py-1 rounded-md hover:bg-indigo-50 transition-colors">
             Edit
           </button>
