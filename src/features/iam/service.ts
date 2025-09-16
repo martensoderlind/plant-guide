@@ -6,6 +6,10 @@ import { NewUser } from "./types";
 export default function createIamService(db: Db) {
   const repository = createIamRepository(db);
   return {
+    async getAllUsers() {
+      const users = await repository.getAllUsers();
+      return users;
+    },
     async createUser(newUser: NewUser) {
       const id = uuidv4();
       const result = await repository.createUser({ ...newUser, id });

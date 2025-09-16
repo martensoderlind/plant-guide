@@ -5,6 +5,10 @@ import { NewUser, User } from "./types";
 
 export default function createIamRepository(db: Db) {
   return {
+    async getAllUsers() {
+      const users = await db.select().from(usersTable);
+      return users;
+    },
     async createUser(newUser: User) {
       return await db.transaction(async (tx) => {
         await tx.insert(usersTable).values({

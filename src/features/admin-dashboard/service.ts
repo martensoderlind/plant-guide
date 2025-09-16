@@ -4,14 +4,21 @@ import { NewPlant, NewArticle } from "./types";
 import { plantSchema, articleSchema } from "./validate";
 import { ArticleService, ArticleStatusType } from "../articles/types";
 import { PlantGuideService } from "../plant-guides/types";
+import { iamService } from "../iam/instance";
+import { IamService } from "../iam/types";
 
 export default function createAdminDashboardService(
   db: Db,
   plantGuideService: PlantGuideService,
-  articleService: ArticleService
+  articleService: ArticleService,
+  iamService: IamService
 ) {
   const repository = createAdminDashboardRepository(db);
   return {
+    async getAllUsers() {
+      const users = await iamService.getAllUsers();
+      return users;
+    },
     async getAllPlants() {
       const plants = await plantGuideService.getAllPlantGuides();
       return plants;
@@ -20,6 +27,7 @@ export default function createAdminDashboardService(
       const articles = await articleService.getAllArticles();
       return articles;
     },
+
     async addPlant(plant: NewPlant) {
       const validatedPlant = plantSchema.safeParse(plant);
       if (validatedPlant.success) {

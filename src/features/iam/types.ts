@@ -19,6 +19,7 @@ export type User = {
 type iamService = ReturnType<typeof createIamService>;
 
 export type IamService = {
+  getAllUsers: iamService["getAllUsers"];
   createUser: iamService["createUser"];
   deleteUser: iamService["deleteUser"];
   updateUserRole: iamService["UpdateUserRole"];

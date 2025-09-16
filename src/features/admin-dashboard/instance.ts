@@ -2,6 +2,7 @@ import { db } from "@/db/index";
 import createAdminDashboardService from "./service";
 import { plantGuidesService } from "../plant-guides/instance";
 import { articlesService } from "../articles/instance";
+import { iamService } from "../iam/instance";
 
 export const adminDashboardService = createAdminDashboardService(
   db,
@@ -21,5 +22,11 @@ export const adminDashboardService = createAdminDashboardService(
     articleCount: articlesService.totalArticleCount,
     publishedArticleCount: articlesService.publishedArticleCount,
     articleViews: articlesService.totalArticleViews,
+  },
+  {
+    getAllUsers: iamService.getAllUsers,
+    createUser: iamService.createUser,
+    deleteUser: iamService.deleteUser,
+    updateUserRole: iamService.UpdateUserRole,
   }
 );
