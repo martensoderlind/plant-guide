@@ -3,8 +3,11 @@ import {
   lightRequirementEnum,
   humidityPreferenceEnum,
   plantCategoryEnum,
+  Plant,
 } from "./schema";
 import createPlantGuidesService from "./service";
+
+export type NewPlant = Omit<Plant, "id" | "created_at" | "updated_at">;
 
 export type CareLevel = (typeof careLevelEnum.enumValues)[number];
 export type LightRequirement = (typeof lightRequirementEnum.enumValues)[number];

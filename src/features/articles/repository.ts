@@ -1,7 +1,7 @@
 import { Db } from "../../db/index";
 import { eq, sql } from "drizzle-orm";
 import { articleTable } from "./schema";
-import { NewArticle } from "../admin-dashboard/types";
+import { NewArticle } from "./types";
 import { ArticleStatusType } from "./types";
 
 export default function createArticlesRepository(db: Db) {

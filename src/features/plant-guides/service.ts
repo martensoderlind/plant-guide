@@ -1,6 +1,6 @@
 import { Db } from "@/db";
 import createPlantGuidesRepository from "./repository";
-import { NewPlant } from "../admin-dashboard/types";
+import { NewPlant } from "./types";
 
 export default function createPlantGuidesService(db: Db) {
   const repository = createPlantGuidesRepository(db);

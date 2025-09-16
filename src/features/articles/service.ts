@@ -1,6 +1,6 @@
 import { Db } from "@/db";
 import createArticlesRepository from "./repository";
-import { NewArticle } from "../admin-dashboard/types";
+import { NewArticle } from "./types";
 import { ArticleStatusType } from "./types";
 
 export default function createArticlesService(db: Db) {

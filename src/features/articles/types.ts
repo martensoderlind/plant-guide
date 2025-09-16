@@ -1,6 +1,17 @@
-import { deleteArticle } from "../admin-dashboard/actions";
-import { articleStatusEnum } from "./schema";
+import { Article, articleStatusEnum } from "./schema";
 import createArticlesService from "./service";
+
+export type NewArticle = Omit<
+  Article,
+  | "id"
+  | "created_at"
+  | "published_at"
+  | "updated_at"
+  | "reading_time_minutes"
+  | "views"
+  | "likes"
+  | "author_id"
+>;
 
 export type ArticleStatusType = (typeof articleStatusEnum.enumValues)[number];
 
