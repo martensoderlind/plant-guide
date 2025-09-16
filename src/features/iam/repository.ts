@@ -19,20 +19,22 @@ export default function createIamRepository(db: Db) {
       avatarUrl?: string;
       roleId?: string;
     }) {
-      await db.insert(usersTable).values({
-        id,
-        email,
-        username,
-        fullName,
-        avatarUrl,
-      });
+      return await db.transaction(async (tx) => {
+        await tx.insert(usersTable).values({
+          id,
+          email,
+          username,
+          fullName,
+          avatarUrl,
+        });
 
-      await db.insert(userRolesTable).values({
-        userId: id,
-        roleId,
-      });
+        await tx.insert(userRolesTable).values({
+          userId: id,
+          roleId,
+        });
 
-      return { success: true };
+        return { success: true };
+      });
     },
     async deleteUser(userId: string) {
       await db.delete(usersTable).where(eq(usersTable.id, userId));
