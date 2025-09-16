@@ -16,5 +16,7 @@ export const adminDashboardService = createAdminDashboardService(
     getAllArticles: articlesService.getAllArticles,
     addArticle: articlesService.addArticle,
     deleteArticle: articlesService.deleteArticle,
+    updateArticleStatusPublished: articlesService.updateArticleStatusPublished,
+    updateArticleStatus: articlesService.updateArticleStatus,
   }
 );

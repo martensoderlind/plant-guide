@@ -53,9 +53,13 @@ export default function createAdminDashboardService(
     async updateArticleStatus(id: number, newStatus: ArticleStatusType) {
       if (newStatus === "published") {
         const published_at = new Date();
-        repository.updateArticleStatusPublished(id, newStatus, published_at);
+        await articleService.updateArticleStatusPublished(
+          id,
+          newStatus,
+          published_at
+        );
       }
-      await repository.updateArticleStatus(id, newStatus);
+      await articleService.updateArticleStatus(id, newStatus);
     },
     async getPlantGuideCount() {
       const plantGuideCount = await plantGuideService.plantCount();

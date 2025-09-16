@@ -2,6 +2,7 @@ import { Db } from "../../db/index";
 import { eq, sql } from "drizzle-orm";
 import { articleTable } from "./schema";
 import { NewArticle } from "../admin-dashboard/types";
+import { ArticleStatusType } from "./types";
 
 export default function createArticlesRepository(db: Db) {
   return {
@@ -83,6 +84,29 @@ export default function createArticlesRepository(db: Db) {
     },
     async deleteArticle(articleId: number) {
       await db.delete(articleTable).where(eq(articleTable.id, articleId));
+    },
+    async updateArticleStatus(articleId: number, status: ArticleStatusType) {
+      await db
+        .update(articleTable)
+        .set({
+          status: status,
+        })
+        .where(eq(articleTable.id, articleId))
+        .returning({ status: articleTable.status });
+    },
+    async updateArticleStatusPublished(
+      articleId: number,
+      status: ArticleStatusType,
+      published_at: Date
+    ) {
+      await db
+        .update(articleTable)
+        .set({
+          status: status,
+          published_at: published_at,
+        })
+        .where(eq(articleTable.id, articleId))
+        .returning({ status: articleTable.status });
     },
   };
 }

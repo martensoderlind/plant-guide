@@ -11,4 +11,6 @@ export type ArticleService = {
   getAllArticles: articleService["getAllArticles"];
   addArticle: articleService["addArticle"];
   deleteArticle: articleService["deleteArticle"];
+  updateArticleStatusPublished: articleService["updateArticleStatusPublished"];
+  updateArticleStatus: articleService["updateArticleStatus"];
 };
