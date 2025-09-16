@@ -1,36 +1,23 @@
 import { Db } from "../../db/index";
 import { eq, sql } from "drizzle-orm";
 import { rolesTable, userRolesTable, usersTable } from "./schema";
+import { NewUser, User } from "./types";
 
 export default function createIamRepository(db: Db) {
   return {
-    async createUser({
-      id,
-      email,
-      username,
-      fullName,
-      avatarUrl,
-      roleId = "user",
-    }: {
-      id: string;
-      email: string;
-      username: string;
-      fullName?: string;
-      avatarUrl?: string;
-      roleId?: string;
-    }) {
+    async createUser(newUser: User) {
       return await db.transaction(async (tx) => {
         await tx.insert(usersTable).values({
-          id,
-          email,
-          username,
-          fullName,
-          avatarUrl,
+          id: newUser.id,
+          email: newUser.email,
+          username: newUser.username,
+          fullName: newUser.fullName,
+          avatarUrl: newUser.avatarUrl,
         });
 
         await tx.insert(userRolesTable).values({
-          userId: id,
-          roleId,
+          userId: newUser.id,
+          roleId: newUser.roleId,
         });
 
         return { success: true };
