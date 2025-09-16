@@ -58,5 +58,9 @@ export default function createAdminDashboardService(
       }
       await repository.updateArticleStatus(id, newStatus);
     },
+    async getPlantGuideCount() {
+      const plantGuideCount = await plantGuideService.plantCount();
+      return plantGuideCount;
+    },
   };
 }

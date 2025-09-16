@@ -1,5 +1,6 @@
 import { BookOpen, Eye, Leaf, TrendingUp } from "lucide-react";
 import RecentActivity from "./recent-activity";
+import { adminDashboardService } from "../instance";
 
 const stats = {
   totalPlants: 500,
@@ -7,7 +8,8 @@ const stats = {
   publishedArticles: 180,
   totalViews: 156000,
 };
-export default function AdminOverview() {
+export default async function AdminOverview() {
+  const totalPlants = await adminDashboardService.getPlantGuideCount();
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -15,9 +17,7 @@ export default function AdminOverview() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Plants</p>
-              <p className="text-3xl font-bold text-gray-900">
-                {stats.totalPlants}
-              </p>
+              <p className="text-3xl font-bold text-gray-900">{totalPlants}</p>
             </div>
             <Leaf className="h-12 w-12 text-emerald-500" />
           </div>
