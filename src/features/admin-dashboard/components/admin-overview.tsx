@@ -3,8 +3,6 @@ import RecentActivity from "./recent-activity";
 import { adminDashboardService } from "../instance";
 
 const stats = {
-  totalPlants: 500,
-  totalArticles: 226,
   publishedArticles: 180,
   totalViews: 156000,
 };
@@ -62,7 +60,6 @@ export default async function AdminOverview() {
           </div>
         </div>
       </div>
-
       <RecentActivity />
     </div>
   );
