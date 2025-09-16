@@ -10,7 +10,7 @@ export default function createIamRepository(db: Db) {
       username,
       fullName,
       avatarUrl,
-      roleId = "user", // default: vanlig användare
+      roleId = "user",
     }: {
       id: string;
       email: string;
