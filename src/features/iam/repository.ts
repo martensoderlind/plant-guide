@@ -6,8 +6,29 @@ import { NewUser, User } from "./types";
 export default function createIamRepository(db: Db) {
   return {
     async getAllUsers() {
-      const users = await db.select().from(usersTable);
-      return users;
+      const result = await db
+        .select({
+          id: usersTable.id,
+          email: usersTable.email,
+          username: usersTable.username,
+          fullName: usersTable.fullName,
+          avatarUrl: usersTable.avatarUrl,
+          roleId: userRolesTable.roleId,
+          role: rolesTable.description,
+        })
+        .from(usersTable)
+        .leftJoin(userRolesTable, eq(usersTable.id, userRolesTable.userId))
+        .leftJoin(rolesTable, eq(userRolesTable.roleId, rolesTable.id));
+
+      return result.map((row) => ({
+        id: row.id,
+        email: row.email,
+        username: row.username,
+        fullName: row.fullName || "",
+        avatarUrl: row.avatarUrl || "",
+        roleId: row.roleId || "",
+        role: row.role || undefined,
+      }));
     },
     async createUser(newUser: User) {
       return await db.transaction(async (tx) => {
