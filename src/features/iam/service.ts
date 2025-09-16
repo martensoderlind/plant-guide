@@ -11,5 +11,9 @@ export default function createIamService(db: Db) {
       const result = await repository.createUser({ ...newUser, id });
       return result;
     },
+    async deleteUser(id: string) {
+      const result = await repository.deleteUser(id);
+      return result;
+    },
   };
 }
