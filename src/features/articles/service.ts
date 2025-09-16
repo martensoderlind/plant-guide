@@ -46,5 +46,9 @@ export default function createArticlesService(db: Db) {
       const publishedArticleCount = await repository.publishedArticlesCount();
       return publishedArticleCount;
     },
+    async totalArticleViews() {
+      const totalArticleViews = await repository.getArticleViews();
+      return totalArticleViews;
+    },
   };
 }

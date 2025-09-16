@@ -73,5 +73,9 @@ export default function createAdminDashboardService(
       const articleCount = await articleService.publishedArticleCount();
       return articleCount;
     },
+    async getArticleViews() {
+      const articleViews = await articleService.articleViews();
+      return articleViews;
+    },
   };
 }

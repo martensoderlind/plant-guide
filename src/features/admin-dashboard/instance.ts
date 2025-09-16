@@ -20,5 +20,6 @@ export const adminDashboardService = createAdminDashboardService(
     updateArticleStatus: articlesService.updateArticleStatus,
     articleCount: articlesService.totalArticleCount,
     publishedArticleCount: articlesService.publishedArticleCount,
+    articleViews: articlesService.totalArticleViews,
   }
 );

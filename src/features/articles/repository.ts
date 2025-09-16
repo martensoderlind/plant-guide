@@ -116,5 +116,13 @@ export default function createArticlesRepository(db: Db) {
         .where(eq(articleTable.id, articleId))
         .returning({ status: articleTable.status });
     },
+    async getArticleViews() {
+      const totalArticleViews = await db
+        .select({
+          total: sql<number>`sum(${articleTable.views})`,
+        })
+        .from(articleTable);
+      return totalArticleViews[0].total;
+    },
   };
 }

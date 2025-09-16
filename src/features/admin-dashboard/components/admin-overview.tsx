@@ -11,6 +11,7 @@ export default async function AdminOverview() {
   const totalArticles = await adminDashboardService.getArticleCount();
   const totalPublishedArticles =
     await adminDashboardService.getPublishedArticleCount();
+  const articleViews = await adminDashboardService.getArticleViews();
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -55,7 +56,7 @@ export default async function AdminOverview() {
             <div>
               <p className="text-sm font-medium text-gray-600">Total Views</p>
               <p className="text-3xl font-bold text-gray-900">
-                {stats.totalViews.toLocaleString()}
+                {articleViews.toLocaleString()}
               </p>
             </div>
             <TrendingUp className="h-12 w-12 text-purple-500" />
