@@ -1,17 +1,19 @@
 import { Db } from "@/db";
 import createAdminDashboardRepository from "./repository";
-import { Plants, NewPlant, NewArticle } from "./types";
+import { NewPlant, NewArticle } from "./types";
 import { plantSchema, articleSchema } from "./validate";
 import { ArticleStatusType } from "../articles/types";
+import addPlant from "./actions";
+import { PlantGuideService } from "../plant-guides/types";
 
 export default function createAdminDashboardService(
   db: Db,
-  getAllPlantsGuides: () => Promise<Plants[]>
+  plantGuideService: PlantGuideService
 ) {
   const repository = createAdminDashboardRepository(db);
   return {
     async getAllPlants() {
-      const plants = await repository.getAllPlants();
+      const plants = await plantGuideService.getAllPlantGuides();
       return plants;
     },
     async getAllArticles() {
@@ -21,7 +23,7 @@ export default function createAdminDashboardService(
     async addPlant(plant: NewPlant) {
       const validatedPlant = plantSchema.safeParse(plant);
       if (validatedPlant.success) {
-        const result = await repository.addPlant(plant);
+        const result = await plantGuideService.addPlant(plant);
         return result;
       } else {
         return {
@@ -43,12 +45,13 @@ export default function createAdminDashboardService(
       }
     },
     async deletePlant(id: number) {
-      const result = await repository.deletePlant(id);
+      await plantGuideService.deletePlantGuide(id);
     },
     async deleteArticle(id: number) {
-      const result = await repository.deleteArticle(id);
+      await repository.deleteArticle(id);
     },
     async updateStatus(id: number, newStatus: ArticleStatusType) {
+      //change name to updateArticleStatus
       if (newStatus === "published") {
         const published_at = new Date();
         repository.updateArticleStatusPublished(id, newStatus, published_at);

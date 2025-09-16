@@ -1,5 +1,6 @@
 import { Db } from "@/db";
 import createPlantGuidesRepository from "./repository";
+import { NewPlant } from "../admin-dashboard/types";
 
 export default function createPlantGuidesService(db: Db) {
   const repository = createPlantGuidesRepository(db);
@@ -9,6 +10,13 @@ export default function createPlantGuidesService(db: Db) {
     },
     async totalPlantGuideCount() {
       return await repository.totalPlantGuideCount();
+    },
+    async addPlant(plant: NewPlant) {
+      const result = await repository.addPlant(plant);
+      return result;
+    },
+    async deletePlant(id: number) {
+      await repository.deletePlant(id);
     },
   };
 }

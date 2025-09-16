@@ -15,5 +15,8 @@ export type PlantCategory = (typeof plantCategoryEnum.enumValues)[number];
 type plantGuidesService = ReturnType<typeof createPlantGuidesService>;
 
 export type PlantGuideService = {
-  plantCount: plantGuidesService["totalPlantGuideCount"];
+  // plantCount: plantGuidesService["totalPlantGuideCount"];
+  addPlant: plantGuidesService["addPlant"];
+  getAllPlantGuides: plantGuidesService["getAllPlantGuides"];
+  deletePlantGuide: plantGuidesService["deletePlant"];
 };
