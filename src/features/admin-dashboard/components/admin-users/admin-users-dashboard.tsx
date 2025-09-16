@@ -1,6 +1,11 @@
-import { adminDashboardService } from "../../instance";
+import AdminUserContainer from "./admin-user-container";
+import AdminUserForm from "./admin-user-form";
 
 export default function AdminUserDashboard() {
-  const users = adminDashboardService.getAllUsers();
-  return <div>users</div>;
+  return (
+    <div className="space-y-6">
+      <AdminUserForm />
+      <AdminUserContainer />
+    </div>
+  );
 }
