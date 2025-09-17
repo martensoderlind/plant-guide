@@ -4,6 +4,8 @@ import { Plus, Save, X } from "lucide-react";
 import { useState } from "react";
 import { NewUser, Roles } from "@/features/iam/types";
 import { addUser } from "../../actions";
+import ToastContainer from "@/components/ToastContainer";
+import { useToast } from "../../../../../hooks/toast";
 
 type Props = {
   roles: Roles[];
@@ -19,6 +21,8 @@ export default function AdminArticleForm({ roles }: Props) {
     roleId: undefined,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const { toasts, removeToast, success, info } = useToast();
 
   const handleAddUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,9 +47,10 @@ export default function AdminArticleForm({ roles }: Props) {
         role: "User",
         roleId: undefined,
       });
+      success("Success", result.message);
       setIsAddingUser(false);
     } else {
-      console.log("form", result.message);
+      info("Validation problem", result.message);
       setErrors(result.error);
     }
   };
@@ -98,7 +103,6 @@ export default function AdminArticleForm({ roles }: Props) {
                 className="w-full px-3 py-2 border text-gray-500 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newUser.fullName}
                 onChange={(e) => handleInputChange("fullName", e.target.value)}
-                required
               />
               {errors.fullName && (
                 <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>
@@ -113,7 +117,6 @@ export default function AdminArticleForm({ roles }: Props) {
                 className="w-full px-3 py-2 border text-gray-500 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newUser.email}
                 onChange={(e) => handleInputChange("email", e.target.value)}
-                required
               />
               {errors.email && (
                 <p className="mt-1 text-sm text-red-600">{errors.email}</p>
@@ -128,7 +131,6 @@ export default function AdminArticleForm({ roles }: Props) {
                 className="w-full px-3 py-2 border text-gray-500 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newUser.username}
                 onChange={(e) => handleInputChange("username", e.target.value)}
-                required
               />
               {errors.username && (
                 <p className="mt-1 text-sm text-red-600">{errors.username}</p>
@@ -142,7 +144,6 @@ export default function AdminArticleForm({ roles }: Props) {
                 className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newUser.roleId}
                 onChange={(e) => handleInputChange("roleId", e.target.value)}
-                required
               >
                 {roles.map((role, idx) => (
                   <option key={idx} value={role.id}>
@@ -190,6 +191,11 @@ export default function AdminArticleForm({ roles }: Props) {
           </div>
         </form>
       )}
+      <ToastContainer
+        toasts={toasts}
+        onRemove={removeToast}
+        position="top-right"
+      />
     </>
   );
 }

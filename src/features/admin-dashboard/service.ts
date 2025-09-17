@@ -46,7 +46,7 @@ export default function createAdminDashboardService(
         const errors = formatErrors(validatedPlant.error._zod.def);
         return {
           success: false,
-          message: "validation error",
+          message: "Follow the instructions in the form.",
           error: errors,
         };
       }
@@ -64,7 +64,7 @@ export default function createAdminDashboardService(
         const errors = formatErrors(validatedArticle.error._zod.def);
         return {
           success: false,
-          message: "validation error.",
+          message: "Follow the instructions in the form.",
           error: errors,
         };
       }
@@ -83,7 +83,7 @@ export default function createAdminDashboardService(
 
         return {
           success: false,
-          message: "validation error",
+          message: "Follow the instructions in the form.",
           error: errors,
         };
       }
