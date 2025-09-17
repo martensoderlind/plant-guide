@@ -95,7 +95,8 @@ export default function createAdminDashboardService(
       await articleService.deleteArticle(id);
     },
     async deleteUser(id: string) {
-      await iamService.deleteUser(id);
+      const result = await iamService.deleteUser(id);
+      return result;
     },
     async updateArticleStatus(id: number, newStatus: ArticleStatusType) {
       if (newStatus === "published") {

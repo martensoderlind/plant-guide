@@ -41,8 +41,9 @@ export async function deleteArticle(id: number) {
   revalidatePath("/admin-dashboard/articles");
 }
 export async function deleteUser(id: string) {
-  await adminDashboardService.deleteUser(id);
+  const result = await adminDashboardService.deleteUser(id);
   revalidatePath("/admin-dashboard/users");
+  return result;
 }
 
 export async function updateStatus(id: number, newStatus: ArticleStatusType) {
