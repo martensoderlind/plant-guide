@@ -45,6 +45,7 @@ export default function AdminArticleForm() {
     meta_title: "",
     meta_description: "",
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const articleCategories = articleCategoryEnum.enumValues;
   const difficultyLevels = difficultyLevelEnum.enumValues;
@@ -61,42 +62,36 @@ export default function AdminArticleForm() {
 
   const handleAddArticle = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErrors({});
 
-    try {
-      const article: NewArticle = {
-        ...newArticle,
-        excerpt: newArticle.excerpt.trim() || null,
-        featured_image_url: newArticle.featured_image_url.trim() || null,
-        meta_title: newArticle.meta_title.trim() || null,
-        meta_description: newArticle.meta_description.trim() || null,
-      };
+    const article: NewArticle = {
+      ...newArticle,
+      excerpt: newArticle.excerpt.trim() || null,
+      featured_image_url: newArticle.featured_image_url.trim() || null,
+      meta_title: newArticle.meta_title.trim() || null,
+      meta_description: newArticle.meta_description.trim() || null,
+    };
 
-      const result = await addArticle(article);
+    const result = await addArticle(article);
 
-      if (result.success) {
-        setNewArticle({
-          title: "",
-          slug: "",
-          excerpt: "",
-          content: "",
-          reading_time_minutes: 0,
-          category: "basics" as const,
-          difficulty_level: "beginner" as const,
-          status: "draft" as const,
-          is_featured: false,
-          featured_image_url: "",
-          meta_title: "",
-          meta_description: "",
-        });
-        setIsAddingArticle(false);
-      } else {
-        console.log(
-          "Problem while adding the new article. result:",
-          result.message
-        );
-      }
-    } catch (error) {
-      console.error("Problem while adding the new article:", error);
+    if (result.success) {
+      setNewArticle({
+        title: "",
+        slug: "",
+        excerpt: "",
+        content: "",
+        reading_time_minutes: 0,
+        category: "basics" as const,
+        difficulty_level: "beginner" as const,
+        status: "draft" as const,
+        is_featured: false,
+        featured_image_url: "",
+        meta_title: "",
+        meta_description: "",
+      });
+      setIsAddingArticle(false);
+    } else {
+      setErrors(result.error);
     }
   };
 
@@ -148,8 +143,10 @@ export default function AdminArticleForm() {
                     slug: generateSlug(title),
                   });
                 }}
-                required
               />
+              {errors.title && (
+                <p className="mt-1 text-sm text-red-600">{errors.title}</p>
+              )}
             </div>
 
             <div className="md:col-span-2">
@@ -164,6 +161,9 @@ export default function AdminArticleForm() {
                   setNewArticle({ ...newArticle, slug: e.target.value })
                 }
               />
+              {errors.slug && (
+                <p className="mt-1 text-sm text-red-600">{errors.slug}</p>
+              )}
             </div>
 
             <div className="md:col-span-2">
@@ -182,6 +182,9 @@ export default function AdminArticleForm() {
                 }
                 placeholder="Brief description of the article..."
               />
+              {errors.excerpt && (
+                <p className="mt-1 text-sm text-red-600">{errors.excerpt}</p>
+              )}
             </div>
 
             <div className="md:col-span-2">
@@ -199,8 +202,10 @@ export default function AdminArticleForm() {
                   })
                 }
                 placeholder="Write your article content here..."
-                required
               />
+              {errors.content && (
+                <p className="mt-1 text-sm text-red-600">{errors.content}</p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -218,6 +223,11 @@ export default function AdminArticleForm() {
                   })
                 }
               />
+              {errors.reading_time_minutes && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.reading_time_minutes}
+                </p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -239,6 +249,9 @@ export default function AdminArticleForm() {
                   </option>
                 ))}
               </select>
+              {errors.category && (
+                <p className="mt-1 text-sm text-red-600">{errors.category}</p>
+              )}
             </div>
 
             <div>
@@ -261,6 +274,11 @@ export default function AdminArticleForm() {
                   </option>
                 ))}
               </select>
+              {errors.difficulty_level && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.difficulty_level}
+                </p>
+              )}
             </div>
 
             <div>
@@ -283,6 +301,9 @@ export default function AdminArticleForm() {
                   </option>
                 ))}
               </select>
+              {errors.status && (
+                <p className="mt-1 text-sm text-red-600">{errors.status}</p>
+              )}
             </div>
 
             <div>
@@ -301,6 +322,9 @@ export default function AdminArticleForm() {
                 }
                 placeholder="https://example.com/image.jpg"
               />
+              {errors.featured_img_url && (
+                <p className="mt-1 text-sm text-red-600">{errors.excerpt}</p>
+              )}
             </div>
 
             <div className="md:col-span-2">
@@ -340,6 +364,9 @@ export default function AdminArticleForm() {
                 }
                 placeholder="SEO title (optional)"
               />
+              {errors.meta_title && (
+                <p className="mt-1 text-sm text-red-600">{errors.meta_title}</p>
+              )}
             </div>
 
             <div>
@@ -358,6 +385,11 @@ export default function AdminArticleForm() {
                 }
                 placeholder="SEO description (optional)"
               />
+              {errors.meta_description && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.meta_description}
+                </p>
+              )}
             </div>
           </div>
 

@@ -49,12 +49,17 @@ export default function createAdminDashboardService(
       const validatedArticle = articleSchema.safeParse(article);
       if (validatedArticle.success) {
         const result = await articleService.addArticle(article);
-        return result;
+        return {
+          success: true,
+          message: result.message,
+          error: { "": "" },
+        };
       } else {
+        const errors = formatErrors(validatedArticle.error._zod.def);
         return {
           success: false,
           message: validatedArticle.error.issues[0].message,
-          error: "",
+          error: errors,
         };
       }
     },
@@ -64,7 +69,7 @@ export default function createAdminDashboardService(
         const result = await iamService.createUser(user);
         return {
           success: true,
-          message: "user added successfully.",
+          message: result.message,
           error: { "": "" },
         };
       } else {
