@@ -37,11 +37,17 @@ export default function createAdminDashboardService(
       const validatedPlant = plantSchema.safeParse(plant);
       if (validatedPlant.success) {
         const result = await plantGuideService.addPlant(plant);
-        return result;
+        return {
+          success: true,
+          message: result.message,
+          error: { "": "" },
+        };
       } else {
+        const errors = formatErrors(validatedPlant.error._zod.def);
         return {
           success: false,
-          message: validatedPlant.error.issues[0].message,
+          message: "validation error",
+          error: errors,
         };
       }
     },
@@ -58,7 +64,7 @@ export default function createAdminDashboardService(
         const errors = formatErrors(validatedArticle.error._zod.def);
         return {
           success: false,
-          message: validatedArticle.error.issues[0].message,
+          message: "validation error.",
           error: errors,
         };
       }

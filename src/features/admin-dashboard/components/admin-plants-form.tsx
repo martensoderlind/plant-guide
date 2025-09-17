@@ -35,6 +35,7 @@ export default function AdminPlantForm() {
     humidity_preference: "medium",
     plant_category: "indoor plant",
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const careLevels = careLevelEnum.enumValues;
   const lightRequirements = lightRequirementEnum.enumValues;
@@ -43,39 +44,32 @@ export default function AdminPlantForm() {
 
   const handleAddPlant = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErrors({});
+    const plant = {
+      ...newPlant,
+      description: newPlant.description.trim() || null,
+      image_url: newPlant.image_url.trim() || null,
+    };
 
-    try {
-      const plant = {
-        ...newPlant,
-        description: newPlant.description.trim() || null,
-        image_url: newPlant.image_url.trim() || null,
-      };
+    const result = await addPlant(plant);
 
-      const result = await addPlant(plant);
-
-      if (result.success) {
-        setNewPlant({
-          name: "",
-          scientific_name: "",
-          description: "",
-          water_frequency_days: 7,
-          temperature_min: 18,
-          temperature_max: 25,
-          image_url: "",
-          care_level: "easy" as const,
-          light_requirement: "medium" as const,
-          humidity_preference: "medium" as const,
-          plant_category: "indoor plant" as const,
-        });
-        setIsAddingPlant(false);
-      } else {
-        console.log(
-          "Problem while adding the new plant. result:",
-          result.message
-        );
-      }
-    } catch (error) {
-      console.error("Problem while adding the new plant:", error);
+    if (result.success) {
+      setNewPlant({
+        name: "",
+        scientific_name: "",
+        description: "",
+        water_frequency_days: 7,
+        temperature_min: 18,
+        temperature_max: 25,
+        image_url: "",
+        care_level: "easy" as const,
+        light_requirement: "medium" as const,
+        humidity_preference: "medium" as const,
+        plant_category: "indoor plant" as const,
+      });
+      setIsAddingPlant(false);
+    } else {
+      setErrors(result.error);
     }
   };
   return (
@@ -121,8 +115,10 @@ export default function AdminPlantForm() {
                 onChange={(e) =>
                   setNewPlant({ ...newPlant, name: e.target.value })
                 }
-                required
               />
+              {errors.name && (
+                <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+              )}
             </div>
 
             <div>
@@ -140,6 +136,11 @@ export default function AdminPlantForm() {
                   })
                 }
               />
+              {errors.scientific_name && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.scientific_name}
+                </p>
+              )}
             </div>
 
             <div className="md:col-span-2">
@@ -157,6 +158,11 @@ export default function AdminPlantForm() {
                   })
                 }
               />
+              {errors.description && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.description}
+                </p>
+              )}
             </div>
 
             <div>
@@ -174,6 +180,11 @@ export default function AdminPlantForm() {
                   })
                 }
               />
+              {errors.water_frequency_days && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.water_frequency_days}
+                </p>
+              )}
             </div>
 
             <div>
@@ -196,6 +207,9 @@ export default function AdminPlantForm() {
                   </option>
                 ))}
               </select>
+              {errors.care_level && (
+                <p className="mt-1 text-sm text-red-600">{errors.care_level}</p>
+              )}
             </div>
 
             <div>
@@ -240,6 +254,11 @@ export default function AdminPlantForm() {
                   </option>
                 ))}
               </select>
+              {errors.humidity_preference && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.humidity_preference}
+                </p>
+              )}
             </div>
 
             <div>
@@ -257,6 +276,11 @@ export default function AdminPlantForm() {
                   })
                 }
               />
+              {errors.temperature_min && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.temperature_min}
+                </p>
+              )}
             </div>
 
             <div>
@@ -274,6 +298,11 @@ export default function AdminPlantForm() {
                   })
                 }
               />
+              {errors.temperature_max && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.temperature_max}
+                </p>
+              )}
             </div>
 
             <div>
@@ -296,6 +325,11 @@ export default function AdminPlantForm() {
                   </option>
                 ))}
               </select>
+              {errors.plant_category && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.plant_category}
+                </p>
+              )}
             </div>
 
             <div>
@@ -314,6 +348,9 @@ export default function AdminPlantForm() {
                 }
                 placeholder="https://example.com/plant-image.jpg"
               />
+              {errors.images_url && (
+                <p className="mt-1 text-sm text-red-600">{errors.image_url}</p>
+              )}
             </div>
           </div>
 
