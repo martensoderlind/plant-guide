@@ -16,7 +16,7 @@ interface Props {
 export default function ToastContainer({
   toasts,
   onRemove,
-  position = "top-right",
+  position = "bottom-right",
 }: Props) {
   const getPositionStyles = (position: string) => {
     switch (position) {

@@ -384,7 +384,7 @@ export default function AdminPlantForm() {
       <ToastContainer
         toasts={toasts}
         onRemove={removeToast}
-        position="top-right"
+        position="bottom-right"
       />
     </>
   );
