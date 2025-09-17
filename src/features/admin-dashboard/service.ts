@@ -62,12 +62,17 @@ export default function createAdminDashboardService(
       const validatedUser = newUserSchema.safeParse(user);
       if (validatedUser.success) {
         const result = await iamService.createUser(user);
-        return result;
+        return {
+          success: true,
+          message: "user added successfully.",
+          error: { "": "" },
+        };
       } else {
         const errors = formatErrors(validatedUser.error._zod.def);
+
         return {
           success: false,
-          message: validatedUser.error.issues[0].message,
+          message: "validation error",
           error: errors,
         };
       }

@@ -18,39 +18,35 @@ export default function AdminArticleForm({ roles }: Props) {
     role: "User",
     roleId: undefined,
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleAddUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const user: NewUser = {
-        ...newUser,
-        avatarUrl: newUser.avatarUrl ? newUser.avatarUrl.trim() : null,
-      };
+    setErrors({});
 
-      const result = await addUser(user);
+    const user: NewUser = {
+      ...newUser,
+      avatarUrl: newUser.avatarUrl ? newUser.avatarUrl.trim() : null,
+    };
 
-      if (result.success) {
-        console.log("success:true");
+    const result = await addUser(user);
 
-        setNewUser({
-          email: "",
-          username: "",
-          fullName: "",
-          avatarUrl: "",
-          role: "User",
-          roleId: undefined,
-        });
-        setIsAddingUser(false);
-      } else {
-        console.log("success:false");
-        console.log(
-          "Problem while adding the new user. result:",
-          result.message
-        );
-      }
-    } catch (error) {
-      console.log("error");
-      console.error("Problem while adding the new user:", error);
+    console.log("result:", result);
+    if (result.success) {
+      console.log("success:true");
+
+      setNewUser({
+        email: "",
+        username: "",
+        fullName: "",
+        avatarUrl: "",
+        role: "User",
+        roleId: undefined,
+      });
+      setIsAddingUser(false);
+    } else {
+      console.log("form", result.message);
+      setErrors(result.error);
     }
   };
 
@@ -103,13 +99,16 @@ export default function AdminArticleForm({ roles }: Props) {
                 }}
                 required
               />
+              {errors.fullName && (
+                <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Email *
               </label>
               <input
-                type="email"
+                type="text"
                 className="w-full px-3 py-2 border text-gray-500 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newUser.email}
                 onChange={(e) =>
@@ -120,6 +119,9 @@ export default function AdminArticleForm({ roles }: Props) {
                 }
                 required
               />
+              {errors.email && (
+                <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -137,6 +139,9 @@ export default function AdminArticleForm({ roles }: Props) {
                 }
                 required
               />
+              {errors.username && (
+                <p className="mt-1 text-sm text-red-600">{errors.username}</p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -159,6 +164,9 @@ export default function AdminArticleForm({ roles }: Props) {
                   </option>
                 ))}
               </select>
+              {errors.role && (
+                <p className="mt-1 text-sm text-red-600">{errors.role}</p>
+              )}
             </div>
 
             <div>
@@ -177,6 +185,9 @@ export default function AdminArticleForm({ roles }: Props) {
                 }
                 placeholder="https://example.com/image.jpg"
               />
+              {errors.avatarUrl && (
+                <p className="mt-1 text-sm text-red-600">{errors.avatarUrl}</p>
+              )}
             </div>
           </div>
 

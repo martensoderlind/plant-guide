@@ -2,6 +2,7 @@ import { Db } from "../../db/index";
 import { eq } from "drizzle-orm";
 import { rolesTable, userRolesTable, usersTable } from "./schema";
 import { NewUser, User } from "./types";
+import { error } from "console";
 
 export default function createIamRepository(db: Db) {
   return {
@@ -59,7 +60,7 @@ export default function createIamRepository(db: Db) {
           roleId: newUser.roleId,
         });
 
-        return { success: true, message: "User created" };
+        return { success: true, message: "User created", error: "" };
       });
     },
     async deleteUser(userId: string) {
