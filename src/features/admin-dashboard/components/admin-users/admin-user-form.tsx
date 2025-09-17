@@ -50,6 +50,13 @@ export default function AdminArticleForm({ roles }: Props) {
     }
   };
 
+  const handleInputChange = (field: string, value: string) => {
+    setNewUser({ ...newUser, [field]: value });
+    if (errors[field]) {
+      setErrors({ ...errors, [field]: "" });
+    }
+  };
+
   return (
     <>
       <div className="flex justify-between items-center">
@@ -90,13 +97,7 @@ export default function AdminArticleForm({ roles }: Props) {
                 type="text"
                 className="w-full px-3 py-2 border text-gray-500 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newUser.fullName}
-                onChange={(e) => {
-                  const title = e.target.value;
-                  setNewUser({
-                    ...newUser,
-                    fullName: e.target.value,
-                  });
-                }}
+                onChange={(e) => handleInputChange("fullName", e.target.value)}
                 required
               />
               {errors.fullName && (
@@ -111,12 +112,7 @@ export default function AdminArticleForm({ roles }: Props) {
                 type="text"
                 className="w-full px-3 py-2 border text-gray-500 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newUser.email}
-                onChange={(e) =>
-                  setNewUser({
-                    ...newUser,
-                    email: e.target.value,
-                  })
-                }
+                onChange={(e) => handleInputChange("email", e.target.value)}
                 required
               />
               {errors.email && (
@@ -131,12 +127,7 @@ export default function AdminArticleForm({ roles }: Props) {
                 type="text"
                 className="w-full px-3 py-2 border text-gray-500 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newUser.username}
-                onChange={(e) =>
-                  setNewUser({
-                    ...newUser,
-                    username: e.target.value,
-                  })
-                }
+                onChange={(e) => handleInputChange("username", e.target.value)}
                 required
               />
               {errors.username && (
@@ -150,12 +141,7 @@ export default function AdminArticleForm({ roles }: Props) {
               <select
                 className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newUser.roleId}
-                onChange={(e) =>
-                  setNewUser({
-                    ...newUser,
-                    roleId: e.target.value,
-                  })
-                }
+                onChange={(e) => handleInputChange("roleId", e.target.value)}
                 required
               >
                 {roles.map((role, idx) => (
@@ -177,12 +163,7 @@ export default function AdminArticleForm({ roles }: Props) {
                 type="url"
                 className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 value={newUser.avatarUrl || ""}
-                onChange={(e) =>
-                  setNewUser({
-                    ...newUser,
-                    avatarUrl: e.target.value,
-                  })
-                }
+                onChange={(e) => handleInputChange("avatarUrl", e.target.value)}
                 placeholder="https://example.com/image.jpg"
               />
               {errors.avatarUrl && (
