@@ -1,8 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { Db } from "@/db";
 import createIamRepository from "./repository";
-import { NewUser, User } from "./types";
-import { isStringObject } from "util/types";
+import { NewUser } from "./types";
 
 export default function createIamService(db: Db) {
   const repository = createIamRepository(db);

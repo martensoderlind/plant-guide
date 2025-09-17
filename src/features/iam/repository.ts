@@ -1,5 +1,5 @@
 import { Db } from "../../db/index";
-import { eq, sql } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { rolesTable, userRolesTable, usersTable } from "./schema";
 import { NewUser, User } from "./types";
 
