@@ -60,12 +60,12 @@ export default function createIamRepository(db: Db) {
           roleId: newUser.roleId,
         });
 
-        return { success: true, message: "User created", error: "" };
+        return { success: true, message: "User created.", error: "" };
       });
     },
     async deleteUser(userId: string) {
       await db.delete(usersTable).where(eq(usersTable.id, userId));
-      return { success: true };
+      return { success: true, message: "user removed." };
     },
     async updateUserRole(userId: string, newRoleId: string) {
       const roleExists = await db
@@ -74,13 +74,16 @@ export default function createIamRepository(db: Db) {
         .where(eq(rolesTable.id, newRoleId))
         .limit(1);
       if (!roleExists) {
-        throw new Error(`Role '${newRoleId}' does not exist`);
+        return {
+          success: false,
+          message: `Role '${newRoleId}' does not exist`,
+        };
       }
       await db
         .update(userRolesTable)
         .set({ roleId: newRoleId })
         .where(eq(userRolesTable.userId, userId));
-      return { success: true };
+      return { success: true, message: "role updated" };
     },
   };
 }
