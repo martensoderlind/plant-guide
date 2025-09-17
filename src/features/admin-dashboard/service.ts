@@ -5,6 +5,8 @@ import { plantSchema, articleSchema, newUserSchema } from "./validate";
 import { ArticleService, ArticleStatusType } from "../articles/types";
 import { PlantGuideService } from "../plant-guides/types";
 import { IamService, NewUser } from "../iam/types";
+import { error } from "console";
+import { formatErrors } from "./logic";
 
 export default function createAdminDashboardService(
   db: Db,
@@ -52,6 +54,7 @@ export default function createAdminDashboardService(
         return {
           success: false,
           message: validatedArticle.error.issues[0].message,
+          error: "",
         };
       }
     },
@@ -61,9 +64,11 @@ export default function createAdminDashboardService(
         const result = await iamService.createUser(user);
         return result;
       } else {
+        const errors = formatErrors(validatedUser.error._zod.def);
         return {
           success: false,
           message: validatedUser.error.issues[0].message,
+          error: errors,
         };
       }
     },

@@ -21,7 +21,6 @@ export default function AdminArticleForm({ roles }: Props) {
 
   const handleAddUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     try {
       const user: NewUser = {
         ...newUser,
@@ -31,6 +30,8 @@ export default function AdminArticleForm({ roles }: Props) {
       const result = await addUser(user);
 
       if (result.success) {
+        console.log("success:true");
+
         setNewUser({
           email: "",
           username: "",
@@ -41,12 +42,14 @@ export default function AdminArticleForm({ roles }: Props) {
         });
         setIsAddingUser(false);
       } else {
+        console.log("success:false");
         console.log(
           "Problem while adding the new user. result:",
           result.message
         );
       }
     } catch (error) {
+      console.log("error");
       console.error("Problem while adding the new user:", error);
     }
   };

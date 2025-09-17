@@ -27,3 +27,16 @@ export type Result =
       message: string;
       error: unknown;
     };
+
+export type FormError = {
+  path: string;
+  message: string;
+};
+export type validationErrors = {
+  origin: string;
+  code: string;
+  format?: string;
+  pattern?: string[];
+  path: string[];
+  message: string;
+};
