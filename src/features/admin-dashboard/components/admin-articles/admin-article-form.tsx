@@ -9,6 +9,8 @@ import {
   difficultyLevelEnum,
   articleStatusEnum,
 } from "../../../articles/schema";
+import { useToast } from "../../../../../hooks/toast";
+import ToastContainer from "@/components/ToastContainer";
 
 type ArticleCategory = (typeof articleCategoryEnum.enumValues)[number];
 type DifficultyLevel = (typeof difficultyLevelEnum.enumValues)[number];
@@ -46,6 +48,8 @@ export default function AdminArticleForm() {
     meta_description: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const { toasts, removeToast, success, info } = useToast();
 
   const articleCategories = articleCategoryEnum.enumValues;
   const difficultyLevels = difficultyLevelEnum.enumValues;
@@ -89,8 +93,10 @@ export default function AdminArticleForm() {
         meta_title: "",
         meta_description: "",
       });
+      success("Success!", result.message);
       setIsAddingArticle(false);
     } else {
+      info("Validation Error.", result.message);
       setErrors(result.error);
     }
   };
@@ -411,6 +417,11 @@ export default function AdminArticleForm() {
           </div>
         </form>
       )}
+      <ToastContainer
+        toasts={toasts}
+        onRemove={removeToast}
+        position="top-right"
+      />
     </>
   );
 }
