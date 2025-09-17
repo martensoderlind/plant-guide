@@ -38,6 +38,7 @@ export default function createIamRepository(db: Db) {
       return roles;
     },
     async getRoleId(role: string) {
+      console.log("role:", role);
       const roleId = await db
         .select({ id: rolesTable.id })
         .from(rolesTable)

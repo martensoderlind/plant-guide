@@ -17,7 +17,7 @@ export default function AdminArticleForm({ roles }: Props) {
     username: "",
     fullName: "",
     avatarUrl: "",
-    role: "User",
+    role: "ADMIN",
     roleId: undefined,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
