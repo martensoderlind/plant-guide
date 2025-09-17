@@ -2,18 +2,13 @@
 
 import { Plus, Save, X } from "lucide-react";
 import { useState } from "react";
-import {
-  difficultyLevelEnum,
-  articleStatusEnum,
-} from "../../../articles/schema";
-import { NewUser } from "@/features/iam/types";
+import { NewUser, Roles } from "@/features/iam/types";
 import { addUser } from "../../actions";
 
-const roleCategories = ["Admin", "User", "Moderator", "Author"];
-type DifficultyLevel = (typeof difficultyLevelEnum.enumValues)[number];
-type ArticleStatus = (typeof articleStatusEnum.enumValues)[number];
-
-export default function AdminArticleForm() {
+type Props = {
+  roles: Roles[];
+};
+export default function AdminArticleForm({ roles }: Props) {
   const [isAddingUser, setIsAddingUser] = useState(false);
   const [newUser, setNewUser] = useState<NewUser>({
     email: "",
@@ -21,6 +16,7 @@ export default function AdminArticleForm() {
     fullName: "",
     avatarUrl: "",
     role: "User",
+    roleId: undefined,
   });
 
   const handleAddUser = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -40,6 +36,8 @@ export default function AdminArticleForm() {
           username: "",
           fullName: "",
           avatarUrl: "",
+          role: "User",
+          roleId: undefined,
         });
         setIsAddingUser(false);
       } else {
@@ -143,18 +141,18 @@ export default function AdminArticleForm() {
               </label>
               <select
                 className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                value={newUser.role || "User"}
+                value={newUser.roleId}
                 onChange={(e) =>
                   setNewUser({
                     ...newUser,
-                    role: e.target.value,
+                    roleId: e.target.value,
                   })
                 }
                 required
               >
-                {roleCategories.map((category) => (
-                  <option key={category} value={category}>
-                    {category}
+                {roles.map((role, idx) => (
+                  <option key={idx} value={role.id}>
+                    {role.description.toLocaleLowerCase()}
                   </option>
                 ))}
               </select>

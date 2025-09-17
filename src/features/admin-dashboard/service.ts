@@ -1,10 +1,9 @@
 import { Db } from "@/db";
 import createAdminDashboardRepository from "./repository";
 import { NewPlant, NewArticle } from "./types";
-import { plantSchema, articleSchema } from "./validate";
+import { plantSchema, articleSchema, newUserSchema } from "./validate";
 import { ArticleService, ArticleStatusType } from "../articles/types";
 import { PlantGuideService } from "../plant-guides/types";
-import { iamService } from "../iam/instance";
 import { IamService, NewUser } from "../iam/types";
 
 export default function createAdminDashboardService(
@@ -25,6 +24,10 @@ export default function createAdminDashboardService(
     },
     async getAllArticles() {
       const articles = await articleService.getAllArticles();
+      return articles;
+    },
+    async getUserRoles() {
+      const articles = await iamService.getUserRoles();
       return articles;
     },
 
@@ -53,18 +56,16 @@ export default function createAdminDashboardService(
       }
     },
     async addUser(user: NewUser) {
-      // const validatedArticle = articleSchema.safeParse(article);
-      // if (validatedArticle.success) {
-      //   const result = await articleService.addArticle(article);
-      //   return result;
-      // } else {
-      //   return {
-      //     success: false,
-      //     message: validatedArticle.error.issues[0].message,
-      //   };
-      // }
-      console.log("new user:", user);
-      return { message: "", success: true };
+      const validatedUser = newUserSchema.safeParse(user);
+      if (validatedUser.success) {
+        const result = await iamService.createUser(user);
+        return result;
+      } else {
+        return {
+          success: false,
+          message: validatedUser.error.issues[0].message,
+        };
+      }
     },
     async deletePlant(id: number) {
       await plantGuideService.deletePlantGuide(id);

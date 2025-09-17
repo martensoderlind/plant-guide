@@ -32,6 +32,18 @@ export default function createIamRepository(db: Db) {
         created_at: row.created_at,
       }));
     },
+    async getUserRoles() {
+      const roles = await db.select().from(rolesTable);
+      return roles;
+    },
+    async getRoleId(role: string) {
+      const roleId = await db
+        .select({ id: rolesTable.id })
+        .from(rolesTable)
+        .where(eq(rolesTable.description, role));
+
+      return roleId[0].id;
+    },
     async createUser(newUser: User) {
       return await db.transaction(async (tx) => {
         await tx.insert(usersTable).values({
@@ -47,7 +59,7 @@ export default function createIamRepository(db: Db) {
           roleId: newUser.roleId,
         });
 
-        return { success: true };
+        return { success: true, message: "User created" };
       });
     },
     async deleteUser(userId: string) {

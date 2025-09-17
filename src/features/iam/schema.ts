@@ -12,7 +12,7 @@ export const usersTable = pgTable("users", {
 
 export const rolesTable = pgTable("roles", {
   id: text("id").primaryKey(),
-  description: text("description"),
+  description: text("description").notNull(),
 });
 
 export const userRolesTable = pgTable("user_roles", {
