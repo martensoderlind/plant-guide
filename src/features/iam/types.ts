@@ -4,8 +4,9 @@ export type NewUser = {
   email: string;
   username: string;
   fullName: string;
-  avatarUrl: string;
-  roleId: string;
+  avatarUrl: string | null;
+  roleId?: string;
+  role?: string;
 };
 export type User = {
   id: string;

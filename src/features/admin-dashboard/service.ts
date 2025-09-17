@@ -5,7 +5,7 @@ import { plantSchema, articleSchema } from "./validate";
 import { ArticleService, ArticleStatusType } from "../articles/types";
 import { PlantGuideService } from "../plant-guides/types";
 import { iamService } from "../iam/instance";
-import { IamService } from "../iam/types";
+import { IamService, NewUser } from "../iam/types";
 
 export default function createAdminDashboardService(
   db: Db,
@@ -51,6 +51,20 @@ export default function createAdminDashboardService(
           message: validatedArticle.error.issues[0].message,
         };
       }
+    },
+    async addUser(user: NewUser) {
+      // const validatedArticle = articleSchema.safeParse(article);
+      // if (validatedArticle.success) {
+      //   const result = await articleService.addArticle(article);
+      //   return result;
+      // } else {
+      //   return {
+      //     success: false,
+      //     message: validatedArticle.error.issues[0].message,
+      //   };
+      // }
+      console.log("new user:", user);
+      return { message: "", success: true };
     },
     async deletePlant(id: number) {
       await plantGuideService.deletePlantGuide(id);

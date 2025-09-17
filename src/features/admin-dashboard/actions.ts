@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import { adminDashboardService } from "./instance";
 import { NewPlant, NewArticle } from "./types";
 import { ArticleStatusType } from "../articles/types";
+import { NewUser } from "../iam/types";
 
 export async function getAllPlantGuides() {
   const plants = await adminDashboardService.getAllPlants();
@@ -21,6 +22,11 @@ export default async function addPlant(plant: NewPlant) {
 export async function addArticle(article: NewArticle) {
   const result = await adminDashboardService.addArticle(article);
   revalidatePath("/admin-dashboard/articles");
+  return result;
+}
+export async function addUser(user: NewUser) {
+  const result = await adminDashboardService.addUser(user);
+  revalidatePath("/admin-dashboard/users");
   return result;
 }
 
