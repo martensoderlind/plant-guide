@@ -10,6 +10,8 @@ import {
   humidityPreferenceEnum,
   plantCategoryEnum,
 } from "../../plant-guides/schema";
+import { useToast } from "../../../../hooks/toast";
+import ToastContainer from "@/components/ToastContainer";
 type CareLevel = (typeof careLevelEnum.enumValues)[number];
 type LightRequirement = (typeof lightRequirementEnum.enumValues)[number];
 type HumidityPreference = (typeof humidityPreferenceEnum.enumValues)[number];
@@ -36,6 +38,8 @@ export default function AdminPlantForm() {
     plant_category: "indoor plant",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const { toasts, removeToast, success, info } = useToast();
 
   const careLevels = careLevelEnum.enumValues;
   const lightRequirements = lightRequirementEnum.enumValues;
@@ -67,15 +71,20 @@ export default function AdminPlantForm() {
         humidity_preference: "medium" as const,
         plant_category: "indoor plant" as const,
       });
+      success("Success!", result.message);
       setIsAddingPlant(false);
     } else {
+      info(result.message, "follow the instructions in the form.");
       setErrors(result.error);
     }
   };
   return (
     <>
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-gray-200">Plant Management</h2>
+        <div>
+          <h2 className="text-2xl font-bold text-gray-200">Plant Management</h2>
+          {}
+        </div>
         <button
           onClick={() => setIsAddingPlant(true)}
           className="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors flex items-center space-x-2"
@@ -372,6 +381,11 @@ export default function AdminPlantForm() {
           </div>
         </form>
       )}
+      <ToastContainer
+        toasts={toasts}
+        onRemove={removeToast}
+        position="top-right"
+      />
     </>
   );
 }
