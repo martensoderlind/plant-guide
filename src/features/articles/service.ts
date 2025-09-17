@@ -22,7 +22,7 @@ export default function createArticlesService(db: Db) {
       await repository.incrementArticleViews(slug);
     },
     async addArticle(article: NewArticle) {
-      await repository.addArticle(article);
+      return await repository.addArticle(article);
     },
     async deleteArticle(id: number) {
       await repository.deleteArticle(id);
