@@ -83,6 +83,9 @@ export default function createAdminDashboardService(
     async deleteArticle(id: number) {
       await articleService.deleteArticle(id);
     },
+    async deleteUser(id: string) {
+      await iamService.deleteUser(id);
+    },
     async updateArticleStatus(id: number, newStatus: ArticleStatusType) {
       if (newStatus === "published") {
         const published_at = new Date();

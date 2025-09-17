@@ -40,6 +40,10 @@ export async function deleteArticle(id: number) {
   await adminDashboardService.deleteArticle(id);
   revalidatePath("/admin-dashboard/articles");
 }
+export async function deleteUser(id: string) {
+  await adminDashboardService.deleteUser(id);
+  revalidatePath("/admin-dashboard/users");
+}
 
 export async function updateStatus(id: number, newStatus: ArticleStatusType) {
   await adminDashboardService.updateArticleStatus(id, newStatus);

@@ -1,11 +1,11 @@
 import { User } from "@/features/iam/types";
-import { log } from "console";
+import AdminUserButtons from "./admin-user-buttons";
 
 type Props = {
   user: User;
 };
 
-export default function AdminUserRow({ user }: Props) {
+export default async function AdminUserRow({ user }: Props) {
   return (
     <tr key={user.id} className="hover:bg-gray-50">
       <td className="px-6 py-4">
@@ -55,14 +55,7 @@ export default function AdminUserRow({ user }: Props) {
         <td className="px-6 py-4 text-sm text-gray-500">-</td>
       )}
       <td className="px-6 py-4 text-right text-sm font-medium">
-        <div className="flex justify-center space-x-2">
-          <button className="text-indigo-600 hover:text-indigo-900 px-3 py-1 rounded-md hover:bg-indigo-50 transition-colors">
-            Edit
-          </button>
-          <button className="text-red-600 hover:text-red-900 px-3 py-1 rounded-md hover:bg-red-50 transition-colors">
-            Remove
-          </button>
-        </div>
+        <AdminUserButtons id={user.id} />
       </td>
     </tr>
   );
