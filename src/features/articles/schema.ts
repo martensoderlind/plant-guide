@@ -49,7 +49,7 @@ export const articleTable = pgTable("articles", {
   likes: integer().default(0),
   meta_title: varchar({ length: 255 }),
   meta_description: varchar({ length: 500 }),
-  author_id: integer(),
+  author_id: text("author_id"),
   published_at: timestamp("published_at"),
   updated_at: timestamp("updated_at").defaultNow(),
   created_at: timestamp("created_at").notNull().defaultNow(),

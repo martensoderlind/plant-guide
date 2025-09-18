@@ -3,6 +3,7 @@ import { eq } from "drizzle-orm";
 import { rolesTable, userRolesTable, usersTable } from "./schema";
 import { NewUser, User } from "./types";
 import { error } from "console";
+import { Ewert } from "next/font/google";
 
 export default function createIamRepository(db: Db) {
   return {
@@ -36,6 +37,17 @@ export default function createIamRepository(db: Db) {
     async getUserRoles() {
       const roles = await db.select().from(rolesTable);
       return roles;
+    },
+    async getArticleAuthor(id: string) {
+      const author = await db
+        .select({
+          fullName: usersTable.fullName,
+          username: usersTable.username,
+          avatarUrl: usersTable.avatarUrl,
+        })
+        .from(usersTable)
+        .where(eq(usersTable.id, id));
+      return author[0];
     },
     async getRoleId(role: string) {
       console.log("role:", role);

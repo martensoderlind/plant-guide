@@ -2,8 +2,13 @@ import { Db } from "@/db";
 import createArticlesRepository from "./repository";
 import { NewArticle } from "./types";
 import { ArticleStatusType } from "./types";
+import { iamService } from "../iam/instance";
+import { Author, IamService } from "../iam/types";
 
-export default function createArticlesService(db: Db) {
+export default function createArticlesService(
+  db: Db,
+  getArticleAuthor: (id: string) => Promise<Author>
+) {
   const repository = createArticlesRepository(db);
   return {
     async getAllArticles() {
@@ -14,6 +19,9 @@ export default function createArticlesService(db: Db) {
     },
     async getArticle(slug: string) {
       return await repository.getArticle(slug);
+    },
+    async getArticleAuthor(id: string) {
+      return await getArticleAuthor(id);
     },
     async incrementLikes(id: number) {
       return await repository.incrementLikes(id);

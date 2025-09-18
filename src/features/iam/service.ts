@@ -15,6 +15,9 @@ export default function createIamService(db: Db) {
       const roles = await repository.getUserRoles();
       return roles;
     },
+    async getArticleAuthor(id: string) {
+      return await repository.getArticleAuthor(id);
+    },
     async createUser(newUser: NewUser) {
       const id = uuidv4();
       if (newUser.roleId !== undefined) {

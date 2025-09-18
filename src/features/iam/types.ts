@@ -23,6 +23,11 @@ export type Roles = {
   id: string;
   description: string;
 };
+export type Author = {
+  fullName: string | null;
+  username: string;
+  avatarUrl: string | null;
+};
 type iamService = ReturnType<typeof createIamService>;
 
 export type IamService = {
@@ -31,4 +36,5 @@ export type IamService = {
   deleteUser: iamService["deleteUser"];
   updateUserRole: iamService["UpdateUserRole"];
   getUserRoles: iamService["getUserRoles"];
+  getArticleAuthor: iamService["getArticleAuthor"];
 };
