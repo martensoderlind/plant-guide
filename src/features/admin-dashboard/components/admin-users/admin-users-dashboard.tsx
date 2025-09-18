@@ -19,10 +19,6 @@ export default async function AdminUserDashboard() {
       >
         <AdminUserContainer />
       </Suspense>
-      <AdminDashboardFallback
-        header={"All users"}
-        tableHeaders={["USER", "ROLE", "JOINED", "ACTIONS"]}
-      />
     </div>
   );
 }
