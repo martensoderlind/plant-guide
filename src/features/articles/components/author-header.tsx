@@ -9,6 +9,13 @@ export default async function AuthorHeader({ id }: Props) {
   return (
     <div>
       <div className="flex items-center">
+        <div className="mx-4">
+          <div className="flex items-center space-x-2">
+            <div className="text-sm font-medium text-gray-500">
+              {author.fullName || author.username}
+            </div>
+          </div>
+        </div>
         {author.avatarUrl ? (
           <img
             className="h-10 w-10 rounded-full mr-4"
@@ -17,18 +24,11 @@ export default async function AuthorHeader({ id }: Props) {
           />
         ) : (
           <div className="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center mr-4">
-            <span className="text-sm font-medium text-gray-700">
+            <span className="text-sm font-medium text-gray-600">
               {(author.fullName || author.username).charAt(0).toUpperCase()}
             </span>
           </div>
         )}
-        <div>
-          <div className="flex items-center space-x-2">
-            <div className="text-sm font-medium text-gray-900">
-              {author.fullName || author.username}
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

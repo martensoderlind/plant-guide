@@ -2,6 +2,8 @@ import { Calendar, Clock, Eye, Heart } from "lucide-react";
 import { articlesService } from "../instance";
 import ArticleFooter from "./article-footer";
 import Image from "next/image";
+import AuthorHeader from "./author-header";
+import ArticleInfo from "./article-info";
 
 type Prop = {
   slug: string;
@@ -19,13 +21,7 @@ export default async function Article({ slug }: Prop) {
     );
   }
   await articlesService.incrementArticleViews(slug);
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString("sv-SE", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
+
   const categoryNames = {
     basics: "Advanced",
     watering: "Watering",
@@ -52,6 +48,12 @@ export default async function Article({ slug }: Prop) {
 
   return (
     <article className="max-w-4xl mx-auto px-4 py-8">
+      <ArticleInfo
+        published_at={article.published_at}
+        reading_time_minutes={article.reading_time_minutes}
+        views={article.views}
+        likes={article.likes}
+      />
       {article.featured_image_url && (
         <div className="mb-8 rounded-lg overflow-hidden shadow-lg">
           <Image
@@ -64,7 +66,7 @@ export default async function Article({ slug }: Prop) {
         </div>
       )}
 
-      <header className="mb-8">
+      <header className="mb-8 border-b border-gray-200">
         <div className="flex flex-wrap gap-3 mb-4">
           <span className="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-sm font-medium border border-emerald-200">
             {categoryNames[article.category]}
@@ -92,33 +94,6 @@ export default async function Article({ slug }: Prop) {
             {article.excerpt}
           </p>
         )}
-
-        <div className="flex flex-wrap gap-6 text-sm text-gray-300 border-b border-gray-200 pb-6">
-          {article.published_at && (
-            <div className="flex items-center gap-1">
-              <Calendar size={16} />
-              <span>Published {formatDate(article.published_at)}</span>
-            </div>
-          )}
-          {article.reading_time_minutes && (
-            <div className="flex items-center gap-1">
-              <Clock size={16} />
-              <span>{article.reading_time_minutes} estimated reading time</span>
-            </div>
-          )}
-          {article.views && (
-            <div className="flex items-center gap-1">
-              <Eye size={16} />
-              <span>{article.views.toLocaleString()} views</span>
-            </div>
-          )}
-          {article.likes && (
-            <div className="flex items-center gap-1">
-              <Heart size={16} />
-              <span>{article.likes} likes</span>
-            </div>
-          )}
-        </div>
       </header>
 
       <div

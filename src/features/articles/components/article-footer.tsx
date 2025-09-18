@@ -1,26 +1,23 @@
-"use client";
 import { Heart } from "lucide-react";
 import { Article } from "../schema";
 import { incrementLikesAction } from "../action";
+import AuthorHeader from "./author-header";
+import ArticleLikeButton from "./article-like-button";
 
 type Props = {
   article: Article;
 };
 
 export default function ArticleFooter({ article }: Props) {
-  function incrementLikes(id: number, slug: string) {
-    incrementLikesAction(id, slug);
-  }
-
   const formatDate = (date: Date) => {
-    return date.toLocaleDateString("sv-SE", {
+    return date.toLocaleDateString("en-EN", {
       year: "numeric",
       month: "long",
       day: "numeric",
     });
   };
   return (
-    <footer className="mt-12 pt-8 border-t border-gray-200">
+    <footer className="mt-8 pt-4 border-t border-gray-200">
       <div className="flex items-center justify-between">
         <div className="text-sm text-gray-500">
           {article.updated_at && (
@@ -28,15 +25,15 @@ export default function ArticleFooter({ article }: Props) {
           )}
         </div>
 
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => incrementLikes(article.id, article.slug)}
-            className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-emerald-600 transition-colors"
-          >
-            <Heart size={18} />
-            <span>Like ({article.likes})</span>
-          </button>
-        </div>
+        <ArticleLikeButton
+          likes={article.likes}
+          id={article.id}
+          slug={article.slug}
+        />
+      </div>
+      <div className="flex items-center pb-2">
+        <span className="text-gray-500">Author: </span>
+        {article.author_id && <AuthorHeader id={article.author_id} />}
       </div>
     </footer>
   );
