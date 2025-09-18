@@ -14,6 +14,7 @@ export default async function AdminUserDashboard() {
           <AdminDashboardFallback
             header={"All users"}
             tableHeaders={["USER", "ROLE", "JOINED", "ACTIONS"]}
+            emailPlaceHolder={true}
           />
         }
       >
