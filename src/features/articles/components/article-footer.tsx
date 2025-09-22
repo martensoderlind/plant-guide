@@ -1,6 +1,4 @@
-import { Heart } from "lucide-react";
 import { Article } from "../schema";
-import { incrementLikesAction } from "../action";
 import AuthorHeader from "./author-header";
 import ArticleLikeButton from "./article-like-button";
 
