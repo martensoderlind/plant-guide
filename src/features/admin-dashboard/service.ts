@@ -4,7 +4,7 @@ import { plantSchema, articleSchema, newUserSchema } from "./validate";
 import { ArticleService, ArticleStatusType } from "../articles/types";
 import { PlantGuideService } from "../plant-guides/types";
 import { IamService, NewUser } from "../iam/types";
-import { formatErrors, generateSlug } from "./logic";
+import { formatErrors } from "./logic";
 
 export default function createAdminDashboardService(
   db: Db,
