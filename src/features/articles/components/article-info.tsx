@@ -1,5 +1,3 @@
-import { Author } from "@/features/iam/types";
-import AuthorHeader from "./author-header";
 import { Calendar, Clock, Eye, Heart } from "lucide-react";
 
 type Props = {
