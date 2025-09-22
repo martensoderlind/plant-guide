@@ -33,6 +33,7 @@ export default function AdminPlantForm() {
     temperature_min: 18,
     temperature_max: 25,
     image_url: "",
+    is_featured: false,
     care_level: "easy",
     light_requirement: "medium",
     humidity_preference: "medium",
@@ -69,6 +70,7 @@ export default function AdminPlantForm() {
         temperature_min: 18,
         temperature_max: 25,
         image_url: "",
+        is_featured: false,
         care_level: "easy" as const,
         light_requirement: "medium" as const,
         humidity_preference: "medium" as const,
@@ -373,6 +375,22 @@ export default function AdminPlantForm() {
                 <p className="mt-1 text-sm text-red-600">{errors.image_url}</p>
               )}
             </div>
+            <label className="flex items-center">
+              <input
+                type="checkbox"
+                className="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
+                checked={newPlant.is_featured ? newPlant.is_featured : false}
+                onChange={(e) =>
+                  setNewPlant({
+                    ...newPlant,
+                    is_featured: e.target.checked,
+                  })
+                }
+              />
+              <span className="ml-2 text-sm text-gray-700">
+                Featured Article
+              </span>
+            </label>
           </div>
 
           <div className="flex justify-end space-x-4 mt-6">

@@ -43,7 +43,7 @@ export const articleTable = pgTable("articles", {
   category: articleCategoryEnum().notNull(),
   difficulty_level: difficultyLevelEnum().notNull(),
   status: articleStatusEnum().default("draft").notNull(),
-  is_featured: boolean().default(false),
+  is_featured: boolean().default(false).notNull(),
   reading_time_minutes: integer(),
   views: integer().default(0),
   likes: integer().default(0),
