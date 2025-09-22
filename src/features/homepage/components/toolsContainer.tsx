@@ -28,7 +28,7 @@ export default function ToolsContainer() {
           </h2>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto">
             Our tools and guides are designed to make plant care easy and fun,
-            whether you're a beginner or an expert.
+            whether you&apos;re a beginner or an expert.
           </p>
         </div>
 
