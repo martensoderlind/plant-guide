@@ -1,5 +1,6 @@
 import { User } from "@/features/iam/types";
 import AdminUserButtons from "./admin-user-buttons";
+import Image from "next/image";
 
 type Props = {
   user: User;
@@ -11,8 +12,10 @@ export default async function AdminUserRow({ user }: Props) {
       <td className="px-6 py-4">
         <div className="flex items-center">
           {user.avatarUrl ? (
-            <img
+            <Image
               className="h-10 w-10 rounded-full mr-4"
+              width={500}
+              height={500}
               src={user.avatarUrl}
               alt={`${user.fullName || user.username}'s avatar`}
             />
