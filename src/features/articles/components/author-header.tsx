@@ -1,4 +1,5 @@
 import { articlesService } from "../instance";
+import Image from "next/image";
 
 type Props = {
   id: string;
@@ -17,8 +18,10 @@ export default async function AuthorHeader({ id }: Props) {
           </div>
         </div>
         {author.avatarUrl ? (
-          <img
+          <Image
             className="h-10 w-10 rounded-full mr-4"
+            width={500}
+            height={500}
             src={author.avatarUrl}
             alt={`${author.fullName || author.username}'s avatar`}
           />
