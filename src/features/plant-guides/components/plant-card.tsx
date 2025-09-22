@@ -56,7 +56,7 @@ export default function PlantCard({ plant }: Props) {
 
         <div className="flex-1"></div>
         <Link
-          href={"/plant-guides/" + plant.id}
+          href={"/plant-guides/" + plant.slug}
           className="mt-4 text-gray-700 hover:underline text-sm font-medium self-start"
         >
           Learn more →
