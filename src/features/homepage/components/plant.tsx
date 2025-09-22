@@ -19,11 +19,6 @@ export default function Plant({ id, image, name, color, status }: Props) {
           src={image}
           alt={name}
         />
-        // <img
-        //   src={image}
-        //   alt=""
-        //   className="rounded-lg object-contain w-full h-full"
-        // />
       )}
       <div className="ml-auto flex flex-row justify-between">
         <div>
