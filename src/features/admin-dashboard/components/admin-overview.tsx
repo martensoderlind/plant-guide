@@ -2,10 +2,6 @@ import { BookOpen, Eye, Leaf, TrendingUp } from "lucide-react";
 import RecentActivity from "./recent-activity";
 import { adminDashboardService } from "../instance";
 
-const stats = {
-  publishedArticles: 180,
-  totalViews: 156000,
-};
 export default async function AdminOverview() {
   const totalPlants = await adminDashboardService.getPlantGuideCount();
   const totalArticles = await adminDashboardService.getArticleCount();
