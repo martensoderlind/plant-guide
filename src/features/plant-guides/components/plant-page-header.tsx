@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type CareLevel = {
   text: string;
   color: string;
@@ -15,10 +17,12 @@ export default function PlantPageHeader({ imageUrl, name, careLevel }: Props) {
     <div className="relative">
       {imageUrl && (
         <div className="h-64 md:h-80 overflow-hidden">
-          <img
+          <Image
+            width={500}
+            height={500}
+            className="w-full h-64 md:h-96 object-cover"
             src={imageUrl}
             alt={name}
-            className="w-full h-full object-cover"
           />
         </div>
       )}
