@@ -43,6 +43,7 @@ export default function createIamService(db: Db) {
     },
     async UpdateUserRole(id: string, roleId: string) {
       const result = repository.updateUserRole(id, roleId);
+      return result;
     },
   };
 }
