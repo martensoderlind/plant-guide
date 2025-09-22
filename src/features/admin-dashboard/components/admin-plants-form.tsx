@@ -26,6 +26,7 @@ export default function AdminPlantForm() {
     }
   >({
     name: "",
+    slug: "",
     scientific_name: "",
     description: "",
     water_frequency_days: 7,
@@ -51,6 +52,7 @@ export default function AdminPlantForm() {
     setErrors({});
     const plant = {
       ...newPlant,
+      slug: generateSlug(newPlant.name),
       description: newPlant.description.trim() || null,
       image_url: newPlant.image_url.trim() || null,
     };
@@ -60,6 +62,7 @@ export default function AdminPlantForm() {
     if (result.success) {
       setNewPlant({
         name: "",
+        slug: "",
         scientific_name: "",
         description: "",
         water_frequency_days: 7,
@@ -78,6 +81,15 @@ export default function AdminPlantForm() {
       setErrors(result.error);
     }
   };
+
+  function generateSlug(name: string) {
+    return name
+      .toLowerCase()
+      .replace(/[^a-z0-9 -]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
+      .trim();
+  }
   return (
     <>
       <div className="flex justify-between items-center">

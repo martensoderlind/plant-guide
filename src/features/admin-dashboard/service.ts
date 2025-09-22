@@ -33,8 +33,7 @@ export default function createAdminDashboardService(
     async addPlant(plant: NewPlant) {
       const validatedPlant = plantSchema.safeParse(plant);
       if (validatedPlant.success) {
-        const slug = generateSlug(plant.name);
-        const result = await plantGuideService.addPlant({ ...plant, slug });
+        const result = await plantGuideService.addPlant({ ...plant });
         return {
           success: true,
           message: result.message,
