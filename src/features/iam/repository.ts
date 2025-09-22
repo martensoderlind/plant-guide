@@ -1,9 +1,7 @@
 import { Db } from "../../db/index";
 import { eq } from "drizzle-orm";
 import { rolesTable, userRolesTable, usersTable } from "./schema";
-import { NewUser, User } from "./types";
-import { error } from "console";
-import { Ewert } from "next/font/google";
+import { User } from "./types";
 
 export default function createIamRepository(db: Db) {
   return {
