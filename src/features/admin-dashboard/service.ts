@@ -1,11 +1,9 @@
 import { Db } from "@/db";
-import createAdminDashboardRepository from "./repository";
 import { NewPlant, NewArticle } from "./types";
 import { plantSchema, articleSchema, newUserSchema } from "./validate";
 import { ArticleService, ArticleStatusType } from "../articles/types";
 import { PlantGuideService } from "../plant-guides/types";
 import { IamService, NewUser } from "../iam/types";
-import { error } from "console";
 import { formatErrors } from "./logic";
 
 export default function createAdminDashboardService(
@@ -14,7 +12,6 @@ export default function createAdminDashboardService(
   articleService: ArticleService,
   iamService: IamService
 ) {
-  const repository = createAdminDashboardRepository(db);
   return {
     async getAllUsers() {
       const users = await iamService.getAllUsers();
