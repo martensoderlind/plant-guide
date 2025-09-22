@@ -1,4 +1,3 @@
-import { plantGuidesService } from "../instance";
 import { Plant } from "../schema";
 import PlantCard from "./plant-card";
 
