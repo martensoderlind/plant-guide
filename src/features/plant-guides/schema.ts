@@ -1,4 +1,5 @@
 import {
+  boolean,
   integer,
   pgEnum,
   pgTable,
@@ -39,6 +40,7 @@ export const plantTable = pgTable("plants", {
   light_requirement: lightRequirementEnum().notNull(),
   humidity_preference: humidityPreferenceEnum().notNull(),
   plant_category: plantCategoryEnum().default("indoor plant").notNull(),
+  is_featured: boolean().default(false),
   updated_at: timestamp("updated_at").defaultNow(),
   created_at: timestamp("created_at").notNull().defaultNow(),
 });
