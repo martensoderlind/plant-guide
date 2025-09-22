@@ -34,7 +34,7 @@ export type IamService = {
   getAllUsers: iamService["getAllUsers"];
   createUser: iamService["createUser"];
   deleteUser: iamService["deleteUser"];
-  updateUserRole: iamService["UpdateUserRole"];
+  updateUserRole: iamService["updateUserRole"];
   getUserRoles: iamService["getUserRoles"];
   getArticleAuthor: iamService["getArticleAuthor"];
 };
