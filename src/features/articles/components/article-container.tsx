@@ -1,5 +1,4 @@
 import { articlesService } from "../instance";
-import { Article } from "../schema";
 import ArticleCard from "@/features/articles/components/article-card";
 
 export default async function ArticleContainer() {
