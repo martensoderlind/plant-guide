@@ -29,5 +29,6 @@ export const adminDashboardService = createAdminDashboardService(
     deleteUser: iamService.deleteUser,
     updateUserRole: iamService.UpdateUserRole,
     getUserRoles: iamService.getUserRoles,
+    getArticleAuthor: iamService.getArticleAuthor,
   }
 );
