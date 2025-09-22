@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 type Props = {
   id: number;
@@ -11,11 +12,18 @@ export default function Plant({ id, image, name, color, status }: Props) {
   return (
     <div className="bg-gray-50 rounded-xl px-4 pt-4 pb-14 hover:shadow-md transition-all duration-300">
       {image && (
-        <img
-          src={image}
-          alt=""
+        <Image
           className="rounded-lg object-contain w-full h-full"
+          width={500}
+          height={500}
+          src={image}
+          alt={name}
         />
+        // <img
+        //   src={image}
+        //   alt=""
+        //   className="rounded-lg object-contain w-full h-full"
+        // />
       )}
       <div className="ml-auto flex flex-row justify-between">
         <div>
