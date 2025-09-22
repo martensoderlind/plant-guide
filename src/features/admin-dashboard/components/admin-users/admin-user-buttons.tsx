@@ -1,7 +1,6 @@
 "use client";
-import { Edit3, Eye, Trash2 } from "lucide-react";
+import { Edit3, Trash2 } from "lucide-react";
 import { deleteUser } from "../../actions";
-import { useState } from "react";
 import { useToast } from "../../../../../hooks/toast";
 import ToastContainer from "@/components/ToastContainer";
 
