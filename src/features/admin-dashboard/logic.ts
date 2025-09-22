@@ -8,3 +8,12 @@ export function formatErrors(errors: $ZodIssue[]) {
   });
   return fieldErrors;
 }
+
+export function generateSlug(name: string) {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9 -]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .trim();
+}
