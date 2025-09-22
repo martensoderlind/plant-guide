@@ -8,6 +8,12 @@ export default function createPlantGuidesRepository(db: Db) {
     async getAllPlantGuides() {
       return await db.select().from(plantTable);
     },
+    async getFeaturedPlantGuides() {
+      return await db
+        .select()
+        .from(plantTable)
+        .where(eq(plantTable.is_featured, true));
+    },
     async getPlantGuide(slug: string) {
       const result = await db
         .select()

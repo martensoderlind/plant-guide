@@ -22,5 +22,6 @@ export type PlantGuideService = {
   addPlant: plantGuidesService["addPlant"];
   getAllPlantGuides: plantGuidesService["getAllPlantGuides"];
   getPlantGuide: plantGuidesService["getPlantGuide"];
+  getFeaturedPlantGuides: plantGuidesService["getFeaturedPlantGuides"];
   deletePlantGuide: plantGuidesService["deletePlant"];
 };

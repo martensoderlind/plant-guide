@@ -11,6 +11,9 @@ export default function createPlantGuidesService(db: Db) {
     async getPlantGuide(slug: string) {
       return await repository.getPlantGuide(slug);
     },
+    async getFeaturedPlantGuides() {
+      return await repository.getFeaturedPlantGuides();
+    },
     async totalPlantGuideCount() {
       return await repository.totalPlantGuideCount();
     },

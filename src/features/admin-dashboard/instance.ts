@@ -11,6 +11,8 @@ export const adminDashboardService = createAdminDashboardService(
     getAllPlantGuides: plantGuidesService.getAllPlantGuides,
     addPlant: plantGuidesService.addPlant,
     deletePlantGuide: plantGuidesService.deletePlant,
+    getPlantGuide: plantGuidesService.getPlantGuide,
+    getFeaturedPlantGuides: plantGuidesService.getFeaturedPlantGuides,
   },
   {
     incrementLikes: articlesService.incrementLikes,
