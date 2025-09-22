@@ -1,5 +1,5 @@
 import { Article } from "@/features/articles/schema";
-import { Droplets, Eye, Heart, Sun, Thermometer } from "lucide-react";
+import { Eye, Heart } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
