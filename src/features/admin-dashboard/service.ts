@@ -4,7 +4,7 @@ import { plantSchema, articleSchema, newUserSchema } from "./validate";
 import { ArticleService, ArticleStatusType } from "../articles/types";
 import { PlantGuideService } from "../plant-guides/types";
 import { IamService, NewUser } from "../iam/types";
-import { formatErrors } from "./logic";
+import { formatErrors, generateSlug } from "./logic";
 
 export default function createAdminDashboardService(
   db: Db,
@@ -33,7 +33,8 @@ export default function createAdminDashboardService(
     async addPlant(plant: NewPlant) {
       const validatedPlant = plantSchema.safeParse(plant);
       if (validatedPlant.success) {
-        const result = await plantGuideService.addPlant(plant);
+        const slug = generateSlug(plant.name);
+        const result = await plantGuideService.addPlant({ ...plant, slug });
         return {
           success: true,
           message: result.message,
