@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Toast, ToastType } from "../../hooks/toast-types";
 
 type Props = {
@@ -15,6 +15,11 @@ export function ToastComponent({ toast, onRemove }: Props) {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleRemove = useCallback(() => {
+    setIsLeaving(true);
+    setTimeout(() => onRemove(toast.id), 300);
+  }, [onRemove, toast.id]);
+
   useEffect(() => {
     if (toast.duration && toast.duration > 0) {
       const timer = setTimeout(() => {
@@ -22,12 +27,7 @@ export function ToastComponent({ toast, onRemove }: Props) {
       }, toast.duration);
       return () => clearTimeout(timer);
     }
-  }, [toast.duration]);
-
-  const handleRemove = () => {
-    setIsLeaving(true);
-    setTimeout(() => onRemove(toast.id), 300);
-  };
+  }, [toast.duration, handleRemove]);
 
   const getToastStyles = (type: ToastType) => {
     const baseStyles = "border-l-4 p-4 rounded-lg shadow-lg";
