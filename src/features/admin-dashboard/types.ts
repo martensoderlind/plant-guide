@@ -27,9 +27,3 @@ export type Result =
       message: string;
       error: unknown;
     };
-
-export type FormError = {
-  path: string;
-  message: string | fieldError;
-};
-export type fieldError = {};
