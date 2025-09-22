@@ -22,6 +22,9 @@ export default async function AdminDashboardPlantContainer() {
               Water Frequency
             </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+              Featured
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
               Actions
             </th>
           </tr>

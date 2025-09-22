@@ -21,6 +21,9 @@ export default function createPlantGuidesService(db: Db) {
       const result = await repository.addPlant(plant);
       return result;
     },
+    async updateFeatureStatus(id: number, newStatus: boolean) {
+      await repository.updateFeaturedStatus(id, newStatus);
+    },
     async deletePlant(id: number) {
       await repository.deletePlant(id);
     },

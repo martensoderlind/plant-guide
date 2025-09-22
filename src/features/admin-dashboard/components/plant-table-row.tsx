@@ -1,3 +1,5 @@
+"use client";
+import { updatePlantFeaturedStatus } from "../actions";
 import { Plants } from "../types";
 import AdminPlantsButtons from "./admin-plants-buttons";
 
@@ -5,6 +7,10 @@ type Props = {
   plant: Plants;
 };
 export default function PlantTableRow({ plant }: Props) {
+  // const [featureStatus,setFeatureStatus]=useState<boolean>(plant.is_featured)
+  function updateFeatureStatus() {
+    updatePlantFeaturedStatus(plant.id, plant.is_featured!);
+  }
   return (
     <tr key={plant.id} className="hover:bg-gray-50">
       <td className="px-6 py-4 whitespace-nowrap">
@@ -32,6 +38,14 @@ export default function PlantTableRow({ plant }: Props) {
       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
         {plant.water_frequency_days} days
       </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+        <input
+          type="checkbox"
+          checked={plant.is_featured ? plant.is_featured : false}
+          onChange={(e) => updateFeatureStatus()}
+        />
+      </td>
+
       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
         <AdminPlantsButtons id={plant.id} />
       </td>

@@ -106,6 +106,10 @@ export default function createAdminDashboardService(
       }
       await articleService.updateArticleStatus(id, newStatus);
     },
+    async updatePlantFeaturedStatus(id: number, status: boolean) {
+      const newStatus = !status;
+      await plantGuideService.updatePlantFeaturedStatus(id, newStatus);
+    },
     async getPlantGuideCount() {
       const plantGuideCount = await plantGuideService.plantCount();
       return plantGuideCount;

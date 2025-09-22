@@ -13,6 +13,7 @@ export const adminDashboardService = createAdminDashboardService(
     deletePlantGuide: plantGuidesService.deletePlant,
     getPlantGuide: plantGuidesService.getPlantGuide,
     getFeaturedPlantGuides: plantGuidesService.getFeaturedPlantGuides,
+    updatePlantFeaturedStatus: plantGuidesService.updateFeatureStatus,
   },
   {
     incrementLikes: articlesService.incrementLikes,

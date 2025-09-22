@@ -50,3 +50,10 @@ export async function updateStatus(id: number, newStatus: ArticleStatusType) {
   await adminDashboardService.updateArticleStatus(id, newStatus);
   revalidatePath("/admin-dashboard/articles");
 }
+export async function updatePlantFeaturedStatus(
+  id: number,
+  newStatus: boolean
+) {
+  await adminDashboardService.updatePlantFeaturedStatus(id, newStatus);
+  revalidatePath("/admin-dashboard/plant-guides");
+}

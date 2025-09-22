@@ -30,6 +30,12 @@ export default function createPlantGuidesRepository(db: Db) {
         .from(plantTable);
       return plantGuideCount[0].count;
     },
+    async updateFeaturedStatus(id: number, newStatus: boolean) {
+      await db
+        .update(plantTable)
+        .set({ is_featured: newStatus })
+        .where(eq(plantTable.id, id));
+    },
     async addPlant(newPlant: NewPlant) {
       try {
         const result = await db
