@@ -1,6 +1,7 @@
 import { Droplets, Sun, Thermometer } from "lucide-react";
 import { Plant } from "../schema";
 import Link from "next/link";
+import Image from "next/image";
 
 type Props = {
   plant: Plant;
@@ -11,10 +12,13 @@ export default function PlantCard({ plant }: Props) {
     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer flex flex-col">
       <div className="relative h-48 w-full bg-gradient-to-br from-green-100 to-emerald-200">
         {plant.image_url ? (
-          <img
+          <Image
+            width={500}
+            height={500}
             src={plant.image_url}
             alt={plant.name}
             className="h-full w-full object-cover"
+            loading="lazy"
           />
         ) : (
           <div className="h-full w-full flex items-center justify-center text-gray-400 text-sm">
