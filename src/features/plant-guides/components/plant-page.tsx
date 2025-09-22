@@ -1,36 +1,33 @@
-import {
-  Calendar,
-  Droplets,
-  Heart,
-  Leaf,
-  Sun,
-  Thermometer,
-} from "lucide-react";
 import { PlantCategory } from "../types";
 import PlantPageHeader from "./plant-page-header";
 import PlantPageCareInformation from "./plant-page-care-information";
 import PlantPageMainContent from "./plant-page-main-content";
+import { plantGuidesService } from "../instance";
+import Link from "next/link";
+import { Undo2 } from "lucide-react";
 
-export default function PlantPage() {
-  const plant = {
-    id: 1,
-    name: "Monstera Deliciosa",
-    scientific_name: "Monstera deliciosa",
-    description:
-      "A popular tropical houseplant known for its large, glossy leaves with distinctive splits and holes. Native to Central America, it's an excellent choice for adding dramatic foliage to any indoor space.",
-    water_frequency_days: 7,
-    temperature_min: 18,
-    temperature_max: 27,
-    image_url:
-      "https://images.unsplash.com/photo-1545241047-6083a3684587?w=800&h=600&fit=crop",
-    care_level: "easy" as const,
-    light_requirement: "bright" as const,
-    humidity_preference: "medium" as const,
-    plant_category: "indoor plant" as const,
-    updated_at: "2024-03-15T10:30:00Z",
-    created_at: "2024-01-20T08:15:00Z",
-  };
-  // Helper functions to format enum values
+type Props = {
+  slug: string;
+};
+
+export default async function PlantPage({ slug }: Props) {
+  const plant = await plantGuidesService.getPlantGuide(slug);
+
+  if (!plant) {
+    return (
+      <div className="max-w-4xl mx-auto py-8 flex flex-col justify-items-center">
+        <h1 className="text-xl md:text-2xl font-bold text-gray-200 mb-4 leading-tight mx-auto">
+          No plant with that name exist.
+        </h1>
+        <Link href={"/"} className="mx-auto flex flex-row">
+          <span className="text-xl md:text-xl font-bold text-gray-200 mb-4 leading-tight mr-2">
+            Return to home page
+          </span>
+          <Undo2 />
+        </Link>
+      </div>
+    );
+  }
   const formatCareLevel = (level: "easy" | "medium" | "hard") => {
     const levels = {
       easy: { text: "Easy", color: "bg-green-100 text-green-800", icon: "🌱" },

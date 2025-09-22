@@ -8,6 +8,13 @@ export default function createPlantGuidesRepository(db: Db) {
     async getAllPlantGuides() {
       return await db.select().from(plantTable);
     },
+    async getPlantGuide(slug: string) {
+      const result = await db
+        .select()
+        .from(plantTable)
+        .where(eq(plantTable.slug, slug));
+      return result[0];
+    },
     async deletePlant(PlantId: number) {
       await db.delete(plantTable).where(eq(plantTable.id, PlantId));
     },
