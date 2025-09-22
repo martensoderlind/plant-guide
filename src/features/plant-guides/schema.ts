@@ -27,6 +27,7 @@ export const plantCategoryEnum = pgEnum("plant_category", [
 
 export const plantTable = pgTable("plants", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  slug: varchar({ length: 255 }).notNull().unique(),
   name: varchar({ length: 255 }).notNull(),
   scientific_name: varchar({ length: 255 }).notNull(),
   description: varchar(),
