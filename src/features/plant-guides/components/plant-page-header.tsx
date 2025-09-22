@@ -5,7 +5,7 @@ type CareLevel = {
 };
 
 type Props = {
-  imageUrl: string;
+  imageUrl: string | null;
   name: string;
   careLevel: CareLevel;
 };

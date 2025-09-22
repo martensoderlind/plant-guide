@@ -28,7 +28,7 @@ type Props = {
   temperature_max: number;
   humidity: Humidity;
   careLevel: CareLevel;
-  updatedAt: string;
+  updatedAt: Date | null;
 };
 
 export default function PlantPageCareInformation({
