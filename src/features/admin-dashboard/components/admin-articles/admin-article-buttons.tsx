@@ -10,7 +10,7 @@ type Props = {
 
 export default function AdminArticleButtons({ id, slug }: Props) {
   function handleDeleteArticle(id: number) {
-    const message = deleteArticle(id);
+    deleteArticle(id);
   }
   return (
     <div className="flex space-x-2">

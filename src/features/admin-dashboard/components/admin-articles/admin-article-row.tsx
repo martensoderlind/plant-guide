@@ -1,5 +1,5 @@
 import { Article } from "@/features/articles/schema";
-import AdminArticleButtons from "./admin-article.buttons";
+import AdminArticleButtons from "./admin-article-buttons";
 import AdminArticleStatus from "./admin-article-status";
 
 type Props = {
