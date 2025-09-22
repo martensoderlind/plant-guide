@@ -1,8 +1,6 @@
-import { Calendar, Clock, Eye, Heart } from "lucide-react";
 import { articlesService } from "../instance";
 import ArticleFooter from "./article-footer";
 import Image from "next/image";
-import AuthorHeader from "./author-header";
 import ArticleInfo from "./article-info";
 
 type Prop = {
