@@ -18,7 +18,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   const allPages = generatePagination(currentPage, totalPages);
   console.log("allPages:", allPages);
   return (
-    <>
+    <div className=" flex justify-center">
       <div className="inline-flex">
         <PaginationArrow
           direction="left"
@@ -53,6 +53,6 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
           isDisabled={currentPage >= totalPages}
         />
       </div>
-    </>
+    </div>
   );
 }
