@@ -1,9 +1,11 @@
+import { ToastComponent } from "@/components/ToastComponent";
 import { getAllPlantGuides } from "../actions";
 import PlantTableRow from "./admin-plants/plant-table-row";
+import Pagination from "./pagionation";
 
 export default async function AdminDashboardPlantContainer() {
   const plants = await getAllPlantGuides();
-
+  const totalPages = plants.length / 6;
   return (
     <div className="overflow-x-auto rounded-xl shadow-sm border">
       <table className="w-full">
@@ -35,6 +37,7 @@ export default async function AdminDashboardPlantContainer() {
           ))}
         </tbody>
       </table>
+      <Pagination totalPages={totalPages} />
     </div>
   );
 }
