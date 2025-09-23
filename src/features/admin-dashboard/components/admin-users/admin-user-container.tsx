@@ -1,18 +1,23 @@
+import { UserCheck } from "lucide-react";
 import { adminDashboardService } from "../../instance";
 import AdminUserRow from "./admin-user-row";
 
 type Props = {
   currentPage: number;
+  userCount: number;
 };
 
-export default async function AdminUserContainer({ currentPage }: Props) {
+export default async function AdminUserContainer({
+  currentPage,
+  userCount,
+}: Props) {
   const users = await adminDashboardService.getAllUsers(currentPage);
 
   return (
     <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
       <div className="px-6 py-4 border-b border-gray-200">
         <h3 className="text-lg font-semibold text-gray-900">
-          All users ({users.length})
+          All users ({userCount})
         </h3>
       </div>
       <div className="overflow-x-auto">

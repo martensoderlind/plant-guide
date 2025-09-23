@@ -31,7 +31,7 @@ export default async function AdminUserDashboard({ currentPage }: Props) {
           />
         }
       >
-        <AdminUserContainer currentPage={currentPage} />
+        <AdminUserContainer currentPage={currentPage} userCount={userCount} />
       </Suspense>
       <Pagination totalPages={totalPages(userCount)} />
     </div>
