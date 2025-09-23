@@ -1,11 +1,12 @@
 import AdminPlants from "@/features/admin-dashboard/components/admin-plants/admin-plants";
 
 type Props = {
-  searchParams: { page?: string };
+  searchParams: Promise<{ page?: string }>;
 };
 
-export default function Page({ searchParams }: Props) {
-  const currentPage = Number(searchParams?.page) || 1;
+export default async function Page({ searchParams }: Props) {
+  const params = await searchParams;
+  const currentPage = Number(params?.page) || 1;
   
   return (
     <div className="min-h-screen">
