@@ -1,8 +1,12 @@
 import { plantGuidesService } from "../instance";
 import PlantGuidesContainer from "./plant-guides-container";
 
-export default async function PlantGuides() {
-  const plantGuides = await plantGuidesService.getAllPlantGuides();
+type Props = {
+  currentPage: number;
+};
+
+export default async function PlantGuides({ currentPage }: Props) {
+  const plantGuides = await plantGuidesService.getAllPlantGuides(currentPage);
 
   return (
     <div>
