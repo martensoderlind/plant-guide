@@ -6,9 +6,13 @@ import { Plant } from "../schema";
 
 type Props = {
   plantGuides: Plant[];
+  plantCount: number;
 };
 
-export default function PlantGuidesContainer({ plantGuides }: Props) {
+export default function PlantGuidesContainer({
+  plantGuides,
+  plantCount,
+}: Props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
@@ -32,7 +36,10 @@ export default function PlantGuidesContainer({ plantGuides }: Props) {
         selectedCategories={selectedCategories}
         setSelectedCategories={setSelectedCategories}
       />
-      <PlantContainer plantGuides={filteredPlantGuides} />
+      <PlantContainer
+        plantGuides={filteredPlantGuides}
+        plantCount={plantCount}
+      />
     </div>
   );
 }
