@@ -1,4 +1,6 @@
+import PlantGuidePageFallback from "@/features/plant-guides/components/plant-guide-page-fallback";
 import PlantPage from "@/features/plant-guides/components/plant-page";
+import { Suspense } from "react";
 
 export default async function Page({
   params,
@@ -8,7 +10,9 @@ export default async function Page({
   const { slug } = await params;
   return (
     <div>
-      <PlantPage slug={slug} />
+      <Suspense fallback={<PlantGuidePageFallback />}>
+        <PlantPage slug={slug} />
+      </Suspense>
     </div>
   );
 }
