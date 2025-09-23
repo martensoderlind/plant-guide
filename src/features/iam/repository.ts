@@ -1,5 +1,5 @@
 import { Db } from "../../db/index";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { rolesTable, userRolesTable, usersTable } from "./schema";
 import { User } from "./types";
 
@@ -37,6 +37,12 @@ export default function createIamRepository(db: Db) {
     async getUserRoles() {
       const roles = await db.select().from(rolesTable);
       return roles;
+    },
+    async getUserCount() {
+      const userCount = await db
+        .select({ count: sql<number>`count(*)` })
+        .from(usersTable);
+      return userCount[0].count;
     },
     async getArticleAuthor(id: string) {
       const author = await db

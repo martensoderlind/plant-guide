@@ -29,6 +29,10 @@ export default function createAdminDashboardService(
       const articles = await iamService.getUserRoles();
       return articles;
     },
+    async getUserCount() {
+      const userCount = await iamService.getUserCount();
+      return userCount;
+    },
 
     async addPlant(plant: NewPlant) {
       const validatedPlant = plantSchema.safeParse(plant);

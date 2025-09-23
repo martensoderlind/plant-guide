@@ -15,6 +15,10 @@ export default function createIamService(db: Db) {
       const roles = await repository.getUserRoles();
       return roles;
     },
+    async getUserCount() {
+      const userCount = await repository.getUserCount();
+      return userCount;
+    },
     async getArticleAuthor(id: string) {
       return await repository.getArticleAuthor(id);
     },

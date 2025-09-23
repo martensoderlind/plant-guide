@@ -37,4 +37,5 @@ export type IamService = {
   updateUserRole: iamService["updateUserRole"];
   getUserRoles: iamService["getUserRoles"];
   getArticleAuthor: iamService["getArticleAuthor"];
+  getUserCount: iamService["getUserCount"];
 };

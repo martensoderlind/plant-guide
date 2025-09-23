@@ -33,5 +33,6 @@ export const adminDashboardService = createAdminDashboardService(
     updateUserRole: iamService.updateUserRole,
     getUserRoles: iamService.getUserRoles,
     getArticleAuthor: iamService.getArticleAuthor,
+    getUserCount: iamService.getUserCount,
   }
 );
