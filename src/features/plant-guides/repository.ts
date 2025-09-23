@@ -5,8 +5,13 @@ import { NewPlant } from "./types";
 
 export default function createPlantGuidesRepository(db: Db) {
   return {
-    async getAllPlantGuides() {
-      return await db.select().from(plantTable);
+    async getAllPlantGuides(currentPage: number) {
+      const pageSize = 6;
+      return await db
+        .select()
+        .from(plantTable)
+        .limit(pageSize)
+        .offset((currentPage - 1) * pageSize);
     },
     async getFeaturedPlantGuides() {
       return await db

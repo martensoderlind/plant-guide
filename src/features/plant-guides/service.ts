@@ -5,8 +5,8 @@ import { NewPlant } from "./types";
 export default function createPlantGuidesService(db: Db) {
   const repository = createPlantGuidesRepository(db);
   return {
-    async getAllPlantGuides() {
-      return await repository.getAllPlantGuides();
+    async getAllPlantGuides(currentPage: number) {
+      return await repository.getAllPlantGuides(currentPage);
     },
     async getPlantGuide(slug: string) {
       return await repository.getPlantGuide(slug);

@@ -5,8 +5,8 @@ import { NewPlant, NewArticle } from "./types";
 import { ArticleStatusType } from "../articles/types";
 import { NewUser } from "../iam/types";
 
-export async function getAllPlantGuides() {
-  const plants = await adminDashboardService.getAllPlants();
+export async function getAllPlantGuides(currentPage: number) {
+  const plants = await adminDashboardService.getAllPlants(currentPage);
   return plants;
 }
 export async function getAllArticles() {
