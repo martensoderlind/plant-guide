@@ -3,7 +3,11 @@ import AdminArticleContainer from "./admin-article-container";
 import AdminArticleForm from "./admin-article-form";
 import AdminDashboardFallback from "../admin-dashboard-fallback";
 
-export default function AdminArticles() {
+type Props = {
+  currentPage: number;
+};
+
+export default function AdminArticles({ currentPage }: Props) {
   return (
     <div className="space-y-6">
       <AdminArticleForm />
@@ -23,7 +27,7 @@ export default function AdminArticles() {
           />
         }
       >
-        <AdminArticleContainer />
+        <AdminArticleContainer currentPage={currentPage} />
       </Suspense>
     </div>
   );

@@ -21,8 +21,8 @@ export default function createAdminDashboardService(
       const plants = await plantGuideService.getAllPlantGuides(currentPage);
       return plants;
     },
-    async getAllArticles() {
-      const articles = await articleService.getAllArticles();
+    async getAllArticles(currentPage: number) {
+      const articles = await articleService.getAllArticles(currentPage);
       return articles;
     },
     async getUserRoles() {

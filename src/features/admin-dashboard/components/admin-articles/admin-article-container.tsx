@@ -1,8 +1,12 @@
 import { getAllArticles } from "../../actions";
 import AdminArticleRow from "./admin-article-row";
 
-export default async function AdminArticleContainer() {
-  const articles = await getAllArticles();
+type Props = {
+  currentPage: number;
+};
+
+export default async function AdminArticleContainer({ currentPage }: Props) {
+  const articles = await getAllArticles(currentPage);
   return (
     <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
       <div className="px-6 py-4 border-b border-gray-200">

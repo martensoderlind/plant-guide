@@ -10,8 +10,8 @@ export default function createArticlesService(
 ) {
   const repository = createArticlesRepository(db);
   return {
-    async getAllArticles() {
-      return await repository.getAllArticles();
+    async getAllArticles(currentPage: number) {
+      return await repository.getAllArticles(currentPage);
     },
     async getAllPublishedArticles(currentPage: number) {
       return await repository.getAllPublishedArticles(currentPage);

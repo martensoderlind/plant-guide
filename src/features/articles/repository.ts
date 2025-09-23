@@ -5,13 +5,17 @@ import { NewArticle } from "./types";
 import { ArticleStatusType } from "./types";
 
 export default function createArticlesRepository(db: Db) {
+  const pageSize = 6;
   return {
-    async getAllArticles() {
-      const articles = await db.select().from(articleTable);
+    async getAllArticles(currentPage: number) {
+      const articles = await db
+        .select()
+        .from(articleTable)
+        .limit(pageSize)
+        .offset((currentPage - 1) * pageSize);
       return articles;
     },
     async getAllPublishedArticles(currentPage: number) {
-      const pageSize = 6;
       return await db
         .select()
         .from(articleTable)

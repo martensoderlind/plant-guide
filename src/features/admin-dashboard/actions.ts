@@ -9,8 +9,8 @@ export async function getAllPlantGuides(currentPage: number) {
   const plants = await adminDashboardService.getAllPlants(currentPage);
   return plants;
 }
-export async function getAllArticles() {
-  const plants = await adminDashboardService.getAllArticles();
+export async function getAllArticles(currentPage: number) {
+  const plants = await adminDashboardService.getAllArticles(currentPage);
   return plants;
 }
 
