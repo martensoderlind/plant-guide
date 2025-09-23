@@ -3,7 +3,7 @@
 import { usePathname, useSearchParams } from "next/navigation";
 import PaginationArrow from "./pagination-arrow";
 import PaginationNumber from "./pagination-number";
-import { generatePagination } from "../logic";
+import { generatePagination } from "../features/admin-dashboard/logic";
 
 type Props = {
   totalPages: number;
