@@ -22,6 +22,9 @@ export default function createArticlesService(
     async getArticleAuthor(id: string) {
       return await getArticleAuthor(id);
     },
+    async getArticleCount() {
+      return await repository.getArticleCount();
+    },
     async incrementLikes(id: number) {
       return await repository.incrementLikes(id);
     },

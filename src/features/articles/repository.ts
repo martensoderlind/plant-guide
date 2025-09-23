@@ -30,6 +30,12 @@ export default function createArticlesRepository(db: Db) {
       }
       return undefined;
     },
+    async getArticleCount() {
+      const ArticleCount = await db
+        .select({ count: sql<number>`count(*)` })
+        .from(articleTable);
+      return ArticleCount[0].count;
+    },
     async addArticle(newArticle: NewArticle) {
       try {
         const result = await db
