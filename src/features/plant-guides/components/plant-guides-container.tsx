@@ -25,7 +25,7 @@ export default function PlantGuidesContainer({ plantGuides }: Props) {
 
   return (
     <div>
-      <p>plants</p>
+      <p className="font-bold text-3xl">Plants</p>
       <SearchBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
