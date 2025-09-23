@@ -2,8 +2,18 @@ import { Suspense } from "react";
 import AdminDashboardPlantContainer from "../admin-dashboard-plant-container";
 import AdminPlantForm from "./admin-plants-form";
 import AdminDashboardFallback from "../admin-dashboard-fallback";
+import { adminDashboardService } from "../../instance";
+import Pagination from "../pagionation";
 
-export default function AdminPlants() {
+export default async function AdminPlants() {
+  const totalPlants = await adminDashboardService.getPlantGuideCount();
+  const totalPages = (totalPlants: number) => {
+    if (totalPlants % 6 === 0) {
+      return totalPlants / 6;
+    } else {
+      return totalPlants / 6 + 1;
+    }
+  };
   return (
     <div className="space-y-6">
       <AdminPlantForm />
@@ -22,6 +32,7 @@ export default function AdminPlants() {
         }
       >
         <AdminDashboardPlantContainer />
+        <Pagination totalPages={totalPages(totalPlants)} />
       </Suspense>
     </div>
   );
