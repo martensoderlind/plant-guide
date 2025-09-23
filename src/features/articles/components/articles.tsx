@@ -1,12 +1,21 @@
 import { Suspense } from "react";
 import ArticleContainer from "./article-container";
 import Pagination from "@/components/pagination";
+import { articlesService } from "../instance";
 
 type Props = {
   currentPage: number;
 };
 
 export default async function Articles({ currentPage }: Props) {
+  const articleCount = await articlesService.getArticleCount();
+  const totalPages = (totalPlants: number) => {
+    if (totalPlants % 6 === 0) {
+      return totalPlants / 6;
+    } else {
+      return totalPlants / 6 + 1;
+    }
+  };
   return (
     <div>
       <section className="relative max-w-7xl mx-auto">
@@ -22,7 +31,7 @@ export default async function Articles({ currentPage }: Props) {
             <ArticleContainer currentPage={currentPage} />
           </Suspense>
         </div>
-        {/* <Pagination totalPages={totalPages} /> */}
+        <Pagination totalPages={totalPages(articleCount)} />
       </section>
     </div>
   );
