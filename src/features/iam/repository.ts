@@ -4,8 +4,9 @@ import { rolesTable, userRolesTable, usersTable } from "./schema";
 import { User } from "./types";
 
 export default function createIamRepository(db: Db) {
+  const pageSize = 6;
   return {
-    async getAllUsers() {
+    async getAllUsers(currentPage: number) {
       const result = await db
         .select({
           id: usersTable.id,
@@ -19,8 +20,9 @@ export default function createIamRepository(db: Db) {
         })
         .from(usersTable)
         .leftJoin(userRolesTable, eq(usersTable.id, userRolesTable.userId))
-        .leftJoin(rolesTable, eq(userRolesTable.roleId, rolesTable.id));
-
+        .leftJoin(rolesTable, eq(userRolesTable.roleId, rolesTable.id))
+        .limit(pageSize)
+        .offset((currentPage - 1) * pageSize);
       return result.map((row) => ({
         id: row.id,
         email: row.email,

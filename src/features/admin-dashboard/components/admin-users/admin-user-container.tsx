@@ -1,8 +1,12 @@
 import { adminDashboardService } from "../../instance";
 import AdminUserRow from "./admin-user-row";
 
-export default async function AdminUserContainer() {
-  const users = await adminDashboardService.getAllUsers();
+type Props = {
+  currentPage: number;
+};
+
+export default async function AdminUserContainer({ currentPage }: Props) {
+  const users = await adminDashboardService.getAllUsers(currentPage);
 
   return (
     <div className="bg-white rounded-xl shadow-sm border overflow-hidden">

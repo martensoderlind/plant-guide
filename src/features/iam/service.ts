@@ -7,8 +7,8 @@ import { iamService } from "./instance";
 export default function createIamService(db: Db) {
   const repository = createIamRepository(db);
   return {
-    async getAllUsers() {
-      const users = await repository.getAllUsers();
+    async getAllUsers(currentPage: number) {
+      const users = await repository.getAllUsers(currentPage);
       return users;
     },
     async getUserRoles() {
