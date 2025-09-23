@@ -24,9 +24,9 @@ export default function PlantGuidePageFallback() {
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             <div className="h-6 w-32 bg-gray-200 rounded mt-2"></div>
           </h1>
-          <p className="text-lg text-gray-600 italic">
+          <div className="text-lg text-gray-600 italic">
             <div className="h-3 w-32 bg-gray-200 rounded mt-2"></div>
-          </p>
+          </div>
           <div className="mt-2">
             <span className="inline-block bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">
               <div className="h-3 w-20 bg-gray-200 rounded mt-2"></div>
@@ -35,10 +35,10 @@ export default function PlantGuidePageFallback() {
         </div>
 
         <div className="mb-8">
-          <p className="text-gray-700 text-lg leading-relaxed">
+          <div className="text-gray-700 text-lg leading-relaxed">
             {" "}
             <div className="h-32 w-full bg-gray-200 rounded mt-2"></div>
-          </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -47,10 +47,10 @@ export default function PlantGuidePageFallback() {
               <Droplets className="h-6 w-6 text-blue-600 mr-2" />
               <h3 className="text-lg font-semibold text-blue-900">Watering</h3>
             </div>
-            <p className="text-blue-800">
+            <div className="text-blue-800">
               Every <div className="h-3 w-20 bg-gray-200 rounded mt-2"></div>{" "}
               days
-            </p>
+            </div>
           </div>
 
           <div className="bg-yellow-50 rounded-lg p-4">
@@ -71,10 +71,10 @@ export default function PlantGuidePageFallback() {
                 Temperature
               </h3>
             </div>
-            <p className="text-red-800">
+            <div className="text-red-800">
               <div className="h-3 w-20 bg-gray-200 rounded mt-2"></div> -
               <div className="h-3 w-20 bg-gray-200 rounded mt-2"></div>
-            </p>
+            </div>
           </div>
 
           <div className="bg-green-50 rounded-lg p-4">
@@ -107,9 +107,9 @@ export default function PlantGuidePageFallback() {
                 Last Updated
               </h3>
             </div>
-            <p className="text-gray-700 text-sm">
+            <div className="text-gray-700 text-sm">
               <div className="h-3 w-20 bg-gray-200 rounded mt-2"></div>
-            </p>
+            </div>
           </div>
         </div>
       </div>
