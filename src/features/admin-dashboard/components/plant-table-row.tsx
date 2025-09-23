@@ -46,7 +46,7 @@ export default function PlantTableRow({ plant }: Props) {
         <input
           type="checkbox"
           checked={featureStatus}
-          onChange={(e) => updateFeatureStatus()}
+          onChange={() => updateFeatureStatus()}
         />
       </td>
 
