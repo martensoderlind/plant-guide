@@ -3,9 +3,13 @@ import AdminDashboardPlantContainer from "../admin-dashboard-plant-container";
 import AdminPlantForm from "./admin-plants-form";
 import AdminDashboardFallback from "../admin-dashboard-fallback";
 import { adminDashboardService } from "../../instance";
-import Pagination from "../pagionation";
+import Pagination from "../pagination";
 
-export default async function AdminPlants() {
+type Props = {
+  currentPage: number;
+};
+
+export default async function AdminPlants({ currentPage }: Props) {
   const totalPlants = await adminDashboardService.getPlantGuideCount();
   const totalPages = (totalPlants: number) => {
     if (totalPlants % 6 === 0) {
@@ -31,9 +35,9 @@ export default async function AdminPlants() {
           />
         }
       >
-        <AdminDashboardPlantContainer />
-        <Pagination totalPages={totalPages(totalPlants)} />
+        <AdminDashboardPlantContainer currentPage={currentPage} />
       </Suspense>
+      <Pagination totalPages={totalPages(totalPlants)} />
     </div>
   );
 }
