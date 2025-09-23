@@ -1,7 +1,6 @@
 import { ToastComponent } from "@/components/ToastComponent";
 import { getAllPlantGuides } from "../actions";
 import PlantTableRow from "./admin-plants/plant-table-row";
-import Pagination from "./pagionation";
 
 export default async function AdminDashboardPlantContainer() {
   const plants = await getAllPlantGuides();
