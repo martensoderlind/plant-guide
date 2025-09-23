@@ -10,11 +10,14 @@ export default function createArticlesRepository(db: Db) {
       const articles = await db.select().from(articleTable);
       return articles;
     },
-    async getAllPublishedArticles() {
+    async getAllPublishedArticles(currentPage: number) {
+      const pageSize = 6;
       return await db
         .select()
         .from(articleTable)
-        .where(eq(articleTable.status, "published" as const));
+        .where(eq(articleTable.status, "published" as const))
+        .limit(pageSize)
+        .offset((currentPage - 1) * pageSize);
     },
     async getArticle(slug: string) {
       const article = await db

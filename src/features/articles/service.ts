@@ -13,8 +13,8 @@ export default function createArticlesService(
     async getAllArticles() {
       return await repository.getAllArticles();
     },
-    async getAllPublishedArticles() {
-      return await repository.getAllPublishedArticles();
+    async getAllPublishedArticles(currentPage: number) {
+      return await repository.getAllPublishedArticles(currentPage);
     },
     async getArticle(slug: string) {
       return await repository.getArticle(slug);

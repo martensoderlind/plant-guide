@@ -1,9 +1,16 @@
 import Articles from "@/features/articles/components/articles";
 
-export default function Page() {
+type Props = {
+  searchParams: Promise<{ page?: string }>;
+};
+
+export default async function Page({ searchParams }: Props) {
+  const params = await searchParams;
+  const currentPage = Number(params?.page) || 1;
+
   return (
     <div>
-      <Articles />
+      <Articles currentPage={currentPage} />
     </div>
   );
 }

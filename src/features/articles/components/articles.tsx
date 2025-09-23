@@ -1,7 +1,12 @@
 import { Suspense } from "react";
 import ArticleContainer from "./article-container";
+import Pagination from "@/components/pagination";
 
-export default async function Articles() {
+type Props = {
+  currentPage: number;
+};
+
+export default async function Articles({ currentPage }: Props) {
   return (
     <div>
       <section className="relative max-w-7xl mx-auto">
@@ -14,9 +19,10 @@ export default async function Articles() {
               </div>
             }
           >
-            <ArticleContainer />
+            <ArticleContainer currentPage={currentPage} />
           </Suspense>
         </div>
+        {/* <Pagination totalPages={totalPages} /> */}
       </section>
     </div>
   );
