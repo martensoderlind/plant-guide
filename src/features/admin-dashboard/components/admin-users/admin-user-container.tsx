@@ -1,4 +1,3 @@
-import { UserCheck } from "lucide-react";
 import { adminDashboardService } from "../../instance";
 import AdminUserRow from "./admin-user-row";
 
