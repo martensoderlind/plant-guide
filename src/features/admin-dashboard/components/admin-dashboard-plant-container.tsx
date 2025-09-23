@@ -1,5 +1,5 @@
 import { getAllPlantGuides } from "../actions";
-import PlantTableRow from "./plant-table-row";
+import PlantTableRow from "./admin-plants/plant-table-row";
 
 export default async function AdminDashboardPlantContainer() {
   const plants = await getAllPlantGuides();

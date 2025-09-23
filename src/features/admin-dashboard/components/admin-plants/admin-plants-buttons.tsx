@@ -1,7 +1,7 @@
 "use client";
 import { Edit3, Eye, Trash2 } from "lucide-react";
-import { deletePlant } from "../actions";
 import Link from "next/link";
+import { deletePlant } from "../../actions";
 
 type Props = {
   id: number;

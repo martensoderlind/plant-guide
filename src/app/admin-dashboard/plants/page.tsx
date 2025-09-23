@@ -1,4 +1,4 @@
-import AdminPlants from "@/features/admin-dashboard/components/admin-plants";
+import AdminPlants from "@/features/admin-dashboard/components/admin-plants/admin-plants";
 
 export default function Page() {
   return (

@@ -1,7 +1,7 @@
 import { Suspense } from "react";
-import AdminDashboardPlantContainer from "./admin-dashboard-plant-container";
+import AdminDashboardPlantContainer from "../admin-dashboard-plant-container";
 import AdminPlantForm from "./admin-plants-form";
-import AdminDashboardFallback from "./admin-dashboard-fallback";
+import AdminDashboardFallback from "../admin-dashboard-fallback";
 
 export default function AdminPlants() {
   return (

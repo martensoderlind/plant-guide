@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { updatePlantFeaturedStatus } from "../actions";
-import { Plants } from "../types";
+import { updatePlantFeaturedStatus } from "../../actions";
+import { Plants } from "../../types";
 import AdminPlantsButtons from "./admin-plants-buttons";
 
 type Props = {

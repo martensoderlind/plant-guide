@@ -2,16 +2,17 @@
 
 import { Plus, Save, X } from "lucide-react";
 import { useState } from "react";
-import addPlant from "../actions";
-import { NewPlant } from "../types";
+
 import {
   careLevelEnum,
   lightRequirementEnum,
   humidityPreferenceEnum,
   plantCategoryEnum,
-} from "../../plant-guides/schema";
-import { useToast } from "../../../../hooks/toast";
+} from "../../../plant-guides/schema";
+import { useToast } from "../../../../../hooks/toast";
 import ToastContainer from "@/components/ToastContainer";
+import { NewPlant } from "../../types";
+import addPlant from "../../actions";
 type CareLevel = (typeof careLevelEnum.enumValues)[number];
 type LightRequirement = (typeof lightRequirementEnum.enumValues)[number];
 type HumidityPreference = (typeof humidityPreferenceEnum.enumValues)[number];
