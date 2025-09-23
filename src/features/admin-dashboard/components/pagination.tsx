@@ -5,7 +5,11 @@ import PaginationArrow from "./pagination-arrow";
 import PaginationNumber from "./pagination-number";
 import { generatePagination } from "../logic";
 
-export default function Pagination({ totalPages }: { totalPages: number }) {
+type Props = {
+  totalPages: number;
+};
+
+export default function Pagination({ totalPages }: Props) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;
