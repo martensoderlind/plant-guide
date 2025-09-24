@@ -1,8 +1,8 @@
 "use client";
 
-import { Plus, Save, X } from "lucide-react";
-import { useState } from "react";
-import { addArticle } from "../../actions";
+import { Plus, Save, X, Tag } from "lucide-react";
+import { useState, useEffect } from "react";
+import { addArticle, getAllTags } from "../../actions";
 import { NewArticle } from "../../types";
 import {
   articleCategoryEnum,
@@ -29,6 +29,8 @@ interface ArticleFormData {
   featured_image_url: string;
   meta_title: string;
   meta_description: string;
+  tags: string[];
+  currentTag: string;
 }
 
 export default function AdminArticleForm() {
@@ -46,14 +48,30 @@ export default function AdminArticleForm() {
     featured_image_url: "",
     meta_title: "",
     meta_description: "",
+    tags: [],
+    currentTag: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [availableTags, setAvailableTags] = useState<Array<{id: string, name: string, slug: string, color: string | null, created_at: Date}>>([]);
 
   const { toasts, removeToast, success, info } = useToast();
 
   const articleCategories = articleCategoryEnum.enumValues;
   const difficultyLevels = difficultyLevelEnum.enumValues;
   const articleStatuses = articleStatusEnum.enumValues;
+
+  // Load available tags
+  useEffect(() => {
+    const loadTags = async () => {
+      try {
+        const tags = await getAllTags();
+        setAvailableTags(tags);
+      } catch (error) {
+        console.error("Failed to load tags:", error);
+      }
+    };
+    loadTags();
+  }, []);
 
   const generateSlug = (title: string) => {
     return title
@@ -68,15 +86,16 @@ export default function AdminArticleForm() {
     e.preventDefault();
     setErrors({});
 
+    const { tags, ...articleData } = newArticle;
     const article: NewArticle = {
-      ...newArticle,
-      excerpt: newArticle.excerpt.trim() || null,
-      featured_image_url: newArticle.featured_image_url.trim() || null,
-      meta_title: newArticle.meta_title.trim() || null,
-      meta_description: newArticle.meta_description.trim() || null,
+      ...articleData,
+      excerpt: articleData.excerpt.trim() || null,
+      featured_image_url: articleData.featured_image_url.trim() || null,
+      meta_title: articleData.meta_title.trim() || null,
+      meta_description: articleData.meta_description.trim() || null,
     };
 
-    const result = await addArticle(article);
+    const result = await addArticle(article, tags);
 
     if (result.success) {
       setNewArticle({
@@ -92,12 +111,40 @@ export default function AdminArticleForm() {
         featured_image_url: "",
         meta_title: "",
         meta_description: "",
+        tags: [],
+        currentTag: "",
       });
       success("Success!", result.message);
       setIsAddingArticle(false);
     } else {
       info("Validation Error.", result.message);
       setErrors(result.error);
+    }
+  };
+
+  // Tag management functions
+  const addTag = () => {
+    const tagName = newArticle.currentTag.trim();
+    if (tagName && !newArticle.tags.includes(tagName)) {
+      setNewArticle({
+        ...newArticle,
+        tags: [...newArticle.tags, tagName],
+        currentTag: "",
+      });
+    }
+  };
+
+  const removeTag = (tagToRemove: string) => {
+    setNewArticle({
+      ...newArticle,
+      tags: newArticle.tags.filter(tag => tag !== tagToRemove),
+    });
+  };
+
+  const handleTagKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      addTag();
     }
   };
 
@@ -330,6 +377,92 @@ export default function AdminArticleForm() {
               />
               {errors.featured_img_url && (
                 <p className="mt-1 text-sm text-red-600">{errors.excerpt}</p>
+              )}
+            </div>
+
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Tags
+              </label>
+              <div className="space-y-3">
+                {/* Current tags display */}
+                {newArticle.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {newArticle.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-emerald-100 text-emerald-800 border border-emerald-200"
+                      >
+                        <Tag className="w-3 h-3 mr-1" />
+                        {tag}
+                        <button
+                          type="button"
+                          onClick={() => removeTag(tag)}
+                          className="ml-2 text-emerald-600 hover:text-emerald-800"
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                )}
+                
+                {/* Add new tag input */}
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    className="text-gray-500 flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    value={newArticle.currentTag}
+                    onChange={(e) =>
+                      setNewArticle({
+                        ...newArticle,
+                        currentTag: e.target.value,
+                      })
+                    }
+                    onKeyPress={handleTagKeyPress}
+                    placeholder="Add a tag (press Enter or click +)"
+                  />
+                  <button
+                    type="button"
+                    onClick={addTag}
+                    disabled={!newArticle.currentTag.trim()}
+                    className="px-3 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+                  >
+                    <Plus className="w-4 h-4" />
+                  </button>
+                </div>
+                
+                {/* Available tags suggestion */}
+                {availableTags.length > 0 && (
+                  <div>
+                    <p className="text-sm text-gray-600 mb-2">Existing tags:</p>
+                    <div className="flex flex-wrap gap-1">
+                      {availableTags
+                        .filter(tag => !newArticle.tags.includes(tag.name))
+                        .slice(0, 10)
+                        .map((tag) => (
+                        <button
+                          key={tag.id}
+                          type="button"
+                          onClick={() => {
+                            if (!newArticle.tags.includes(tag.name)) {
+                              setNewArticle({
+                                ...newArticle,
+                                tags: [...newArticle.tags, tag.name],
+                              });
+                            }
+                          }}
+                          className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors"
+                        >
+                          {tag.name}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+              {errors.tags && (
+                <p className="mt-1 text-sm text-red-600">{errors.tags}</p>
               )}
             </div>
 
