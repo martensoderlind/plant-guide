@@ -2,6 +2,7 @@ import { WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { Webhook } from "svix";
 import { NextResponse } from "next/server";
+import { iamService } from "@/features/iam/instance";
 
 const webhookSecret = process.env.CLERK_WEBHOOK_SECRET;
 
@@ -39,12 +40,10 @@ async function validateRequest(request: Request) {
 }
 export async function POST(request: Request) {
   try {
-    console.log("Webhook received");
-
     const payload = await validateRequest(request);
 
-    console.log("Webhook event type:", payload.type);
-    console.log("Webhook payload:", JSON.stringify(payload, null, 2));
+    // console.log("Webhook event type:", payload.type);
+    // console.log("Webhook payload:", JSON.stringify(payload, null, 2));
 
     switch (payload.type) {
       case "user.created":
@@ -77,7 +76,15 @@ export async function POST(request: Request) {
 }
 
 async function handleNewUser(userData: any) {
-  console.log("new user:", userData);
+  const newUser = {
+    id: userData.user_id,
+    email: userData.email_addresses[0].email_address,
+    username: userData.username,
+    fullName: userData.first_name + " " + userData.last_name,
+    avatarUrl: userData.profile_image_url,
+    role: "USER",
+  };
+  await iamService.createUser(newUser);
 }
 
 async function handleUserActivity(userData: any) {
@@ -92,7 +99,6 @@ async function handleUserActivity(userData: any) {
     }
   }
 }
-
 async function handleUserLogin(sessionData: any) {
   console.log("Session created:", sessionData);
 }
