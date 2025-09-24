@@ -67,7 +67,7 @@ export const tagTable = pgTable("tags", {
 });
 
 export const articleTagTable = pgTable("article_tags", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: uuid().primaryKey().defaultRandom(),
   article_id: integer()
     .notNull()
     .references(() => articleTable.id, { onDelete: "cascade" }),
