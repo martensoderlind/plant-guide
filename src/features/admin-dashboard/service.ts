@@ -52,10 +52,10 @@ export default function createAdminDashboardService(
         };
       }
     },
-    async addArticle(article: NewArticle) {
+    async addArticle(article: NewArticle, tagNames?: string[]) {
       const validatedArticle = articleSchema.safeParse(article);
       if (validatedArticle.success) {
-        const result = await articleService.addArticle(article);
+        const result = await articleService.addArticle(article, tagNames);
         return {
           success: true,
           message: result.message,
@@ -129,6 +129,11 @@ export default function createAdminDashboardService(
     async getArticleViews() {
       const articleViews = await articleService.articleViews();
       return articleViews;
+    },
+    
+    // Tag management methods
+    async getAllTags() {
+      return await articleService.getAllTags();
     },
   };
 }

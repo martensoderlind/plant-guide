@@ -19,8 +19,8 @@ export default async function addPlant(plant: NewPlant) {
   revalidatePath("/admin-dashboard/plants");
   return message;
 }
-export async function addArticle(article: NewArticle) {
-  const result = await adminDashboardService.addArticle(article);
+export async function addArticle(article: NewArticle, tagNames?: string[]) {
+  const result = await adminDashboardService.addArticle(article, tagNames);
   revalidatePath("/admin-dashboard/articles");
   return result;
 }
@@ -56,4 +56,9 @@ export async function updatePlantFeaturedStatus(
 ) {
   await adminDashboardService.updatePlantFeaturedStatus(id, newStatus);
   revalidatePath("/admin-dashboard/plant-guides");
+}
+
+// Tag management actions
+export async function getAllTags() {
+  return await adminDashboardService.getAllTags();
 }
