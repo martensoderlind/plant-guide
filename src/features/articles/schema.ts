@@ -5,6 +5,7 @@ import {
   pgTable,
   text,
   timestamp,
+  uuid,
   varchar,
 } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm/relations";
@@ -58,7 +59,7 @@ export const articleTable = pgTable("articles", {
 export type Article = typeof articleTable.$inferSelect;
 
 export const tagTable = pgTable("tags", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: uuid().primaryKey().defaultRandom(),
   name: varchar({ length: 100 }).notNull().unique(),
   slug: varchar({ length: 100 }).notNull().unique(),
   color: varchar({ length: 7 }).default("#10b981"), // Hex color
@@ -70,7 +71,7 @@ export const articleTagTable = pgTable("article_tags", {
   article_id: integer()
     .notNull()
     .references(() => articleTable.id, { onDelete: "cascade" }),
-  tag_id: integer()
+  tag_id: uuid()
     .notNull()
     .references(() => tagTable.id, { onDelete: "cascade" }),
   created_at: timestamp("created_at").notNull().defaultNow(),
