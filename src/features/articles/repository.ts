@@ -1,6 +1,6 @@
 import { Db } from "../../db/index";
 import { eq, sql } from "drizzle-orm";
-import { articleTable } from "./schema";
+import { articleTable, tagTable, articleTagTable } from "./schema";
 import { NewArticle } from "./types";
 import { ArticleStatusType } from "./types";
 
@@ -40,12 +40,17 @@ export default function createArticlesRepository(db: Db) {
         .from(articleTable);
       return ArticleCount[0].count;
     },
-    async addArticle(newArticle: NewArticle) {
+    async addArticle(newArticle: NewArticle, tagNames?: string[]) {
       try {
         const result = await db
           .insert(articleTable)
           .values(newArticle)
           .returning({ id: articleTable.id });
+
+        if (result.length > 0 && tagNames && tagNames.length > 0) {
+          await this.linkTagsToArticle(result[0].id, tagNames);
+        }
+
         if (result.length > 0) {
           return { success: true, message: "Article inserted successfully" };
         }
@@ -58,14 +63,14 @@ export default function createArticlesRepository(db: Db) {
         if ((error as { code: string }).code === "23505") {
           return {
             success: false,
-            message: "plant already registered.",
+            message: "article already registered.",
             error,
           };
         }
         return {
           success: false,
           message:
-            "There was a problem with adding the plant to the database, please try again.",
+            "There was a problem with adding the article to the database, please try again.",
           error,
         };
       }
@@ -135,6 +140,62 @@ export default function createArticlesRepository(db: Db) {
         })
         .from(articleTable);
       return totalArticleViews[0].total;
+    },
+
+    async getAllTags() {
+      return await db.select().from(tagTable).orderBy(tagTable.name);
+    },
+
+    async createTag(name: string, slug: string, color?: string) {
+      try {
+        const result = await db
+          .insert(tagTable)
+          .values({ name, slug, color: color || "#10b981" })
+          .returning({ id: tagTable.id, name: tagTable.name });
+        return result[0];
+      } catch (error) {
+        if ((error as { code: string }).code === "23505") {
+          const existingTag = await db
+            .select()
+            .from(tagTable)
+            .where(eq(tagTable.name, name))
+            .limit(1);
+          return existingTag[0];
+        }
+        throw error;
+      }
+    },
+
+    async linkTagsToArticle(articleId: number, tagNames: string[]) {
+      for (const tagName of tagNames) {
+        const slug = tagName.toLowerCase().replace(/\s+/g, "-");
+
+        const tag = await this.createTag(tagName.trim(), slug);
+
+        try {
+          await db.insert(articleTagTable).values({
+            article_id: articleId,
+            tag_id: tag.id,
+          });
+        } catch (error) {
+          if ((error as { code: string }).code !== "23505") {
+            throw error;
+          }
+        }
+      }
+    },
+
+    async getArticleTags(articleId: number) {
+      return await db
+        .select({
+          id: tagTable.id,
+          name: tagTable.name,
+          slug: tagTable.slug,
+          color: tagTable.color,
+        })
+        .from(tagTable)
+        .innerJoin(articleTagTable, eq(tagTable.id, articleTagTable.tag_id))
+        .where(eq(articleTagTable.article_id, articleId));
     },
   };
 }
