@@ -1,5 +1,5 @@
 import { Db } from "../../db/index";
-import { eq, sql } from "drizzle-orm";
+import { eq, sql, and } from "drizzle-orm";
 import { articleTable, tagTable, articleTagTable } from "./schema";
 import { NewArticle } from "./types";
 import { ArticleStatusType } from "./types";
@@ -147,21 +147,37 @@ export default function createArticlesRepository(db: Db) {
     },
 
     async createTag(name: string, slug: string, color?: string) {
+      const existingTag = await db
+        .select()
+        .from(tagTable)
+        .where(eq(tagTable.name, name))
+        .limit(1);
+
+      if (existingTag.length > 0) {
+        console.log("Tag already exists:", name);
+        return existingTag[0];
+      }
+
       try {
         const result = await db
           .insert(tagTable)
           .values({ name, slug, color: color || "#10b981" })
           .returning({ id: tagTable.id, name: tagTable.name });
+        console.log("Created new tag:", name);
         return result[0];
       } catch (error) {
-        if ((error as { code: string }).code === "23505") {
-          const existingTag = await db
-            .select()
-            .from(tagTable)
-            .where(eq(tagTable.name, name))
-            .limit(1);
-          return existingTag[0];
+        const raceConditionTag = await db
+          .select()
+          .from(tagTable)
+          .where(eq(tagTable.name, name))
+          .limit(1);
+
+        if (raceConditionTag.length > 0) {
+          console.log("Tag created by race condition:", name);
+          return raceConditionTag[0];
         }
+
+        console.error("Unexpected error in createTag:", error);
         throw error;
       }
     },
@@ -169,18 +185,36 @@ export default function createArticlesRepository(db: Db) {
     async linkTagsToArticle(articleId: number, tagNames: string[]) {
       for (const tagName of tagNames) {
         const slug = tagName.toLowerCase().replace(/\s+/g, "-");
+        console.log("Processing tag:", tagName);
 
         const tag = await this.createTag(tagName.trim(), slug);
+        console.log("Tag resolved:", tag);
+
+        const existingLink = await db
+          .select()
+          .from(articleTagTable)
+          .where(
+            and(
+              eq(articleTagTable.article_id, articleId),
+              eq(articleTagTable.tag_id, tag.id)
+            )
+          )
+          .limit(1);
+
+        if (existingLink.length > 0) {
+          console.log("Tag already linked to article, skipping:", tagName);
+          continue;
+        }
 
         try {
           await db.insert(articleTagTable).values({
             article_id: articleId,
             tag_id: tag.id,
           });
+          console.log("Successfully linked tag to article:", tagName);
         } catch (error) {
-          if ((error as { code: string }).code !== "23505") {
-            throw error;
-          }
+          console.error("Unexpected error linking tag to article:", error);
+          throw error;
         }
       }
     },
