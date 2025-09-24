@@ -1,7 +1,7 @@
 import createIamService from "./service";
 
 export type NewUser = {
-  id?: string;
+  id: string | undefined;
   email: string;
   username: string;
   fullName: string;

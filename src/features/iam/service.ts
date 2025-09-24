@@ -23,7 +23,12 @@ export default function createIamService(db: Db) {
       return await repository.getArticleAuthor(id);
     },
     async createUser(newUser: NewUser) {
-      const id = uuidv4();
+      let id: string;
+      if (!newUser.id) {
+        id = uuidv4();
+      } else {
+        id = newUser.id;
+      }
       if (newUser.roleId !== undefined) {
         const result = await repository.createUser({
           ...newUser,
