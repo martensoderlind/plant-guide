@@ -52,7 +52,15 @@ export default function AdminArticleForm() {
     currentTag: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [availableTags, setAvailableTags] = useState<Array<{id: string, name: string, slug: string, color: string | null, created_at: Date}>>([]);
+  const [availableTags, setAvailableTags] = useState<
+    Array<{
+      id: string;
+      name: string;
+      slug: string;
+      color: string | null;
+      created_at: Date;
+    }>
+  >([]);
 
   const { toasts, removeToast, success, info } = useToast();
 
@@ -60,7 +68,6 @@ export default function AdminArticleForm() {
   const difficultyLevels = difficultyLevelEnum.enumValues;
   const articleStatuses = articleStatusEnum.enumValues;
 
-  // Load available tags
   useEffect(() => {
     const loadTags = async () => {
       try {
@@ -122,7 +129,6 @@ export default function AdminArticleForm() {
     }
   };
 
-  // Tag management functions
   const addTag = () => {
     const tagName = newArticle.currentTag.trim();
     if (tagName && !newArticle.tags.includes(tagName)) {
@@ -137,7 +143,7 @@ export default function AdminArticleForm() {
   const removeTag = (tagToRemove: string) => {
     setNewArticle({
       ...newArticle,
-      tags: newArticle.tags.filter(tag => tag !== tagToRemove),
+      tags: newArticle.tags.filter((tag) => tag !== tagToRemove),
     });
   };
 
@@ -406,7 +412,7 @@ export default function AdminArticleForm() {
                     ))}
                   </div>
                 )}
-                
+
                 {/* Add new tag input */}
                 <div className="flex gap-2">
                   <input
@@ -431,32 +437,31 @@ export default function AdminArticleForm() {
                     <Plus className="w-4 h-4" />
                   </button>
                 </div>
-                
-                {/* Available tags suggestion */}
+
                 {availableTags.length > 0 && (
                   <div>
                     <p className="text-sm text-gray-600 mb-2">Existing tags:</p>
                     <div className="flex flex-wrap gap-1">
                       {availableTags
-                        .filter(tag => !newArticle.tags.includes(tag.name))
+                        .filter((tag) => !newArticle.tags.includes(tag.name))
                         .slice(0, 10)
                         .map((tag) => (
-                        <button
-                          key={tag.id}
-                          type="button"
-                          onClick={() => {
-                            if (!newArticle.tags.includes(tag.name)) {
-                              setNewArticle({
-                                ...newArticle,
-                                tags: [...newArticle.tags, tag.name],
-                              });
-                            }
-                          }}
-                          className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors"
-                        >
-                          {tag.name}
-                        </button>
-                      ))}
+                          <button
+                            key={tag.id}
+                            type="button"
+                            onClick={() => {
+                              if (!newArticle.tags.includes(tag.name)) {
+                                setNewArticle({
+                                  ...newArticle,
+                                  tags: [...newArticle.tags, tag.name],
+                                });
+                              }
+                            }}
+                            className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors"
+                          >
+                            {tag.name}
+                          </button>
+                        ))}
                     </div>
                   </div>
                 )}
