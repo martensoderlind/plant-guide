@@ -9,6 +9,7 @@ type Prop = {
 
 export default async function Article({ slug }: Prop) {
   const article = await articlesService.getArticle(slug);
+  console.log("tags:", article?.tags);
   if (!article) {
     return (
       <div className="max-w-4xl mx-auto py-8 flex flex-col justify-items-center">
@@ -21,7 +22,7 @@ export default async function Article({ slug }: Prop) {
   await articlesService.incrementArticleViews(slug);
 
   const categoryNames = {
-    basics: "Advanced",
+    basics: "Basics",
     watering: "Watering",
     lighting: "lighting",
     diseases: "Diseases",
@@ -30,12 +31,6 @@ export default async function Article({ slug }: Prop) {
     "air-purifying": "Air purifying",
     troubleshooting: "Troubleshooting",
     "advanced-techniques": "Advanced Techniques",
-  };
-
-  const difficultyNames = {
-    beginner: "Beginner",
-    intermediate: "Intermediate",
-    advanced: "Advanced",
   };
 
   const difficultyColors = {
@@ -74,13 +69,18 @@ export default async function Article({ slug }: Prop) {
               difficultyColors[article.difficulty_level]
             }`}
           >
-            {difficultyNames[article.difficulty_level]}
+            {article.difficulty_level}
           </span>
-          {article.is_featured && (
-            <span className="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-sm font-medium border border-amber-200">
-              Selected article
+        </div>
+        <div className="flex flex-wrap gap-3 mb-4">
+          {article.tags.map((tag, idx) => (
+            <span
+              key={idx}
+              className="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-sm font-medium border border-emerald-200"
+            >
+              {tag.name}
             </span>
-          )}
+          ))}
         </div>
 
         <h1 className="text-3xl md:text-4xl font-bold text-gray-200 mb-4 leading-tight">

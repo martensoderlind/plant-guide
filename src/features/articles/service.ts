@@ -17,7 +17,12 @@ export default function createArticlesService(
       return await repository.getAllPublishedArticles(currentPage);
     },
     async getArticle(slug: string) {
-      return await repository.getArticle(slug);
+      const article = await repository.getArticle(slug);
+      if (article) {
+        const tags = await repository.getArticleTags(article.id);
+        return { ...article, tags };
+      }
+      return article;
     },
     async getArticleAuthor(id: string) {
       return await getArticleAuthor(id);
@@ -59,12 +64,12 @@ export default function createArticlesService(
       const totalArticleViews = await repository.getArticleViews();
       return totalArticleViews;
     },
-    
+
     // Tag management methods
     async getAllTags() {
       return await repository.getAllTags();
     },
-    
+
     async getArticleTags(articleId: number) {
       return await repository.getArticleTags(articleId);
     },
