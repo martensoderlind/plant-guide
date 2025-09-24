@@ -27,4 +27,5 @@ export type ArticleService = {
   articleCount: articleService["totalArticleCount"];
   publishedArticleCount: articleService["publishedArticleCount"];
   articleViews: articleService["totalArticleViews"];
+  getAllTags: articleService["getAllTags"];
 };

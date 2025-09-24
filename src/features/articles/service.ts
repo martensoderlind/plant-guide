@@ -31,8 +31,8 @@ export default function createArticlesService(
     async incrementArticleViews(slug: string) {
       await repository.incrementArticleViews(slug);
     },
-    async addArticle(article: NewArticle) {
-      return await repository.addArticle(article);
+    async addArticle(article: NewArticle, tagNames?: string[]) {
+      return await repository.addArticle(article, tagNames);
     },
     async deleteArticle(id: number) {
       await repository.deleteArticle(id);
@@ -58,6 +58,15 @@ export default function createArticlesService(
     async totalArticleViews() {
       const totalArticleViews = await repository.getArticleViews();
       return totalArticleViews;
+    },
+    
+    // Tag management methods
+    async getAllTags() {
+      return await repository.getAllTags();
+    },
+    
+    async getArticleTags(articleId: number) {
+      return await repository.getArticleTags(articleId);
     },
   };
 }
