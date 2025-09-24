@@ -37,8 +37,6 @@ export default function AdminArticleForm({ roles }: Props) {
 
     console.log("result:", result);
     if (result.success) {
-      console.log("success:true");
-
       setNewUser({
         email: "",
         username: "",

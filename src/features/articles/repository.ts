@@ -154,7 +154,6 @@ export default function createArticlesRepository(db: Db) {
         .limit(1);
 
       if (existingTag.length > 0) {
-        console.log("Tag already exists:", name);
         return existingTag[0];
       }
 

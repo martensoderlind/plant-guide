@@ -9,7 +9,7 @@ type Prop = {
 
 export default async function Article({ slug }: Prop) {
   const article = await articlesService.getArticle(slug);
-  console.log("tags:", article?.tags);
+
   if (!article) {
     return (
       <div className="max-w-4xl mx-auto py-8 flex flex-col justify-items-center">

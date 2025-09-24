@@ -15,8 +15,7 @@ export default function PlantContainer({ plantGuides, plantCount }: Props) {
       return totalPlants / 6 + 1;
     }
   };
-  console.log("page count", totalPages(plantGuides.length));
-  console.log("plant count", plantCount);
+
   return (
     <>
       <section className="relative">
