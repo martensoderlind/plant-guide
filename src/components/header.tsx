@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { Leaf, Menu, X } from "lucide-react";
+import { Leaf, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import {
