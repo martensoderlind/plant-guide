@@ -11,6 +11,7 @@
     "db:studio": "npx drizzle-kit studio"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.32.2",
     "dotenv": "^17.2.1",
     "drizzle-orm": "^0.44.4",
     "lucide-react": "^0.539.0",
