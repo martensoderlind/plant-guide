@@ -24,7 +24,7 @@ export default function ArticleFooter({ article }: Props) {
         </div>
 
         <ArticleLikeButton
-          likes={article.likes}
+          likes={article.likes ? article.likes : 0}
           id={article.id}
           slug={article.slug}
         />
