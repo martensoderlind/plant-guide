@@ -42,9 +42,6 @@ export async function POST(request: Request) {
   try {
     const payload = await validateRequest(request);
 
-    // console.log("Webhook event type:", payload.type);
-    // console.log("Webhook payload:", JSON.stringify(payload, null, 2));
-
     switch (payload.type) {
       case "user.created":
         await handleNewUser(payload.data);
