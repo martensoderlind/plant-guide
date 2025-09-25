@@ -1,6 +1,5 @@
 import { User } from "@/features/iam/types";
 import AdminUserButtons from "./admin-user-buttons";
-import Image from "next/image";
 import AdminUserRowSection from "./admin-user-row-section";
 import AdminUserRowRole from "./admin-user-row-role";
 
