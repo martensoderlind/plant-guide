@@ -2,7 +2,7 @@ type Props = {
   role: string | undefined;
 };
 
-export default function AdminUserRowStatus({ role }: Props) {
+export default function AdminUserRowRole({ role }: Props) {
   return (
     <>
       {role ? (

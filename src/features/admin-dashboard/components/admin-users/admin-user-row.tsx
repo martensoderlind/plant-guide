@@ -2,7 +2,7 @@ import { User } from "@/features/iam/types";
 import AdminUserButtons from "./admin-user-buttons";
 import Image from "next/image";
 import AdminUserRowSection from "./admin-user-row-section";
-import AdminUserRowStatus from "./admin-user-row-status";
+import AdminUserRowRole from "./admin-user-row-role";
 
 type Props = {
   user: User;
@@ -20,7 +20,7 @@ export default async function AdminUserRow({ user }: Props) {
         />
       </td>
       <td className="px-6 py-4">
-        <AdminUserRowStatus role={user.role} />
+        <AdminUserRowRole role={user.role} />
       </td>
       {user.created_at ? (
         <td className="px-6 py-4 text-sm text-gray-500">
