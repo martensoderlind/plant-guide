@@ -50,9 +50,16 @@ export default function createIamService(db: Db) {
       const roleId = repository.getRoleId(role);
       return roleId;
     },
-    async updateUserRole(id: string, roleId: string) {
-      const result = repository.updateUserRole(id, roleId);
-      return result;
+    async updateUserRole(id: string, roleId?: string, role?: string) {
+      if (roleId) {
+        const result = await repository.updateUserRole(id, roleId);
+        return result;
+      }
+      if (role) {
+        const roleId = await repository.getRoleId(role);
+        const result = await repository.updateUserRole(id, roleId);
+        return result;
+      }
     },
   };
 }

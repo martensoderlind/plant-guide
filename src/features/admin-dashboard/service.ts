@@ -110,6 +110,10 @@ export default function createAdminDashboardService(
       }
       await articleService.updateArticleStatus(id, newStatus);
     },
+    async updateUserRole(id: string, newRole: string) {
+      const result = await iamService.updateUserRole(id, undefined, newRole);
+      return result;
+    },
     async updatePlantFeaturedStatus(id: number, status: boolean) {
       const newStatus = !status;
       await plantGuideService.updatePlantFeaturedStatus(id, newStatus);
@@ -130,7 +134,7 @@ export default function createAdminDashboardService(
       const articleViews = await articleService.articleViews();
       return articleViews;
     },
-    
+
     // Tag management methods
     async getAllTags() {
       return await articleService.getAllTags();

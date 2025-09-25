@@ -19,7 +19,7 @@ export default async function AdminUserRow({ user }: Props) {
         />
       </td>
       <td className="px-6 py-4">
-        <AdminUserRowRole role={user.role} />
+        <AdminUserRowRole id={user.id} role={user.role} />
       </td>
       {user.created_at ? (
         <td className="px-6 py-4 text-sm text-gray-500">
