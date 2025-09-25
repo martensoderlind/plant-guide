@@ -74,6 +74,7 @@ export default function AdminUserRowRole({ id, role }: Props) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [toggleMenu]);
+
   const currentMenuStatus = statusOptions.find(
     (option) => option.value === currentStatus
   );
@@ -118,7 +119,7 @@ export default function AdminUserRowRole({ id, role }: Props) {
                     ? "bg-green-400"
                     : option.value === "AUTHOR"
                     ? "bg-gray-400"
-                    : "bg-blue-100"
+                    : "bg-blue-400"
                 }`}
               />
               {option.label}
