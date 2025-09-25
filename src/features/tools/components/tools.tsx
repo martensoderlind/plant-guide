@@ -14,12 +14,6 @@ export default function Tools() {
       >
         Plant identification{" "}
       </a>
-      <a
-        href="#"
-        className="block text-gray-400 hover:text-white transition-colors"
-      >
-        Light Meter
-      </a>
     </div>
   );
 }
