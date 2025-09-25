@@ -76,7 +76,7 @@ async function handleNewUser(userData: UserJSON) {
   const newUser = {
     id: userData.id,
     email: userData.email_addresses[0].email_address,
-    username: userData.username,
+    username: userData.username ? userData.username : "username",
     fullName: userData.first_name + " " + userData.last_name,
     avatarUrl: userData.image_url,
     role: "USER",

@@ -1,9 +1,9 @@
 import createIamService from "./service";
 
 export type NewUser = {
-  id: string | undefined;
+  id?: string;
   email: string;
-  username: string | null;
+  username: string;
   fullName: string;
   avatarUrl: string | null;
   roleId?: string;

@@ -29,17 +29,11 @@ export default function createIamService(db: Db) {
       } else {
         id = newUser.id;
       }
-      let username: string;
-      if (!newUser.username) {
-        username = "";
-      } else {
-        username = newUser.username;
-      }
+
       if (newUser.roleId !== undefined) {
         const result = await repository.createUser({
           ...newUser,
           id,
-          username,
           roleId: newUser.roleId,
         });
         return result;
@@ -47,7 +41,6 @@ export default function createIamService(db: Db) {
         const roleId = await iamService.getRoleId(newUser.role);
         const result = await repository.createUser({
           ...newUser,
-          username,
           id,
           roleId,
         });
