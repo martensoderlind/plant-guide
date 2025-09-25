@@ -1,6 +1,7 @@
 import { User } from "@/features/iam/types";
 import AdminUserButtons from "./admin-user-buttons";
 import Image from "next/image";
+import AdminUserRowSection from "./admin-user-row-section";
 
 type Props = {
   user: User;
@@ -10,34 +11,12 @@ export default async function AdminUserRow({ user }: Props) {
   return (
     <tr key={user.id} className="hover:bg-gray-50">
       <td className="px-6 py-4">
-        <div className="flex items-center">
-          {user.avatarUrl ? (
-            <Image
-              className="h-10 w-10 rounded-full mr-4"
-              width={500}
-              height={500}
-              src={user.avatarUrl}
-              alt={`${user.fullName || user.username}'s avatar`}
-            />
-          ) : (
-            <div className="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center mr-4">
-              <span className="text-sm font-medium text-gray-700">
-                {(user.fullName || user.username).charAt(0).toUpperCase()}
-              </span>
-            </div>
-          )}
-          <div>
-            <div className="flex items-center space-x-2">
-              <div className="text-sm font-medium text-gray-900">
-                {user.fullName || user.username}
-              </div>
-              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
-                {user.email}
-              </span>
-            </div>
-            <div className="text-sm text-gray-500">@{user.username}</div>
-          </div>
-        </div>
+        <AdminUserRowSection
+          username={user.username}
+          fullname={user.fullName}
+          email={user.email}
+          avatarUrl={user.avatarUrl}
+        />
       </td>
       <td className="px-6 py-4">
         {user.role ? (
