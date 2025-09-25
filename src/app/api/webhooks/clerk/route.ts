@@ -1,4 +1,4 @@
-import { WebhookEvent } from "@clerk/nextjs/server";
+import { SessionJSON, UserJSON, WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { Webhook } from "svix";
 import { NextResponse } from "next/server";
@@ -72,19 +72,19 @@ export async function POST(request: Request) {
   }
 }
 
-async function handleNewUser(userData: any) {
+async function handleNewUser(userData: UserJSON) {
   const newUser = {
-    id: userData.user_id,
+    id: userData.id,
     email: userData.email_addresses[0].email_address,
     username: userData.username,
     fullName: userData.first_name + " " + userData.last_name,
-    avatarUrl: userData.profile_image_url,
+    avatarUrl: userData.image_url,
     role: "USER",
   };
   await iamService.createUser(newUser);
 }
 
-async function handleUserActivity(userData: any) {
+async function handleUserActivity(userData: UserJSON) {
   console.log("user activity (sign in):", userData);
   if (userData.last_sign_in_at) {
     const lastSignIn = new Date(userData.last_sign_in_at);
@@ -96,10 +96,10 @@ async function handleUserActivity(userData: any) {
     }
   }
 }
-async function handleUserLogin(sessionData: any) {
+async function handleUserLogin(sessionData: SessionJSON) {
   console.log("Session created:", sessionData);
 }
 
-async function handleUserLogout(sessionData: any) {
+async function handleUserLogout(sessionData: SessionJSON) {
   console.log("Session ended:", sessionData);
 }

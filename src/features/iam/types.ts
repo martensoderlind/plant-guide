@@ -3,7 +3,7 @@ import createIamService from "./service";
 export type NewUser = {
   id: string | undefined;
   email: string;
-  username: string;
+  username: string | null;
   fullName: string;
   avatarUrl: string | null;
   roleId?: string;
