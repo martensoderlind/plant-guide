@@ -51,8 +51,9 @@ export async function updateStatus(id: number, newStatus: ArticleStatusType) {
   revalidatePath("/admin-dashboard/articles");
 }
 export async function updateUserRole(id: string, newRole: string) {
-  await adminDashboardService.updateUserRole(id, newRole);
+  const result = await adminDashboardService.updateUserRole(id, newRole);
   revalidatePath("/admin-dashboard/users");
+  return result;
 }
 export async function updatePlantFeaturedStatus(
   id: number,

@@ -2,6 +2,8 @@
 import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { updateUserRole } from "../../actions";
+import { useToast } from "../../../../../hooks/toast";
+import ToastContainer from "@/components/ToastContainer";
 
 type UserRole = "USER" | "ADMIN" | "AUTHOR" | "MODERATOR";
 
@@ -14,6 +16,8 @@ export default function AdminUserRowRole({ id, role }: Props) {
   const [currentStatus, setCurrentStatus] = useState(role);
   const [toggleMenu, setToggleMenu] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const { toasts, removeToast, success, info } = useToast();
 
   const statusOptions: {
     value: UserRole;
@@ -44,7 +48,12 @@ export default function AdminUserRowRole({ id, role }: Props) {
   async function selectStatus(newRole: UserRole) {
     setToggleMenu(false);
     setCurrentStatus(newRole);
-    await updateUserRole(id, newRole);
+    const result = await updateUserRole(id, newRole);
+    if (result?.success) {
+      success("Success!", result.message);
+    } else {
+      info("Unsuccessful!", result?.message);
+    }
   }
 
   useEffect(() => {
@@ -117,6 +126,11 @@ export default function AdminUserRowRole({ id, role }: Props) {
           ))}
         </div>
       )}
+      <ToastContainer
+        toasts={toasts}
+        onRemove={removeToast}
+        position="top-right"
+      />
     </div>
   );
 }
