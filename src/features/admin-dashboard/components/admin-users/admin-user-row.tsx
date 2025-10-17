@@ -29,7 +29,7 @@ export default async function AdminUserRow({ user }: Props) {
         <td className="px-6 py-4 text-sm text-gray-500">-</td>
       )}
       <td className="px-6 py-4 text-right text-sm font-medium">
-        <AdminUserButtons id={user.id} />
+        <AdminUserButtons user={user} />
       </td>
     </tr>
   );
