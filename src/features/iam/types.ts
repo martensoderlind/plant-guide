@@ -19,6 +19,10 @@ export type User = {
   role?: string;
   created_at?: Date;
 };
+export type UpdateUser = Omit<
+  User,
+  "avatarUrl" | "roleId" | "role" | "created_at"
+>;
 
 export type Roles = {
   id: string;
