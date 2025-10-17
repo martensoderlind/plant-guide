@@ -15,9 +15,16 @@ export default function PaginationNumber({
 }: Props) {
   const className = `flex h-10 w-10 items-center justify-center text-sm border",
     ${position === "first" || (position === "single" && "rounded-l-md")}
-        ${isActive && "z-10 bg-blue-600 border-blue-600 text-white"}
+        ${
+          isActive &&
+          "z-10 bg-emerald-600 text-white border-emerald-600 rounded-md"
+        }
         ${!isActive && position !== "middle" && "hover:bg-gray-100"}
-        ${position === "single" || (position === "last" && "hover:bg-gray-100")}
+        ${
+          position === "single" ||
+          (position === "last" &&
+            "hover:bg-gray-100 hover:text-gray-900 rounded-md")
+        }
         ${position === "middle" && "text-gray-300"}`;
 
   return isActive || position === "middle" ? (
