@@ -1,6 +1,5 @@
 import { User } from "@/features/iam/types";
 import { X } from "lucide-react";
-import { set } from "zod";
 
 type Props = {
   user: User;
