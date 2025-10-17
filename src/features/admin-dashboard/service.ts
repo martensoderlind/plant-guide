@@ -3,7 +3,7 @@ import { NewPlant, NewArticle } from "./types";
 import { plantSchema, articleSchema, newUserSchema } from "./validate";
 import { ArticleService, ArticleStatusType } from "../articles/types";
 import { PlantGuideService } from "../plant-guides/types";
-import { IamService, NewUser } from "../iam/types";
+import { IamService, NewUser, UpdateUser } from "../iam/types";
 import { formatErrors } from "./logic";
 
 export default function createAdminDashboardService(
@@ -109,6 +109,10 @@ export default function createAdminDashboardService(
         );
       }
       await articleService.updateArticleStatus(id, newStatus);
+    },
+    async updateUser(user: UpdateUser) {
+      const result = await iamService.updateUser(user);
+      return result;
     },
     async updateUserRole(id: string, newRole: string) {
       const result = await iamService.updateUserRole(id, undefined, newRole);

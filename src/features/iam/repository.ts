@@ -1,7 +1,7 @@
 import { Db } from "../../db/index";
 import { eq, sql } from "drizzle-orm";
 import { rolesTable, userRolesTable, usersTable } from "./schema";
-import { User } from "./types";
+import { UpdateUser, User } from "./types";
 
 export default function createIamRepository(db: Db) {
   const pageSize = 6;
@@ -102,6 +102,19 @@ export default function createIamRepository(db: Db) {
         .update(userRolesTable)
         .set({ roleId: newRoleId })
         .where(eq(userRolesTable.userId, userId));
+      return { success: true, message: "role updated" };
+    },
+    async updateUser(user: UpdateUser) {
+      await db
+        .update(usersTable)
+        .set({
+          fullName: user.fullName,
+          email: user.email,
+          username: user.username,
+        })
+        .where(eq(usersTable.id, user.id));
+
+      // update error handling
       return { success: true, message: "role updated" };
     },
   };
