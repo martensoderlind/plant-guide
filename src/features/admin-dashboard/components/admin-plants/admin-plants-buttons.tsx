@@ -5,9 +5,10 @@ import { deletePlant } from "../../actions";
 
 type Props = {
   id: number;
+  slug: string;
 };
 
-export default function AdminPlantsButtons({ id }: Props) {
+export default function AdminPlantsButtons({ id, slug }: Props) {
   function handleDeletePlant(id: number) {
     deletePlant(id);
   }
@@ -17,7 +18,7 @@ export default function AdminPlantsButtons({ id }: Props) {
         <Edit3 className="w-4 h-4" />
       </button>
       <Link
-        href={`/plant-guides/${id}`}
+        href={`/plant-guides/${slug}`}
         className="text-blue-600 hover:text-blue-900"
       >
         <Eye className="w-4 h-4" />
