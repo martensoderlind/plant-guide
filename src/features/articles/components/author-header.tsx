@@ -12,9 +12,9 @@ export default async function AuthorHeader({ id }: Props) {
       <div className="flex items-center">
         <div className="mx-4">
           <div className="flex items-center space-x-2">
-            <div className="text-sm font-medium text-gray-500">
+            <p className="text-sm font-medium text-gray-500">
               {author.fullName || author.username}
-            </div>
+            </p>
           </div>
         </div>
         {author.avatarUrl ? (
