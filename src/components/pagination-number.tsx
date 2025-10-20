@@ -19,7 +19,7 @@ export default function PaginationNumber({
           isActive &&
           "z-10 bg-emerald-600 text-white border-emerald-600 rounded-md"
         }
-        ${!isActive && position !== "middle" && "hover:bg-gray-100"}
+        ${!isActive && position !== "middle" && "hover:bg-gray-100 rounded-md"}
         ${
           position === "single" ||
           (position === "last" &&
