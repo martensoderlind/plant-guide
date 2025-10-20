@@ -118,7 +118,7 @@ export default function EditUserForm({ user, setEditFormOpen }: Props) {
             <button
               type="button"
               onClick={() => closeForm()}
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors font-medium"
+              className="flex-1 px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-white hover:text-gray-950 hover:border-gray-400 transition-colors font-medium"
             >
               Cancel
             </button>
