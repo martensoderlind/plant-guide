@@ -38,11 +38,11 @@ export default function ArticleCard({ article }: Props) {
           <div className="flex items-center">
             <div className="flex text-gray-500 text-xs">
               <Eye className="w-4 h-4" />
-              <span>Views {article.views}</span>
+              <span className="pl-1">Views {article.views}</span>
             </div>
             <div className="flex text-gray-500 text-xs mx-4">
-              <Heart size={18} />
-              <span>Like ({article.likes})</span>
+              <Heart className="w-4 h-4" />
+              <span className="pl-1">Like ({article.likes})</span>
             </div>
           </div>
           <Link
