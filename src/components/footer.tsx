@@ -1,4 +1,5 @@
 import { Leaf } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -18,48 +19,48 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Guides</h3>
             <div className="space-y-2">
-              <a
-                href="#"
+              <Link
+                href="/plant-guides"
                 className="block text-gray-400 hover:text-white transition-colors"
               >
                 Indoor plants
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="/plant-guides"
                 className="block text-gray-400 hover:text-white transition-colors"
               >
                 Outdoor plants
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="/plant-guides"
                 className="block text-gray-400 hover:text-white transition-colors"
               >
                 Plant diseases
-              </a>
+              </Link>
             </div>
           </div>
 
           <div>
             <h3 className="text-lg font-semibold mb-4">Tools</h3>
             <div className="space-y-2">
-              <a
-                href="#"
+              <Link
+                href="/watering-calender"
                 className="block text-gray-400 hover:text-white transition-colors"
               >
                 Watering calendar
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="/plant-identification"
                 className="block text-gray-400 hover:text-white transition-colors"
               >
                 Plant identification{" "}
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="/light-meter"
                 className="block text-gray-400 hover:text-white transition-colors"
               >
                 Light Meter
-              </a>
+              </Link>
             </div>
           </div>
 
