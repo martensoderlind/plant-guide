@@ -38,6 +38,20 @@ export default function createUserRepository(db: Db) {
       const roles = await db.select().from(rolesTable);
       return roles;
     },
+    async getUserRole(id: string) {
+      const roleId = await db
+        .select()
+        .from(userRolesTable)
+        .where(eq(userRolesTable.userId, id));
+      if (roleId.length === 0) {
+        return null;
+      }
+      const role = await db
+        .select()
+        .from(rolesTable)
+        .where(eq(rolesTable.id, roleId[0].roleId));
+      return role[0].description;
+    },
     async getUserCount() {
       const userCount = await db
         .select({ count: sql<number>`count(*)` })

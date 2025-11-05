@@ -16,6 +16,10 @@ export default function createUserService(db: Db) {
       const roles = await repository.getUserRoles();
       return roles;
     },
+    async getUserRole(id: string) {
+      const role = await repository.getUserRole(id);
+      return role;
+    },
     async getUserCount() {
       const userCount = await repository.getUserCount();
       return userCount;
