@@ -67,24 +67,15 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <div className="space-y-2">
-              <a
-                href="#"
-                className="block text-gray-400 hover:text-white transition-colors"
-              >
+              <p className="block text-gray-400 hover:text-white transition-colors">
                 Support
-              </a>
-              <a
-                href="#"
-                className="block text-gray-400 hover:text-white transition-colors"
-              >
+              </p>
+              <p className="block text-gray-400 hover:text-white transition-colors">
                 Community
-              </a>
-              <a
-                href="#"
-                className="block text-gray-400 hover:text-white transition-colors"
-              >
+              </p>
+              <p className="block text-gray-400 hover:text-white transition-colors">
                 Newsletter
-              </a>
+              </p>
             </div>
           </div>
         </div>
