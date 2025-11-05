@@ -94,11 +94,14 @@ export default async function Article({ slug }: Prop) {
         )}
       </header>
 
-      <div
-        className="prose prose-lg max-w-none prose-emerald prose-headings:text-gray-900 prose-headings:font-semibold prose-p:text-gray-700 prose-p:leading-relaxed prose-li:text-gray-700 prose-strong:text-gray-900"
-        dangerouslySetInnerHTML={{ __html: article.content }}
-      />
-
+      <article>
+        <section>
+          <div
+            className="prose prose-lg max-w-none prose-emerald prose-headings:text-gray-900 prose-headings:font-semibold prose-p:text-gray-700 prose-p:leading-relaxed prose-li:text-gray-700 prose-strong:text-gray-900"
+            dangerouslySetInnerHTML={{ __html: article.content }}
+          />
+        </section>
+      </article>
       <ArticleFooter article={article} />
     </article>
   );
