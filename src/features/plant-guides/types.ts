@@ -7,6 +7,11 @@ import {
 } from "./schema";
 import createPlantGuidesService from "./service";
 
+export type FeaturedStatus = {
+  id: number;
+  newStatus: boolean;
+};
+
 export type NewPlant = Omit<Plant, "id" | "created_at" | "updated_at">;
 
 export type CareLevel = (typeof careLevelEnum.enumValues)[number];
