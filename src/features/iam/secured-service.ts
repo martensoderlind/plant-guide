@@ -26,7 +26,8 @@ export function securedService<
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const hasAccess = await iamService.checkAccess(permission as any, roles);
       if (!hasAccess) {
-        return false;
+        //update to proper error handling
+        throw new Error("Access Denied");
       }
       return service[methodName](args);
     }
