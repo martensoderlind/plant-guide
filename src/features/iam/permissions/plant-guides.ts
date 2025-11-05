@@ -1,7 +1,7 @@
 import { PermissionSchema } from "../types";
 import { PlantGuideService } from "@/features/plant-guides/types";
 
-export const articles: PermissionSchema<"plantGuides", PlantGuideService> = {
+export const plantGuides: PermissionSchema<"plantGuides", PlantGuideService> = {
   plantCount: "plantGuides.plantCount",
   addPlant: "plantGuides.addPlant",
   getAllPlantGuides: "plantGuides.getAllPlantGuides",
