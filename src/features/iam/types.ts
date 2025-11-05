@@ -1,6 +1,6 @@
 import { rolesPermissions } from "./permissions";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Service = { [key: string]: (args: any) => Promise<any> };
+export type Service = { [key: string]: (args: any) => Promise<any> };
 
 export type PermissionSchema<
   TFeatureName extends string,
