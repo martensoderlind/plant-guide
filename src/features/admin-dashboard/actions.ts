@@ -3,7 +3,7 @@ import { revalidatePath } from "next/cache";
 import { adminDashboardService } from "./instance";
 import { NewPlant, NewArticle } from "./types";
 import { ArticleStatusType } from "../articles/types";
-import { NewUser, UpdateUser } from "../iam/types";
+import { NewUser, UpdateUser } from "../user/types";
 
 export async function getAllPlantGuides(currentPage: number) {
   const plants = await adminDashboardService.getAllPlants(currentPage);

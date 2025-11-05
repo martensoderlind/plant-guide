@@ -1,8 +1,8 @@
 import { db } from "@/db/index";
 import createArticlesService from "./service";
-import { iamService } from "../iam/instance";
+import { userService } from "../user/instance";
 
 export const articlesService = createArticlesService(
   db,
-  iamService.getArticleAuthor
+  userService.getArticleAuthor
 );

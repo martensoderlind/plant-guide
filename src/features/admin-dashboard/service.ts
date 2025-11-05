@@ -3,18 +3,19 @@ import { NewPlant, NewArticle } from "./types";
 import { plantSchema, articleSchema, newUserSchema } from "./validate";
 import { ArticleService, ArticleStatusType } from "../articles/types";
 import { PlantGuideService } from "../plant-guides/types";
-import { IamService, NewUser, UpdateUser } from "../iam/types";
+import { NewUser, UpdateUser } from "../user/types";
 import { formatErrors } from "./logic";
+import { UserService } from "../user/types";
 
 export default function createAdminDashboardService(
   db: Db,
   plantGuideService: PlantGuideService,
   articleService: ArticleService,
-  iamService: IamService
+  userService: UserService
 ) {
   return {
     async getAllUsers(currentPage: number) {
-      const users = await iamService.getAllUsers(currentPage);
+      const users = await userService.getAllUsers(currentPage);
       return users;
     },
     async getAllPlants(currentPage: number) {
@@ -26,11 +27,11 @@ export default function createAdminDashboardService(
       return articles;
     },
     async getUserRoles() {
-      const articles = await iamService.getUserRoles();
+      const articles = await userService.getUserRoles();
       return articles;
     },
     async getUserCount() {
-      const userCount = await iamService.getUserCount();
+      const userCount = await userService.getUserCount();
       return userCount;
     },
 
@@ -73,7 +74,7 @@ export default function createAdminDashboardService(
     async addUser(user: NewUser) {
       const validatedUser = newUserSchema.safeParse(user);
       if (validatedUser.success) {
-        const result = await iamService.createUser(user);
+        const result = await userService.createUser(user);
         return {
           success: true,
           message: result.message,
@@ -96,7 +97,7 @@ export default function createAdminDashboardService(
       await articleService.deleteArticle(id);
     },
     async deleteUser(id: string) {
-      const result = await iamService.deleteUser(id);
+      const result = await userService.deleteUser(id);
       return result;
     },
     async updateArticleStatus(id: number, NewStatus: ArticleStatusType) {
@@ -111,11 +112,11 @@ export default function createAdminDashboardService(
       await articleService.updateArticleStatus({ id, NewStatus });
     },
     async updateUser(user: UpdateUser) {
-      const result = await iamService.updateUser(user);
+      const result = await userService.updateUser(user);
       return result;
     },
     async updateUserRole(id: string, newRole: string) {
-      const result = await iamService.updateUserRole(id, undefined, newRole);
+      const result = await userService.updateUserRole(id, undefined, newRole);
       return result;
     },
     async updatePlantFeaturedStatus(id: number, status: boolean) {

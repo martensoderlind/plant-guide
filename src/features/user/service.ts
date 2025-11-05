@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { Db } from "@/db";
 
-import { iamService } from "./instance";
+import { userService } from "./instance";
 import createUserRepository from "./repository";
 import { NewUser, UpdateUser } from "./types";
 
@@ -39,7 +39,7 @@ export default function createUserService(db: Db) {
         });
         return result;
       } else {
-        const roleId = await iamService.getRoleId(newUser.role);
+        const roleId = await userService.getRoleId(newUser.role);
         const result = await repository.createUser({
           ...newUser,
           id,

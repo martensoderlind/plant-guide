@@ -2,7 +2,7 @@ import { SessionJSON, UserJSON, WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { Webhook } from "svix";
 import { NextResponse } from "next/server";
-import { iamService } from "@/features/iam/instance";
+import { userService } from "@/features/user/instance";
 
 const webhookSecret = process.env.CLERK_WEBHOOK_SECRET;
 
@@ -81,7 +81,7 @@ async function handleNewUser(userData: UserJSON) {
     avatarUrl: userData.image_url,
     role: "USER",
   };
-  await iamService.createUser(newUser);
+  await userService.createUser(newUser);
 }
 
 async function handleUserActivity(userData: UserJSON) {
