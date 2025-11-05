@@ -1,6 +1,6 @@
 import { Db } from "@/db";
 import createArticlesRepository from "./repository";
-import { NewArticle } from "./types";
+import { ArticleStatus, ArticleStatusPublished, NewArticle } from "./types";
 import { ArticleStatusType } from "./types";
 import { Author } from "../iam/types";
 
@@ -42,15 +42,15 @@ export default function createArticlesService(
     async deleteArticle(id: number) {
       await repository.deleteArticle(id);
     },
-    async updateArticleStatusPublished(
-      id: number,
-      newStatus: ArticleStatusType,
-      published_at: Date
-    ) {
-      repository.updateArticleStatusPublished(id, newStatus, published_at);
+    async updateArticleStatusPublished(articleStatus: ArticleStatusPublished) {
+      repository.updateArticleStatusPublished(
+        articleStatus.id,
+        articleStatus.NewStatus,
+        articleStatus.published_at
+      );
     },
-    async updateArticleStatus(id: number, newStatus: ArticleStatusType) {
-      repository.updateArticleStatus(id, newStatus);
+    async updateArticleStatus(articleStatus: ArticleStatus) {
+      repository.updateArticleStatus(articleStatus.id, articleStatus.NewStatus);
     },
     async totalArticleCount() {
       const articleCount = await repository.totalArticlesCount();

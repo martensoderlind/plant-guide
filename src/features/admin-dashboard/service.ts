@@ -99,16 +99,16 @@ export default function createAdminDashboardService(
       const result = await iamService.deleteUser(id);
       return result;
     },
-    async updateArticleStatus(id: number, newStatus: ArticleStatusType) {
-      if (newStatus === "published") {
+    async updateArticleStatus(id: number, NewStatus: ArticleStatusType) {
+      if (NewStatus === "published") {
         const published_at = new Date();
-        await articleService.updateArticleStatusPublished(
+        await articleService.updateArticleStatusPublished({
           id,
-          newStatus,
-          published_at
-        );
+          NewStatus,
+          published_at,
+        });
       }
-      await articleService.updateArticleStatus(id, newStatus);
+      await articleService.updateArticleStatus({ id, NewStatus });
     },
     async updateUser(user: UpdateUser) {
       const result = await iamService.updateUser(user);

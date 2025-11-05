@@ -1,6 +1,14 @@
 import { Article, articleStatusEnum } from "./schema";
 import createArticlesService from "./service";
 
+export type ArticleStatusPublished = {
+  id: number;
+  NewStatus: ArticleStatusType;
+  published_at: Date;
+};
+
+export type ArticleStatus = Omit<ArticleStatusPublished, "published_at">;
+
 export type NewArticle = Omit<
   Article,
   | "id"
