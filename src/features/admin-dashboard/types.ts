@@ -14,7 +14,9 @@ export type NewArticle = Omit<
   | "views"
   | "likes"
   | "author_id"
->;
+> & {
+  tag: string[];
+};
 
 export type Result =
   | {

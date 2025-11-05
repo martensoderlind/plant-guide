@@ -40,15 +40,15 @@ export default function createArticlesRepository(db: Db) {
         .from(articleTable);
       return ArticleCount[0].count;
     },
-    async addArticle(newArticle: NewArticle, tagNames?: string[]) {
+    async addArticle(newArticle: NewArticle) {
       try {
         const result = await db
           .insert(articleTable)
           .values(newArticle)
           .returning({ id: articleTable.id });
 
-        if (result.length > 0 && tagNames && tagNames.length > 0) {
-          await this.linkTagsToArticle(result[0].id, tagNames);
+        if (result.length > 0 && newArticle.tag && newArticle.tag.length > 0) {
+          await this.linkTagsToArticle(result[0].id, newArticle.tag);
         }
 
         if (result.length > 0) {

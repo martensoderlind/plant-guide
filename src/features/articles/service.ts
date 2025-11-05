@@ -36,8 +36,8 @@ export default function createArticlesService(
     async incrementArticleViews(slug: string) {
       await repository.incrementArticleViews(slug);
     },
-    async addArticle(article: NewArticle, tagNames?: string[]) {
-      return await repository.addArticle(article, tagNames);
+    async addArticle(article: NewArticle) {
+      return await repository.addArticle(article);
     },
     async deleteArticle(id: number) {
       await repository.deleteArticle(id);

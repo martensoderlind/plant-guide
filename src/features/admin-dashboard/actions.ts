@@ -19,8 +19,8 @@ export default async function addPlant(plant: NewPlant) {
   revalidatePath("/admin-dashboard/plants");
   return message;
 }
-export async function addArticle(article: NewArticle, tagNames?: string[]) {
-  const result = await adminDashboardService.addArticle(article, tagNames);
+export async function addArticle(article: NewArticle) {
+  const result = await adminDashboardService.addArticle(article);
   revalidatePath("/admin-dashboard/articles");
   return result;
 }

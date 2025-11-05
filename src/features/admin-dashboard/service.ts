@@ -52,10 +52,10 @@ export default function createAdminDashboardService(
         };
       }
     },
-    async addArticle(article: NewArticle, tagNames?: string[]) {
+    async addArticle(article: NewArticle) {
       const validatedArticle = articleSchema.safeParse(article);
       if (validatedArticle.success) {
-        const result = await articleService.addArticle(article, tagNames);
+        const result = await articleService.addArticle(article);
         return {
           success: true,
           message: result.message,

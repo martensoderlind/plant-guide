@@ -96,13 +96,14 @@ export default function AdminArticleForm() {
     const { tags, ...articleData } = newArticle;
     const article: NewArticle = {
       ...articleData,
+      tag: tags,
       excerpt: articleData.excerpt.trim() || null,
       featured_image_url: articleData.featured_image_url.trim() || null,
       meta_title: articleData.meta_title.trim() || null,
       meta_description: articleData.meta_description.trim() || null,
     };
 
-    const result = await addArticle(article, tags);
+    const result = await addArticle(article);
 
     if (result.success) {
       setNewArticle({
