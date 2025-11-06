@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.32.2",
+    "@tiptap/react": "^3.10.2",
+    "@tiptap/starter-kit": "^3.10.2",
     "dotenv": "^17.2.1",
     "drizzle-orm": "^0.44.4",
     "lucide-react": "^0.539.0",
