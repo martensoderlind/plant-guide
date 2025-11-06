@@ -56,8 +56,6 @@ export const articleTable = pgTable("articles", {
   created_at: timestamp("created_at").notNull().defaultNow(),
 });
 
-export type Article = typeof articleTable.$inferSelect;
-
 export const tagTable = pgTable("tags", {
   id: uuid().primaryKey().defaultRandom(),
   name: varchar({ length: 100 }).notNull().unique(),
@@ -95,3 +93,5 @@ export const articleTagRelations = relations(articleTagTable, ({ one }) => ({
     references: [tagTable.id],
   }),
 }));
+
+export type Article = typeof articleTable.$inferSelect;
