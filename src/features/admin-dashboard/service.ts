@@ -128,19 +128,16 @@ export default function createAdminDashboardService(
       return plantGuideCount;
     },
     async getArticleCount() {
-      const articleCount = await articleService.articleCount();
+      const articleCount = await articleService.getArticleCount();
       return articleCount;
     },
     async getPublishedArticleCount() {
-      const articleCount = await articleService.publishedArticleCount();
+      const articleCount = await articleService.getPublishedArticleCount();
       return articleCount;
     },
     async getArticleViews() {
-      const articleViews = await articleService.articleViews();
-      return articleViews;
+      return await articleService.getArticleViews();
     },
-
-    // Tag management methods
     async getAllTags() {
       return await articleService.getAllTags();
     },
