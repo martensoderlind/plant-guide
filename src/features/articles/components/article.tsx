@@ -2,6 +2,7 @@ import { articlesService } from "../instance";
 import ArticleFooter from "./article-footer";
 import Image from "next/image";
 import ArticleInfo from "./article-info";
+import { RenderArticleContent } from "./render-article";
 
 type Prop = {
   slug: string;
@@ -9,7 +10,6 @@ type Prop = {
 
 export default async function Article({ slug }: Prop) {
   const article = await articlesService.getArticle(slug);
-
   if (!article) {
     return (
       <div className="max-w-4xl mx-auto py-8 flex flex-col justify-items-center">
@@ -96,10 +96,7 @@ export default async function Article({ slug }: Prop) {
 
       <article>
         <section>
-          <div
-            className="prose prose-lg max-w-none prose-emerald prose-headings:text-gray-900 prose-headings:font-semibold prose-p:text-gray-700 prose-p:leading-relaxed prose-li:text-gray-700 prose-strong:text-gray-900"
-            dangerouslySetInnerHTML={{ __html: article.content }}
-          />
+          <RenderArticleContent content={article.content} />
         </section>
       </article>
       <ArticleFooter article={article} />
