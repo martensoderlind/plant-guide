@@ -11,6 +11,7 @@ if (!webhookSecret) {
 }
 
 async function validateRequest(request: Request) {
+  console.log("Validating webhook request");
   try {
     const payloadString = await request.text();
     const headerPayload = await headers();
@@ -39,9 +40,9 @@ async function validateRequest(request: Request) {
   }
 }
 export async function POST(request: Request) {
+  console.log("Received webhook request");
   try {
     const payload = await validateRequest(request);
-
     switch (payload.type) {
       case "user.created":
         await handleNewUser(payload.data);
@@ -73,6 +74,7 @@ export async function POST(request: Request) {
 }
 
 async function handleNewUser(userData: UserJSON) {
+  console.log("New user created:", userData);
   const newUser = {
     id: userData.id,
     email: userData.email_addresses[0].email_address,
