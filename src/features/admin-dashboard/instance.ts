@@ -28,6 +28,8 @@ export const adminDashboardService = createAdminDashboardService(
     getArticle: articlesService.getArticle,
     getPublishedArticleCount: articlesService.publishedArticleCount,
     getAllPublishedArticles: articlesService.getAllPublishedArticles,
+    incrementArticleViews: articlesService.incrementArticleViews,
+    getArticleAuthor: articlesService.getArticleAuthor,
   },
   {
     getAllUsers: userService.getAllUsers,

@@ -27,6 +27,7 @@ export function securedService<
       const hasAccess = await iamService.checkAccess(permission as any, roles);
       if (!hasAccess) {
         //update to proper error handling
+        console.log("Access Denied:", serviceMethodName, methodName);
         throw new Error("Access Denied");
       }
       return service[methodName](args);

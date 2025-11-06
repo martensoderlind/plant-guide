@@ -34,8 +34,12 @@ export type ArticleService = {
   deleteArticle: articleService["deleteArticle"];
   updateArticleStatusPublished: articleService["updateArticleStatusPublished"];
   updateArticleStatus: articleService["updateArticleStatus"];
-  articleCount: articleService["totalArticleCount"];
-  publishedArticleCount: articleService["publishedArticleCount"];
+  getArticleCount: articleService["totalArticleCount"];
+  getPublishedArticleCount: articleService["publishedArticleCount"];
   articleViews: articleService["totalArticleViews"];
   getAllTags: articleService["getAllTags"];
+  getArticle: articleService["getArticle"];
+  getAllPublishedArticles: articleService["getAllPublishedArticles"];
+  incrementArticleViews: articleService["incrementArticleViews"];
+  getArticleAuthor: articleService["getArticleAuthor"];
 };
