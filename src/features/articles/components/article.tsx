@@ -88,7 +88,7 @@ export default async function Article({ slug }: Prop) {
         </h1>
 
         {article.excerpt && (
-          <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+          <p className="text-lg text-gray-200 mb-6 leading-relaxed">
             {article.excerpt}
           </p>
         )}
