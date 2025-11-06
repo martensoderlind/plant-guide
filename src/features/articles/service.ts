@@ -52,23 +52,20 @@ export default function createArticlesService(
       repository.updateArticleStatus(articleStatus.id, articleStatus.NewStatus);
     },
     async totalArticleCount() {
-      const articleCount = await repository.totalArticlesCount();
+      const articleCount = await repository.getArticleCount();
       return articleCount;
     },
-    async publishedArticleCount() {
+    async getPublishedArticleCount() {
       const publishedArticleCount = await repository.publishedArticlesCount();
       return publishedArticleCount;
     },
-    async totalArticleViews() {
+    async getArticleViews() {
       const totalArticleViews = await repository.getArticleViews();
       return totalArticleViews;
     },
-
-    // Tag management methods
     async getAllTags() {
       return await repository.getAllTags();
     },
-
     async getArticleTags(articleId: number) {
       return await repository.getArticleTags(articleId);
     },
