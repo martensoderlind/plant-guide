@@ -3,12 +3,27 @@ import { plantGuides } from "./permissions/plant-guides";
 import { users } from "./permissions/user";
 
 export const rolesPermissions = {
-  admin: new Set([
+  ADMIN: new Set([
     ...Object.values(plantGuides),
     ...Object.values(articles),
     ...Object.values(users),
   ]),
-  user: new Set([
+  USER: new Set([
+    plantGuides.getAllPlantGuides,
+    plantGuides.totalPlantGuideCount,
+    plantGuides.getPlantGuide,
+    articles.getArticleCount,
+    articles.getPublishedArticleCount,
+    articles.getArticle,
+    articles.getAllPublishedArticles,
+    articles.incrementLikes,
+    articles.incrementArticleViews,
+    articles.getArticleAuthor,
+    articles.getArticleViews,
+    users.getArticleAuthor,
+    articles.getArticleViews,
+  ]),
+  AUTHOR: new Set([
     plantGuides.getAllPlantGuides,
     plantGuides.totalPlantGuideCount,
     plantGuides.getPlantGuide,
@@ -21,7 +36,7 @@ export const rolesPermissions = {
     articles.getArticleAuthor,
     users.getArticleAuthor,
   ]),
-  author: new Set([
+  MODERATOR: new Set([
     plantGuides.getAllPlantGuides,
     plantGuides.totalPlantGuideCount,
     plantGuides.getPlantGuide,
@@ -34,23 +49,11 @@ export const rolesPermissions = {
     articles.getArticleAuthor,
     users.getArticleAuthor,
   ]),
-  moderator: new Set([
+  GUEST: new Set([
     plantGuides.getAllPlantGuides,
     plantGuides.totalPlantGuideCount,
     plantGuides.getPlantGuide,
-    articles.getArticleCount,
-    articles.getPublishedArticleCount,
-    articles.getArticle,
-    articles.getAllPublishedArticles,
-    articles.incrementLikes,
-    articles.incrementArticleViews,
-    articles.getArticleAuthor,
-    users.getArticleAuthor,
-  ]),
-  guest: new Set([
-    plantGuides.getAllPlantGuides,
-    plantGuides.totalPlantGuideCount,
-    plantGuides.getPlantGuide,
+    plantGuides.getFeaturedPlantGuides,
     articles.getArticleCount,
     articles.getPublishedArticleCount,
     articles.getArticle,

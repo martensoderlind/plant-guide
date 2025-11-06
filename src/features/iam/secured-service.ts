@@ -16,7 +16,7 @@ export function securedService<
 
     async function securedServiceMethod(args: unknown) {
       const { userId } = await auth();
-      const roles: string[] = ["guest"];
+      const roles: string[] = ["GUEST"];
       if (userId) {
         const identityRoles = await userService.getUserRole(userId);
         if (identityRoles) {
