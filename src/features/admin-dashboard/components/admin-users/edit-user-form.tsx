@@ -1,7 +1,7 @@
-import { UpdateUser, User } from "@/features/iam/types";
 import { X } from "lucide-react";
 import { useState } from "react";
 import { updateUser } from "../../actions";
+import { UpdateUser, User } from "@/features/user/types";
 
 type Props = {
   user: User;

@@ -5,7 +5,7 @@ import { useToast } from "../../../../../hooks/toast";
 import ToastContainer from "@/components/ToastContainer";
 import { useState } from "react";
 import EditUserForm from "./edit-user-form";
-import { User } from "@/features/iam/types";
+import { User } from "@/features/user/types";
 
 type Props = {
   user: User;

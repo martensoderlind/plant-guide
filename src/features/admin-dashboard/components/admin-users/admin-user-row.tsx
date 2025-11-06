@@ -1,7 +1,7 @@
-import { User } from "@/features/iam/types";
 import AdminUserButtons from "./admin-user-buttons";
 import AdminUserRowSection from "./admin-user-row-section";
 import AdminUserRowRole from "./admin-user-row-role";
+import { User } from "@/features/user/types";
 
 type Props = {
   user: User;
