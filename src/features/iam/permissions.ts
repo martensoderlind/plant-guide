@@ -10,6 +10,8 @@ export const rolesPermissions = {
   ]),
   user: new Set([
     plantGuides.getAllPlantGuides,
+    plantGuides.totalPlantGuideCount,
+    plantGuides.getPlantGuide,
     articles.getArticleCount,
     articles.getPublishedArticleCount,
     articles.getArticle,
@@ -21,6 +23,8 @@ export const rolesPermissions = {
   ]),
   author: new Set([
     plantGuides.getAllPlantGuides,
+    plantGuides.totalPlantGuideCount,
+    plantGuides.getPlantGuide,
     articles.getArticleCount,
     articles.getPublishedArticleCount,
     articles.getArticle,
@@ -32,6 +36,8 @@ export const rolesPermissions = {
   ]),
   moderator: new Set([
     plantGuides.getAllPlantGuides,
+    plantGuides.totalPlantGuideCount,
+    plantGuides.getPlantGuide,
     articles.getArticleCount,
     articles.getPublishedArticleCount,
     articles.getArticle,
@@ -43,6 +49,8 @@ export const rolesPermissions = {
   ]),
   guest: new Set([
     plantGuides.getAllPlantGuides,
+    plantGuides.totalPlantGuideCount,
+    plantGuides.getPlantGuide,
     articles.getArticleCount,
     articles.getPublishedArticleCount,
     articles.getArticle,

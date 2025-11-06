@@ -9,4 +9,5 @@ export const plantGuides: PermissionSchema<"plantGuides", PlantGuideService> = {
   getFeaturedPlantGuides: "plantGuides.getFeaturedPlantGuides",
   deletePlantGuide: "plantGuides.deletePlantGuide",
   updatePlantFeaturedStatus: "plantGuides.updatePlantFeaturedStatus",
+  totalPlantGuideCount: "plantGuides.totalPlantGuideCount",
 };
