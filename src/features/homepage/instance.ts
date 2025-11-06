@@ -10,4 +10,5 @@ export const homePageService = createHomePageService(db, {
   getPlantGuide: plantGuidesService.getPlantGuide,
   getFeaturedPlantGuides: plantGuidesService.getFeaturedPlantGuides,
   updatePlantFeaturedStatus: plantGuidesService.updateFeatureStatus,
+  totalPlantGuideCount: plantGuidesService.totalPlantGuideCount,
 });
