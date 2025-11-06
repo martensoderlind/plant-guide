@@ -35,18 +35,14 @@ export default function ArticleInfo({
             <span>{reading_time_minutes} estimated reading time</span>
           </div>
         )}
-        {views && (
-          <div className="flex items-center gap-1">
-            <Eye size={16} />
-            <span>{views.toLocaleString()} views</span>
-          </div>
-        )}
-        {likes && (
-          <div className="flex items-center gap-1">
-            <Heart size={16} />
-            <span>{likes} likes</span>
-          </div>
-        )}
+        <div className="flex items-center gap-1">
+          <Eye size={16} />
+          <span>{views ? views.toLocaleString() : 0} views</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <Heart size={16} />
+          <span>{likes ? likes : 0} likes</span>
+        </div>
       </div>
     </div>
   );
