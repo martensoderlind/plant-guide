@@ -9,7 +9,7 @@ export const articles: PermissionSchema<"articles", ArticleService> = {
   updateArticleStatusPublished: "articles.updateArticleStatusPublished",
   updateArticleStatus: "articles.updateArticleStatus",
   getArticleCount: "articles.getArticleCount",
-  articleViews: "articles.articleViews",
+  getArticleViews: "articles.getArticleViews",
   getAllTags: "articles.getAllTags",
   getPublishedArticleCount: "articles.getPublishedArticleCount",
   getArticle: "articles.getArticle",
