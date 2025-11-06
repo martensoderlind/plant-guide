@@ -11,6 +11,7 @@ import {
 } from "../../../articles/schema";
 import { useToast } from "../../../../../hooks/toast";
 import ToastContainer from "@/components/ToastContainer";
+import TiptapEditor from "./tiptap-editor";
 
 type ArticleCategory = (typeof articleCategoryEnum.enumValues)[number];
 type DifficultyLevel = (typeof difficultyLevelEnum.enumValues)[number];
@@ -20,7 +21,8 @@ interface ArticleFormData {
   title: string;
   slug: string;
   excerpt: string;
-  content: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  content: any;
   reading_time_minutes: number;
   category: ArticleCategory;
   difficulty_level: DifficultyLevel;
@@ -39,7 +41,7 @@ export default function AdminArticleForm() {
     title: "",
     slug: "",
     excerpt: "",
-    content: "",
+    content: null,
     reading_time_minutes: 0,
     category: "basics",
     difficulty_level: "beginner",
@@ -110,7 +112,7 @@ export default function AdminArticleForm() {
         title: "",
         slug: "",
         excerpt: "",
-        content: "",
+        content: null,
         reading_time_minutes: 0,
         category: "basics" as const,
         difficulty_level: "beginner" as const,
@@ -251,17 +253,14 @@ export default function AdminArticleForm() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Content
               </label>
-              <textarea
-                rows={8}
-                className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              <TiptapEditor
                 value={newArticle.content}
-                onChange={(e) =>
+                onChange={(val) =>
                   setNewArticle({
                     ...newArticle,
-                    content: e.target.value,
+                    content: val,
                   })
                 }
-                placeholder="Write your article content here..."
               />
               {errors.content && (
                 <p className="mt-1 text-sm text-red-600">{errors.content}</p>

@@ -46,7 +46,12 @@ export const articleSchema = z.object({
   title: z.string().min(1, "Title cannot be empty").max(255, "Title too long"),
   slug: z.string().min(1, "Slug cannot be empty").max(255, "Slug too long"),
   excerpt: z.string().max(1000, "Excerpt too long").nullable(),
-  content: z.string().min(1, "Content cannot be empty"),
+  content: z
+    .object({
+      type: z.literal("doc"),
+      content: z.array(z.any()).optional(),
+    })
+    .passthrough(),
   featured_image_url: z
     .string()
     .url("Invalid URL format")

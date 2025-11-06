@@ -1,6 +1,7 @@
 import {
   boolean,
   integer,
+  jsonb,
   pgEnum,
   pgTable,
   text,
@@ -39,7 +40,7 @@ export const articleTable = pgTable("articles", {
   title: varchar({ length: 255 }).notNull(),
   slug: varchar({ length: 255 }).notNull().unique(),
   excerpt: text(),
-  content: text().notNull(),
+  content: jsonb("content").notNull(),
   featured_image_url: varchar({ length: 500 }),
   category: articleCategoryEnum().notNull(),
   difficulty_level: difficultyLevelEnum().notNull(),
