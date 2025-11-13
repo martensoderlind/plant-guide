@@ -31,4 +31,5 @@ export type PlantGuideService = {
   deletePlantGuide: plantGuidesService["deletePlant"];
   updatePlantFeaturedStatus: plantGuidesService["updateFeatureStatus"];
   totalPlantGuideCount: plantGuidesService["totalPlantGuideCount"];
+  updatePlant: plantGuidesService["updatePlant"];
 };
