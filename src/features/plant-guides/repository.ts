@@ -2,7 +2,6 @@ import { eq, sql } from "drizzle-orm";
 import { Db } from "../../db/index";
 import { Plant, plantTable } from "./schema";
 import { NewPlant } from "./types";
-import { error } from "console";
 
 export default function createPlantGuidesRepository(db: Db) {
   return {
