@@ -1,6 +1,7 @@
 import { Db } from "@/db";
 import createPlantGuidesRepository from "./repository";
 import { FeaturedStatus, NewPlant } from "./types";
+import { Plant } from "./schema";
 
 export default function createPlantGuidesService(db: Db) {
   const repository = createPlantGuidesRepository(db);
@@ -22,10 +23,14 @@ export default function createPlantGuidesService(db: Db) {
       return result;
     },
     async updateFeatureStatus(FeaturedStatus: FeaturedStatus) {
-      await repository.updateFeaturedStatus(
+      const result = await repository.updateFeaturedStatus(
         FeaturedStatus.id,
         FeaturedStatus.newStatus
       );
+      return result;
+    },
+    async updatePlant(plant: Plant) {
+      return await repository.updatePlant(plant);
     },
     async deletePlant(id: number) {
       await repository.deletePlant(id);

@@ -1,7 +1,8 @@
 import { eq, sql } from "drizzle-orm";
 import { Db } from "../../db/index";
-import { plantTable } from "./schema";
+import { Plant, plantTable } from "./schema";
 import { NewPlant } from "./types";
+import { error } from "console";
 
 export default function createPlantGuidesRepository(db: Db) {
   return {
@@ -35,12 +36,33 @@ export default function createPlantGuidesRepository(db: Db) {
         .from(plantTable);
       return plantGuideCount[0].count;
     },
+
     async updateFeaturedStatus(id: number, newStatus: boolean) {
       await db
         .update(plantTable)
         .set({ is_featured: newStatus })
         .where(eq(plantTable.id, id));
     },
+    async updatePlant(plant: Plant) {
+      const result = await db
+        .update(plantTable)
+        .set({ ...plant })
+        .where(eq(plantTable.id, plant.id))
+        .returning();
+      if (result.length > 0) {
+        return {
+          success: true,
+          message: "Plant updated successfully",
+        };
+      } else {
+        return {
+          success: false,
+          message:
+            "There was a problem with updating the plant in the database, please try again.",
+        };
+      }
+    },
+
     async addPlant(newPlant: NewPlant) {
       try {
         const result = await db
