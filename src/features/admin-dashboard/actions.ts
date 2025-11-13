@@ -4,6 +4,7 @@ import { adminDashboardService } from "./instance";
 import { NewPlant, NewArticle } from "./types";
 import { ArticleStatusType } from "../articles/types";
 import { NewUser, UpdateUser } from "../user/types";
+import { Plant } from "../plant-guides/schema";
 
 export async function getAllPlantGuides(currentPage: number) {
   const plants = await adminDashboardService.getAllPlants(currentPage);
@@ -49,6 +50,11 @@ export async function deleteUser(id: string) {
 export async function updateUser(user: UpdateUser) {
   const result = await adminDashboardService.updateUser(user);
   revalidatePath("/admin-dashboard/users");
+  return result;
+}
+export async function updatePlant(plant: Plant) {
+  const result = await adminDashboardService.updatePlant(plant);
+  revalidatePath("/admin-dashboard/plants");
   return result;
 }
 export async function updateStatus(id: number, newStatus: ArticleStatusType) {
