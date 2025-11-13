@@ -13,6 +13,7 @@ import { useToast } from "../../../../../hooks/toast";
 import ToastContainer from "@/components/ToastContainer";
 import { NewPlant } from "../../types";
 import addPlant from "../../actions";
+import TiptapEditor from "../admin-articles/tiptap-editor";
 type CareLevel = (typeof careLevelEnum.enumValues)[number];
 type LightRequirement = (typeof lightRequirementEnum.enumValues)[number];
 type HumidityPreference = (typeof humidityPreferenceEnum.enumValues)[number];
@@ -30,6 +31,7 @@ export default function AdminPlantForm() {
     slug: "",
     scientific_name: "",
     description: "",
+    content: null,
     water_frequency_days: 7,
     temperature_min: 18,
     temperature_max: 25,
@@ -67,6 +69,7 @@ export default function AdminPlantForm() {
         slug: "",
         scientific_name: "",
         description: "",
+        content: null,
         water_frequency_days: 7,
         temperature_min: 18,
         temperature_max: 25,
@@ -187,6 +190,18 @@ export default function AdminPlantForm() {
                   {errors.description}
                 </p>
               )}
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Content
+              </label>
+              <TiptapEditor
+                value={newPlant.content}
+                onChange={(e) =>
+                  setNewPlant({
+                    ...newPlant,
+                    content: e.target.value,
+                  })
+                }
+              />
             </div>
 
             <div>
