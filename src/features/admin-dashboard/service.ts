@@ -6,6 +6,8 @@ import { PlantGuideService } from "../plant-guides/types";
 import { NewUser, UpdateUser } from "../user/types";
 import { formatErrors } from "./logic";
 import { UserService } from "../user/types";
+import { pl } from "zod/locales";
+import { Plant } from "../plant-guides/schema";
 
 export default function createAdminDashboardService(
   db: Db,
@@ -114,6 +116,24 @@ export default function createAdminDashboardService(
     async updateUser(user: UpdateUser) {
       const result = await userService.updateUser(user);
       return result;
+    },
+    async updatePlant(plant: Plant) {
+      const validatedPlant = plantSchema.safeParse(plant);
+      if (validatedPlant.success) {
+        const result = await plantGuideService.updatePlant(plant);
+        return {
+          success: result.success,
+          message: result.message,
+          error: { "": "" },
+        };
+      } else {
+        const errors = formatErrors(validatedPlant.error._zod.def);
+        return {
+          success: false,
+          message: "Follow the instructions in the form.",
+          error: errors,
+        };
+      }
     },
     async updateUserRole(id: string, newRole: string) {
       const result = await userService.updateUserRole(id, undefined, newRole);
