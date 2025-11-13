@@ -2,7 +2,7 @@ import { articlesService } from "../instance";
 import ArticleFooter from "./article-footer";
 import Image from "next/image";
 import ArticleInfo from "./article-info";
-import { RenderArticleContent } from "./render-article";
+import { RenderArticleContent } from "./render-article-content";
 
 type Prop = {
   slug: string;
