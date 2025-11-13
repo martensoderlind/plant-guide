@@ -51,7 +51,7 @@ export default function PlantTableRow({ plant }: Props) {
       </td>
 
       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-        <AdminPlantsButtons id={plant.id} slug={plant.slug} />
+        <AdminPlantsButtons id={plant.id} slug={plant.slug} plant={plant} />
       </td>
     </tr>
   );
