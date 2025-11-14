@@ -36,7 +36,6 @@ export default function EditPlantForm({ plant, setEditFormOpen }: Props) {
     const updatedPlant: Plant = {
       ...plantInformation,
     };
-
     const result = await updatePlant(updatedPlant);
 
     if (result.success) {
@@ -135,10 +134,10 @@ export default function EditPlantForm({ plant, setEditFormOpen }: Props) {
               </label>
               <TiptapEditor
                 value={plantInformation.content ? plantInformation.content : ""}
-                onChange={(e) =>
+                onChange={(val) =>
                   setPlantInformation({
                     ...plantInformation,
-                    content: e.target.value,
+                    content: val,
                   })
                 }
               />
