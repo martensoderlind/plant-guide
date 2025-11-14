@@ -17,4 +17,5 @@ export const articles: PermissionSchema<"articles", ArticleService> = {
   incrementArticleViews: "articles.incrementArticleViews",
   getArticleAuthor: "articles.getArticleAuthor",
   getArticleTags: "articles.getArticleTags",
+  updateArticle: "articles.updateArticle",
 };

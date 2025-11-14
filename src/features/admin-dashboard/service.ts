@@ -1,7 +1,11 @@
 import { Db } from "@/db";
 import { NewPlant, NewArticle } from "./types";
 import { plantSchema, articleSchema, newUserSchema } from "./validate";
-import { ArticleService, ArticleStatusType } from "../articles/types";
+import {
+  ArticleService,
+  ArticleStatusType,
+  UpdatedArticle,
+} from "../articles/types";
 import { PlantGuideService } from "../plant-guides/types";
 import { NewUser, UpdateUser } from "../user/types";
 import { formatErrors } from "./logic";
@@ -127,6 +131,24 @@ export default function createAdminDashboardService(
         };
       } else {
         const errors = formatErrors(validatedPlant.error._zod.def);
+        return {
+          success: false,
+          message: "Follow the instructions in the form.",
+          error: errors,
+        };
+      }
+    },
+    async updateArticle(updatedArticle: UpdatedArticle) {
+      const validatedArticle = articleSchema.safeParse(updatedArticle);
+      if (validatedArticle.success) {
+        const result = await articleService.updateArticle(updatedArticle);
+        return {
+          success: result.success,
+          message: result.message,
+          error: { "": "" },
+        };
+      } else {
+        const errors = formatErrors(validatedArticle.error._zod.def);
         return {
           success: false,
           message: "Follow the instructions in the form.",

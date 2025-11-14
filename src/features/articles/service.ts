@@ -1,6 +1,11 @@
 import { Db } from "@/db";
 import createArticlesRepository from "./repository";
-import { ArticleStatus, ArticleStatusPublished, NewArticle } from "./types";
+import {
+  ArticleStatus,
+  ArticleStatusPublished,
+  NewArticle,
+  UpdatedArticle,
+} from "./types";
 import { Author } from "../user/types";
 
 export default function createArticlesService(
@@ -47,6 +52,9 @@ export default function createArticlesService(
         articleStatus.NewStatus,
         articleStatus.published_at
       );
+    },
+    async updateArticle(updatedArticle: UpdatedArticle) {
+      return await repository.updateArticle(updatedArticle);
     },
     async updateArticleStatus(articleStatus: ArticleStatus) {
       repository.updateArticleStatus(articleStatus.id, articleStatus.NewStatus);

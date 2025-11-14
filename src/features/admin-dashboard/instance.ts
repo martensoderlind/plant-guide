@@ -33,6 +33,7 @@ export const adminDashboardService = createAdminDashboardService(
     getAllPublishedArticles: articlesService.getAllPublishedArticles,
     incrementArticleViews: articlesService.incrementArticleViews,
     getArticleAuthor: articlesService.getArticleAuthor,
+    updateArticle: articlesService.updateArticle,
   },
   {
     getAllUsers: userService.getAllUsers,

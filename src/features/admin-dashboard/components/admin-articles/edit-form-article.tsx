@@ -7,7 +7,8 @@ import {
   difficultyLevelEnum,
 } from "@/features/articles/schema";
 import TiptapEditor from "./tiptap-editor";
-import { getAllTags, getArticleTags } from "../../actions";
+import { getAllTags, getArticleTags, updateArticle } from "../../actions";
+import { UpdatedArticle } from "@/features/articles/types";
 
 type ArticleCategory = (typeof articleCategoryEnum.enumValues)[number];
 type DifficultyLevel = (typeof difficultyLevelEnum.enumValues)[number];
@@ -88,9 +89,9 @@ export default function EditArticleForm({ article, setEditFormOpen }: Props) {
     setErrors({});
 
     const { tags, ...articleData } = articleInformation;
-    const article: ArticleFormData = {
+    const updatedArticle: UpdatedArticle = {
       ...articleData,
-      tags: tags,
+      tag: tags,
       excerpt: articleData.excerpt ? articleData.excerpt.trim() : null,
       featured_image_url: articleData.featured_image_url
         ? articleData.featured_image_url.trim()
@@ -99,15 +100,17 @@ export default function EditArticleForm({ article, setEditFormOpen }: Props) {
       meta_description: articleData.meta_description
         ? articleData.meta_description.trim()
         : null,
+      published_at: article.published_at,
+      updated_at: new Date(),
+      created_at: article.created_at,
     };
-    console.log("Submitting article:", article);
-    // const result = await updateArticle(article);
+    const result = await updateArticle(updatedArticle);
 
-    // if (result.success) {
-    //   setEditFormOpen(false);
-    // } else {
-    //   setErrors(result.error);
-    // }
+    if (result.success) {
+      setEditFormOpen(false);
+    } else {
+      setErrors(result.error);
+    }
   }
 
   const addTag = () => {

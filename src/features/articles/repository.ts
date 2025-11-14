@@ -1,7 +1,7 @@
 import { Db } from "../../db/index";
 import { eq, sql, and } from "drizzle-orm";
 import { articleTable, tagTable, articleTagTable } from "./schema";
-import { NewArticle } from "./types";
+import { NewArticle, UpdatedArticle } from "./types";
 import { ArticleStatusType } from "./types";
 
 export default function createArticlesRepository(db: Db) {
@@ -126,6 +126,31 @@ export default function createArticlesRepository(db: Db) {
         })
         .where(eq(articleTable.id, articleId))
         .returning({ status: articleTable.status });
+    },
+    async updateArticle(updatedArticle: UpdatedArticle) {
+      const { id, ...updateData } = updatedArticle;
+
+      const result = await db
+        .update(articleTable)
+        .set(updateData)
+        .where(eq(articleTable.id, id))
+        .returning();
+
+      if (
+        result.length > 0 &&
+        updatedArticle.tag &&
+        updatedArticle.tag.length > 0
+      ) {
+        await this.linkTagsToArticle(result[0].id, updatedArticle.tag);
+      }
+      if (result.length > 0) {
+        return { success: true, message: "Article inserted successfully" };
+      }
+      return {
+        success: false,
+        message:
+          "There was a problem with adding the article to the database, please try again.",
+      };
     },
     async getArticleViews() {
       const totalArticleViews = await db

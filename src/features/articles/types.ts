@@ -23,6 +23,10 @@ export type NewArticle = Omit<
   tag: string[];
 };
 
+export type UpdatedArticle = Omit<Article, "views" | "likes" | "author_id"> & {
+  tag: string[];
+};
+
 export type ArticleStatusType = (typeof articleStatusEnum.enumValues)[number];
 
 type articleService = ReturnType<typeof createArticlesService>;
@@ -43,4 +47,5 @@ export type ArticleService = {
   getAllPublishedArticles: articleService["getAllPublishedArticles"];
   incrementArticleViews: articleService["incrementArticleViews"];
   getArticleAuthor: articleService["getArticleAuthor"];
+  updateArticle: articleService["updateArticle"];
 };
