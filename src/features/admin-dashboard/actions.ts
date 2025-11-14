@@ -78,3 +78,6 @@ export async function updatePlantFeaturedStatus(
 export async function getAllTags() {
   return await adminDashboardService.getAllTags();
 }
+export async function getArticleTags(id: number) {
+  return await adminDashboardService.getArticleTags(id);
+}

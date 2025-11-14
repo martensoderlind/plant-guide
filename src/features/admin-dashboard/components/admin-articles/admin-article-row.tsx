@@ -43,7 +43,7 @@ export default function AdminArticleRow({ article }: Props) {
           : new Date(article.created_at).toDateString()}
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-        <AdminArticleButtons id={article.id} slug={article.slug} />
+        <AdminArticleButtons article={article} />
       </td>
     </tr>
   );

@@ -27,6 +27,7 @@ export const adminDashboardService = createAdminDashboardService(
     getArticleCount: articlesService.getArticleCount,
     getArticleViews: articlesService.getArticleViews,
     getAllTags: articlesService.getAllTags,
+    getArticleTags: articlesService.getArticleTags,
     getArticle: articlesService.getArticle,
     getPublishedArticleCount: articlesService.getPublishedArticleCount,
     getAllPublishedArticles: articlesService.getAllPublishedArticles,

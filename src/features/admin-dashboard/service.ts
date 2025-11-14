@@ -160,5 +160,8 @@ export default function createAdminDashboardService(
     async getAllTags() {
       return await articleService.getAllTags();
     },
+    async getArticleTags(id: number) {
+      return await articleService.getArticleTags(id);
+    },
   };
 }
