@@ -2,7 +2,7 @@ import { articlesService } from "../instance";
 import ArticleFooter from "./article-footer";
 import Image from "next/image";
 import ArticleInfo from "./article-info";
-import { RenderArticleContent } from "./render-article-content";
+import { RenderContent } from "../../../components/render-content";
 
 type Prop = {
   slug: string;
@@ -96,7 +96,7 @@ export default async function Article({ slug }: Prop) {
 
       <article>
         <section>
-          <RenderArticleContent content={article.content} />
+          <RenderContent content={article.content} />
         </section>
       </article>
       <ArticleFooter article={article} />
