@@ -32,7 +32,6 @@ export const plantTable = pgTable("plants", {
   slug: varchar({ length: 255 }).notNull().unique(),
   name: varchar({ length: 255 }).notNull(),
   scientific_name: varchar({ length: 255 }).notNull(),
-  description: varchar(),
   content: jsonb().notNull(),
   water_frequency_days: integer().notNull(),
   temperature_min: integer().notNull(),
