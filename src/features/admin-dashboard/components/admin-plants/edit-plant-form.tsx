@@ -142,6 +142,9 @@ export default function EditPlantForm({ plant, setEditFormOpen }: Props) {
                   })
                 }
               />
+              {errors.content && (
+                <p className="mt-1 text-sm text-red-600">{errors.content}</p>
+              )}
             </div>
 
             <div>

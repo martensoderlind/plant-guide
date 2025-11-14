@@ -13,6 +13,12 @@ export const plantSchema = z
       .min(1, "Scientific name cannot be empty")
       .max(150, "Scientific name too long"),
     description: z.string().max(1000, "Description too long").nullable(),
+    content: z
+      .object({
+        type: z.literal("doc"),
+        content: z.array(z.any()).optional(),
+      })
+      .passthrough(),
     water_frequency_days: z
       .number()
       .int()
