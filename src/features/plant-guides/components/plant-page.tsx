@@ -1,7 +1,6 @@
 import { PlantCategory } from "../types";
 import PlantPageHeader from "./plant-page-header";
 import PlantPageCareInformation from "./plant-page-care-information";
-import PlantPageMainContent from "./plant-page-main-content";
 import { plantGuidesService } from "../instance";
 import Link from "next/link";
 import { Undo2 } from "lucide-react";
