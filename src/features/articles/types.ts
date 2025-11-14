@@ -38,6 +38,7 @@ export type ArticleService = {
   getPublishedArticleCount: articleService["getPublishedArticleCount"];
   getArticleViews: articleService["getArticleViews"];
   getAllTags: articleService["getAllTags"];
+  getArticleTags: articleService["getArticleTags"];
   getArticle: articleService["getArticle"];
   getAllPublishedArticles: articleService["getAllPublishedArticles"];
   incrementArticleViews: articleService["incrementArticleViews"];
