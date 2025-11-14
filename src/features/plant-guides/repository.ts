@@ -43,11 +43,14 @@ export default function createPlantGuidesRepository(db: Db) {
         .where(eq(plantTable.id, id));
     },
     async updatePlant(plant: Plant) {
+      const { id, ...updateData } = plant;
+
       const result = await db
         .update(plantTable)
-        .set({ ...plant })
-        .where(eq(plantTable.id, plant.id))
+        .set(updateData)
+        .where(eq(plantTable.id, id))
         .returning();
+
       if (result.length > 0) {
         return {
           success: true,
