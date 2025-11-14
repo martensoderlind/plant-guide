@@ -5,6 +5,7 @@ import PlantPageMainContent from "./plant-page-main-content";
 import { plantGuidesService } from "../instance";
 import Link from "next/link";
 import { Undo2 } from "lucide-react";
+import { RenderContent } from "@/components/render-content";
 
 type Props = {
   slug: string;
@@ -95,11 +96,11 @@ export default async function PlantPage({ slug }: Props) {
             </span>
           </div>
         </div>
-
-        {plant.description && (
-          <PlantPageMainContent description={plant.description} />
-        )}
-
+        <article className="mb-4">
+          <section className="text-gray-700 text-lg leading-relaxed">
+            <RenderContent content={plant.content} />
+          </section>
+        </article>
         <PlantPageCareInformation
           water_frequency_days={plant.water_frequency_days}
           lightReq={lightReq}
