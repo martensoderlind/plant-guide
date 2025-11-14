@@ -25,7 +25,6 @@ export default function AdminUserButtons({ user }: Props) {
   }
 
   function handleEditUser() {
-    console.log("edit user open:", editFormOpen);
     setEditFormOpen(!editFormOpen);
   }
 
