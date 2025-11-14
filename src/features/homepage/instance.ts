@@ -11,4 +11,5 @@ export const homePageService = createHomePageService(db, {
   getFeaturedPlantGuides: plantGuidesService.getFeaturedPlantGuides,
   updatePlantFeaturedStatus: plantGuidesService.updateFeatureStatus,
   totalPlantGuideCount: plantGuidesService.totalPlantGuideCount,
+  updatePlant: plantGuidesService.updatePlant,
 });
