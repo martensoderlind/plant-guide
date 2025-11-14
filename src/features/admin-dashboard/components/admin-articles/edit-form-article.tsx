@@ -72,7 +72,7 @@ export default function EditArticleForm({ article, setEditFormOpen }: Props) {
       }
     };
     loadTags();
-  }, []);
+  }, [article]);
 
   function generateSlug(title: string) {
     return title
