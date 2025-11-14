@@ -107,29 +107,6 @@ export default function EditPlantForm({ plant, setEditFormOpen }: Props) {
 
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Description
-              </label>
-              <textarea
-                rows={3}
-                className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                value={
-                  plantInformation.description
-                    ? plantInformation.description
-                    : ""
-                }
-                onChange={(e) =>
-                  setPlantInformation({
-                    ...plantInformation,
-                    description: e.target.value,
-                  })
-                }
-              />
-              {errors.description && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.description}
-                </p>
-              )}
-              <label className="block text-sm font-medium text-gray-700 mb-2">
                 Content
               </label>
               <TiptapEditor

@@ -22,15 +22,13 @@ type PlantCategory = (typeof plantCategoryEnum.enumValues)[number];
 export default function AdminPlantForm() {
   const [isAddingPlant, setIsAddingPlant] = useState(false);
   const [newPlant, setNewPlant] = useState<
-    Omit<NewPlant, "description" | "image_url"> & {
-      description: string;
+    Omit<NewPlant, "image_url"> & {
       image_url: string;
     }
   >({
     name: "",
     slug: "",
     scientific_name: "",
-    description: "",
     content: null,
     water_frequency_days: 7,
     temperature_min: 18,
@@ -57,7 +55,6 @@ export default function AdminPlantForm() {
     const plant = {
       ...newPlant,
       slug: generateSlug(newPlant.name),
-      description: newPlant.description.trim() || null,
       image_url: newPlant.image_url.trim() || null,
     };
 
@@ -68,7 +65,6 @@ export default function AdminPlantForm() {
         name: "",
         slug: "",
         scientific_name: "",
-        description: "",
         content: null,
         water_frequency_days: 7,
         temperature_min: 18,
@@ -171,25 +167,6 @@ export default function AdminPlantForm() {
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Description
-              </label>
-              <textarea
-                rows={3}
-                className="text-gray-500 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                value={newPlant.description}
-                onChange={(e) =>
-                  setNewPlant({
-                    ...newPlant,
-                    description: e.target.value,
-                  })
-                }
-              />
-              {errors.description && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.description}
-                </p>
-              )}
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Content
               </label>
