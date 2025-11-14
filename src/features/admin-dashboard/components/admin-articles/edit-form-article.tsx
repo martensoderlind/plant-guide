@@ -37,14 +37,6 @@ interface ArticleFormData {
   currentTag: string;
 }
 export default function EditArticleForm({ article, setEditFormOpen }: Props) {
-  const [articleTags, setArticleTags] = useState<
-    Array<{
-      id: string;
-      name: string;
-      slug: string;
-      color: string | null;
-    }>
-  >([]);
   const [availableTags, setAvailableTags] = useState<
     Array<{
       id: string;
@@ -58,7 +50,7 @@ export default function EditArticleForm({ article, setEditFormOpen }: Props) {
   const [articleInformation, setArticleInformation] = useState<ArticleFormData>(
     {
       ...article,
-      tags: articleTags ? articleTags.map((t) => t.name) : [],
+      tags: [],
       currentTag: "",
     }
   );
