@@ -2,6 +2,12 @@ import { Db } from "@/db";
 import createPlantGuidesRepository from "./repository";
 import { FeaturedStatus, NewPlant } from "./types";
 import { Plant } from "./schema";
+import {
+  formatCareLevel,
+  formatCategory,
+  formatHumidity,
+  formatLightRequirement,
+} from "./logic";
 
 export default function createPlantGuidesService(db: Db) {
   const repository = createPlantGuidesRepository(db);
@@ -10,7 +16,12 @@ export default function createPlantGuidesService(db: Db) {
       return await repository.getAllPlantGuides(currentPage);
     },
     async getPlantGuide(slug: string) {
-      return await repository.getPlantGuide(slug);
+      const plantGuide = await repository.getPlantGuide(slug);
+      const careLevel = formatCareLevel(plantGuide.care_level);
+      const lightReq = formatLightRequirement(plantGuide.light_requirement);
+      const humidity = formatHumidity(plantGuide.humidity_preference);
+      const category = formatCategory(plantGuide.plant_category);
+      return { ...plantGuide, careLevel, lightReq, humidity, category };
     },
     async getFeaturedPlantGuides() {
       return await repository.getFeaturedPlantGuides();
