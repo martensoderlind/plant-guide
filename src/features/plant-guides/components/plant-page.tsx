@@ -14,7 +14,7 @@ export default async function PlantPage({ slug }: Props) {
   if (!plant) {
     return <PlantGuidePageFallback />;
   }
-  const { careLevel, lightReq, humidity, category } = plant;
+  const { careLevel, lightRequirement, humidityPreference, category } = plant;
   return (
     <>
       <PlantPageHeader
@@ -44,11 +44,11 @@ export default async function PlantPage({ slug }: Props) {
         </article>
         <PlantPageCareInformation
           water_frequency_days={plant.water_frequency_days}
-          lightReq={lightReq}
+          lightReq={lightRequirement}
           careLevel={careLevel}
           temperature_min={plant.temperature_min}
           temperature_max={plant.temperature_max}
-          humidity={humidity}
+          humidity={humidityPreference}
           updatedAt={plant.updated_at}
         />
       </div>

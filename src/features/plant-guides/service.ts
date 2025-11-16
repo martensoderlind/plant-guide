@@ -16,13 +16,23 @@ export default function createPlantGuidesService(db: Db) {
       return await repository.getAllPlantGuides(currentPage);
     },
     async getPlantGuide(slug: string) {
-      const plantGuide = await repository.getPlantGuide(slug);
-      const careLevel = formatCareLevel(plantGuide.care_level);
-      const lightReq = formatLightRequirement(plantGuide.light_requirement);
-      const humidity = formatHumidity(plantGuide.humidity_preference);
-      const category = formatCategory(plantGuide.plant_category);
-      return { ...plantGuide, careLevel, lightReq, humidity, category };
+      const {
+        care_level,
+        light_requirement,
+        humidity_preference,
+        plant_category,
+        ...rest
+      } = await repository.getPlantGuide(slug);
+
+      return {
+        ...rest,
+        careLevel: formatCareLevel(care_level),
+        lightRequirement: formatLightRequirement(light_requirement),
+        humidityPreference: formatHumidity(humidity_preference),
+        category: formatCategory(plant_category),
+      };
     },
+
     async getFeaturedPlantGuides() {
       return await repository.getFeaturedPlantGuides();
     },
