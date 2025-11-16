@@ -74,7 +74,7 @@ export default async function PlantPage({ slug }: Props) {
   const humidity = formatHumidity(plant.humidity_preference);
 
   return (
-    <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+    <>
       <PlantPageHeader
         imageUrl={plant.image_url}
         name={plant.name}
@@ -110,6 +110,6 @@ export default async function PlantPage({ slug }: Props) {
           updatedAt={plant.updated_at}
         />
       </div>
-    </div>
+    </>
   );
 }
