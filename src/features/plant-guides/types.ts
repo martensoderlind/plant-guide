@@ -12,7 +12,6 @@ export type Humidity = {
 export type CareLevel = {
   text: string;
   color: string;
-  icon: string;
 };
 
 export type FeaturedStatus = {
