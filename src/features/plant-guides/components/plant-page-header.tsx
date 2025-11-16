@@ -1,10 +1,5 @@
 import Image from "next/image";
-
-type CareLevel = {
-  text: string;
-  color: string;
-  icon: string;
-};
+import { CareLevel } from "../types";
 
 type Props = {
   imageUrl: string | null;
@@ -30,7 +25,6 @@ export default function PlantPageHeader({ imageUrl, name, careLevel }: Props) {
         <span
           className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${careLevel.color}`}
         >
-          <span className="mr-1">{careLevel.icon}</span>
           {careLevel.text}
         </span>
       </div>
