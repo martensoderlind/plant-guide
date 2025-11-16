@@ -1,4 +1,4 @@
-import { PlantCategory } from "../types";
+import { PlantCategoryEnum } from "../types";
 import PlantPageHeader from "./plant-page-header";
 import PlantPageCareInformation from "./plant-page-care-information";
 import { plantGuidesService } from "../instance";
@@ -62,7 +62,7 @@ export default async function PlantPage({ slug }: Props) {
     return humidities[humidity] || humidities.easy;
   };
 
-  const formatCategory = (category: PlantCategory) => {
+  const formatCategory = (category: PlantCategoryEnum) => {
     return category
       .split(" ")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))

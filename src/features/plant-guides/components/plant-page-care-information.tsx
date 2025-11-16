@@ -6,20 +6,7 @@ import {
   Sun,
   Thermometer,
 } from "lucide-react";
-
-type LightReq = {
-  text: string;
-  intensity: string;
-};
-type Humidity = {
-  text: string;
-  level: string;
-};
-type CareLevel = {
-  text: string;
-  color: string;
-  icon: string;
-};
+import { CareLevel, Humidity, LightReq } from "../types";
 
 type Props = {
   water_frequency_days: number;
