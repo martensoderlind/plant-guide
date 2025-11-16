@@ -41,9 +41,7 @@ export default async function Article({ slug }: Prop) {
           />
         </div>
       )}
-
       <ArticleHeader article={article} tags={article.tags} />
-
       <article>
         <section>
           <RenderContent content={article.content} />
