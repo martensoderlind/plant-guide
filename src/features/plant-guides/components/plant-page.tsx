@@ -2,8 +2,6 @@ import { PlantCategoryEnum } from "../types";
 import PlantPageHeader from "./plant-page-header";
 import PlantPageCareInformation from "./plant-page-care-information";
 import { plantGuidesService } from "../instance";
-import Link from "next/link";
-import { Undo2 } from "lucide-react";
 import { RenderContent } from "@/components/render-content";
 import PlantGuidePageFallback from "./plant-guide-page-fallback";
 
