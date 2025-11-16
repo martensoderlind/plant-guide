@@ -19,13 +19,12 @@ export default async function PlantPage({ slug }: Props) {
   }
   const formatCareLevel = (level: "easy" | "medium" | "hard") => {
     const levels = {
-      easy: { text: "Easy", color: "bg-green-100 text-green-800", icon: "🌱" },
+      easy: { text: "Easy", color: "bg-green-100 text-green-800" },
       medium: {
         text: "Medium",
         color: "bg-yellow-100 text-yellow-800",
-        icon: "🌿",
       },
-      hard: { text: "Hard", color: "bg-red-100 text-red-800", icon: "🌳" },
+      hard: { text: "Hard", color: "bg-red-100 text-red-800" },
     };
     return levels[level] || levels.easy;
   };
