@@ -96,3 +96,4 @@ export const articleTagRelations = relations(articleTagTable, ({ one }) => ({
 }));
 
 export type Article = typeof articleTable.$inferSelect;
+export type Tag = Omit<typeof tagTable.$inferSelect, "created_at">;

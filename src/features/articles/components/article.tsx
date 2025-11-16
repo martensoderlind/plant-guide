@@ -3,12 +3,14 @@ import ArticleFooter from "./article-footer";
 import Image from "next/image";
 import ArticleInfo from "./article-info";
 import { RenderContent } from "../../../components/render-content";
+import ArticleHeader from "./article-header";
 
 type Prop = {
   slug: string;
 };
 
 export default async function Article({ slug }: Prop) {
+  await articlesService.incrementArticleViews(slug);
   const article = await articlesService.getArticle(slug);
   if (!article) {
     return (
@@ -19,28 +21,9 @@ export default async function Article({ slug }: Prop) {
       </div>
     );
   }
-  await articlesService.incrementArticleViews(slug);
-
-  const categoryNames = {
-    basics: "Basics",
-    watering: "Watering",
-    lighting: "lighting",
-    diseases: "Diseases",
-    propagation: "Propagation",
-    seasonal: "Seasonal",
-    "air-purifying": "Air purifying",
-    troubleshooting: "Troubleshooting",
-    "advanced-techniques": "Advanced Techniques",
-  };
-
-  const difficultyColors = {
-    beginner: "bg-green-100 text-green-800 border-green-200",
-    intermediate: "bg-yellow-100 text-yellow-800 border-yellow-200",
-    advanced: "bg-red-100 text-red-800 border-red-200",
-  };
 
   return (
-    <article className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 py-8">
       <ArticleInfo
         published_at={article.published_at}
         reading_time_minutes={article.reading_time_minutes}
@@ -59,40 +42,7 @@ export default async function Article({ slug }: Prop) {
         </div>
       )}
 
-      <header className="mb-8 border-b border-gray-200">
-        <div className="flex flex-wrap gap-3 mb-4">
-          <span className="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-sm font-medium border border-emerald-200">
-            {categoryNames[article.category]}
-          </span>
-          <span
-            className={`px-3 py-1 rounded-full text-sm font-medium border ${
-              difficultyColors[article.difficulty_level]
-            }`}
-          >
-            {article.difficulty_level}
-          </span>
-        </div>
-        <div className="flex flex-wrap gap-3 mb-4">
-          {article.tags.map((tag, idx) => (
-            <span
-              key={idx}
-              className="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-sm font-medium border border-emerald-200"
-            >
-              {tag.name}
-            </span>
-          ))}
-        </div>
-
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-200 mb-4 leading-tight">
-          {article.title}
-        </h1>
-
-        {article.excerpt && (
-          <p className="text-lg text-gray-200 mb-6 leading-relaxed">
-            {article.excerpt}
-          </p>
-        )}
-      </header>
+      <ArticleHeader article={article} tags={article.tags} />
 
       <article>
         <section>
@@ -100,6 +50,6 @@ export default async function Article({ slug }: Prop) {
         </section>
       </article>
       <ArticleFooter article={article} />
-    </article>
+    </div>
   );
 }
