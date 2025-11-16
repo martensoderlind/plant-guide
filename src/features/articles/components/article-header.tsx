@@ -48,14 +48,12 @@ export default function ArticleHeader({ article, tags }: Props) {
         ))}
       </div>
 
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-200 mb-4 leading-tight">
+      <h1 className="text-3xl md:text-4xl font-bold  mb-4 leading-tight">
         {article.title}
       </h1>
 
       {article.excerpt && (
-        <p className="text-lg text-gray-200 mb-6 leading-relaxed">
-          {article.excerpt}
-        </p>
+        <p className="text-lg  mb-6 leading-relaxed">{article.excerpt}</p>
       )}
     </header>
   );

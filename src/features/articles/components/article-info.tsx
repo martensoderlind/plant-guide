@@ -22,7 +22,7 @@ export default function ArticleInfo({
   };
   return (
     <div className="flex justify-between">
-      <div className="flex flex-wrap gap-6 text-sm text-gray-300  pb-6">
+      <div className="flex flex-wrap gap-6 text-sm pb-6">
         {published_at && (
           <div className="flex items-center gap-1">
             <Calendar size={16} />
