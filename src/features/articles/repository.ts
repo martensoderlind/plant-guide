@@ -28,8 +28,10 @@ export default function createArticlesRepository(db: Db) {
         .from(articleTable)
         .where(eq(articleTable.slug, slug))
         .limit(1);
-      if (article && article[0].status === "published") {
-        return article[0];
+      if (article.length > 0) {
+        if (article[0].status == "published") {
+          return article[0];
+        }
       }
       return undefined;
     },
