@@ -10,7 +10,9 @@ export type User = {
   role?: string;
   created_at?: Date;
 };
-export type NewUser = Omit<User, "id" | "created_at">;
+export type NewUser = Omit<User, "id" | "created_at" | "roleId"> & {
+  roleId?: string;
+};
 
 export type UpdateUser = Omit<
   User,
