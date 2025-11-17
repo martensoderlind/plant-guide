@@ -1,13 +1,7 @@
 import createUserService from "./service";
 
-export type NewUser = {
-  email: string;
-  username: string;
-  fullName: string;
-  avatarUrl: string | null;
-  roleId?: string;
-  role: string;
-};
+export type NewUser = Omit<User, "id" | "created_at">;
+
 export type User = {
   id: string;
   email: string;
