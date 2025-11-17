@@ -3,7 +3,7 @@
 import { Plus, Save, X, Tag } from "lucide-react";
 import { useState, useEffect } from "react";
 import { addArticle, getAllTags } from "../../actions";
-import { NewArticle } from "../../types";
+import { ArticleFormData, NewArticle } from "../../types";
 import {
   articleCategoryEnum,
   difficultyLevelEnum,
@@ -12,28 +12,11 @@ import {
 import { useToast } from "../../../../../hooks/toast";
 import ToastContainer from "@/components/ToastContainer";
 import TiptapEditor from "./tiptap-editor";
-
-type ArticleCategory = (typeof articleCategoryEnum.enumValues)[number];
-type DifficultyLevel = (typeof difficultyLevelEnum.enumValues)[number];
-type ArticleStatus = (typeof articleStatusEnum.enumValues)[number];
-
-interface ArticleFormData {
-  title: string;
-  slug: string;
-  excerpt: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  content: any;
-  reading_time_minutes: number;
-  category: ArticleCategory;
-  difficulty_level: DifficultyLevel;
-  status: ArticleStatus;
-  is_featured: boolean;
-  featured_image_url: string;
-  meta_title: string;
-  meta_description: string;
-  tags: string[];
-  currentTag: string;
-}
+import {
+  ArticleCategoryEnums,
+  ArticleStatusEnums,
+  DifficultyLevelEnums,
+} from "@/features/articles/types";
 
 export default function AdminArticleForm() {
   const [isAddingArticle, setIsAddingArticle] = useState(false);
@@ -298,7 +281,7 @@ export default function AdminArticleForm() {
                 onChange={(e) =>
                   setNewArticle({
                     ...newArticle,
-                    category: e.target.value as ArticleCategory,
+                    category: e.target.value as ArticleCategoryEnums,
                   })
                 }
               >
@@ -323,7 +306,7 @@ export default function AdminArticleForm() {
                 onChange={(e) =>
                   setNewArticle({
                     ...newArticle,
-                    difficulty_level: e.target.value as DifficultyLevel,
+                    difficulty_level: e.target.value as DifficultyLevelEnums,
                   })
                 }
               >
@@ -350,7 +333,7 @@ export default function AdminArticleForm() {
                 onChange={(e) =>
                   setNewArticle({
                     ...newArticle,
-                    status: e.target.value as ArticleStatus,
+                    status: e.target.value as ArticleStatusEnums,
                   })
                 }
               >

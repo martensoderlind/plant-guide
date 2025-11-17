@@ -1,4 +1,9 @@
 import { Article } from "../articles/schema";
+import {
+  ArticleCategoryEnums,
+  ArticleStatusEnums,
+  DifficultyLevelEnums,
+} from "../articles/types";
 import { Plant } from "../plant-guides/schema";
 
 export type Plants = Plant;
@@ -32,3 +37,21 @@ export type Result =
       message: string;
       error: unknown;
     };
+
+export interface ArticleFormData {
+  title: string;
+  slug: string;
+  excerpt: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  content: any;
+  reading_time_minutes: number;
+  category: ArticleCategoryEnums;
+  difficulty_level: DifficultyLevelEnums;
+  status: ArticleStatusEnums;
+  is_featured: boolean;
+  featured_image_url: string;
+  meta_title: string;
+  meta_description: string;
+  tags: string[];
+  currentTag: string;
+}

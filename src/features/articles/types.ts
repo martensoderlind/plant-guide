@@ -1,4 +1,9 @@
-import { Article, articleStatusEnum } from "./schema";
+import {
+  Article,
+  articleCategoryEnum,
+  articleStatusEnum,
+  difficultyLevelEnum,
+} from "./schema";
 import createArticlesService from "./service";
 
 export type ArticleStatusPublished = {
@@ -8,6 +13,12 @@ export type ArticleStatusPublished = {
 };
 
 export type ArticleStatus = Omit<ArticleStatusPublished, "published_at">;
+
+export type ArticleCategoryEnums =
+  (typeof articleCategoryEnum.enumValues)[number];
+export type DifficultyLevelEnums =
+  (typeof difficultyLevelEnum.enumValues)[number];
+export type ArticleStatusEnums = (typeof articleStatusEnum.enumValues)[number];
 
 export type NewArticle = Omit<
   Article,
