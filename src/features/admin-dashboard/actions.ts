@@ -2,7 +2,7 @@
 import { revalidatePath } from "next/cache";
 import { adminDashboardService } from "./instance";
 import { NewPlant, NewArticle } from "./types";
-import { ArticleStatusType, UpdatedArticle } from "../articles/types";
+import { ArticleStatusEnums, UpdatedArticle } from "../articles/types";
 import { NewUser, UpdateUser } from "../user/types";
 import { Plant } from "../plant-guides/schema";
 
@@ -62,7 +62,7 @@ export async function updateArticle(updatedArticle: UpdatedArticle) {
   revalidatePath("/admin-dashboard/plants");
   return result;
 }
-export async function updateStatus(id: number, newStatus: ArticleStatusType) {
+export async function updateStatus(id: number, newStatus: ArticleStatusEnums) {
   const result = await adminDashboardService.updateArticleStatus(id, newStatus);
   revalidatePath("/admin-dashboard/articles");
   return result;

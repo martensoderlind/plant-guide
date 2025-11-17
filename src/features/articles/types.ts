@@ -8,7 +8,7 @@ import createArticlesService from "./service";
 
 export type ArticleStatusPublished = {
   id: number;
-  NewStatus: ArticleStatusType;
+  NewStatus: ArticleStatusEnums;
   published_at: Date;
 };
 
@@ -37,8 +37,6 @@ export type NewArticle = Omit<
 export type UpdatedArticle = Omit<Article, "views" | "likes" | "author_id"> & {
   tag: string[];
 };
-
-export type ArticleStatusType = (typeof articleStatusEnum.enumValues)[number];
 
 type articleService = ReturnType<typeof createArticlesService>;
 

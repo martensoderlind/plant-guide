@@ -1,11 +1,11 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
-import { ArticleStatusType } from "@/features/articles/types";
 import ToastContainer from "@/components/ToastContainer";
 import { useToast } from "../../../../../hooks/toast";
 import AdminArticleOptionButton from "./admin-article-option-button";
 import { updateStatus } from "../../actions";
+import { ArticleStatusEnums } from "@/features/articles/types";
 
 type ArticleStatus = "draft" | "published" | "archived";
 
@@ -43,7 +43,7 @@ export default function AdminArticleStatus({ id, status }: Props) {
     setToggleMenu(!toggleMenu);
   }
 
-  async function updateArticleStatus(newStatus: ArticleStatusType) {
+  async function updateArticleStatus(newStatus: ArticleStatusEnums) {
     const result = await updateStatus(id, newStatus);
     if (!result.success) {
       info("There was an error updating the article status.");

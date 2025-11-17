@@ -3,7 +3,7 @@ import { NewPlant, NewArticle } from "./types";
 import { plantSchema, articleSchema, newUserSchema } from "./validate";
 import {
   ArticleService,
-  ArticleStatusType,
+  ArticleStatusEnums,
   UpdatedArticle,
 } from "../articles/types";
 import { PlantGuideService } from "../plant-guides/types";
@@ -105,7 +105,7 @@ export default function createAdminDashboardService(
       const result = await userService.deleteUser(id);
       return result;
     },
-    async updateArticleStatus(id: number, NewStatus: ArticleStatusType) {
+    async updateArticleStatus(id: number, NewStatus: ArticleStatusEnums) {
       if (NewStatus === "published") {
         const published_at = new Date();
         return await articleService.updateArticleStatusPublished({

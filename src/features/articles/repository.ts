@@ -1,8 +1,7 @@
 import { Db } from "../../db/index";
 import { eq, sql, and } from "drizzle-orm";
 import { articleTable, tagTable, articleTagTable } from "./schema";
-import { NewArticle, UpdatedArticle } from "./types";
-import { ArticleStatusType } from "./types";
+import { ArticleStatusEnums, NewArticle, UpdatedArticle } from "./types";
 
 export default function createArticlesRepository(db: Db) {
   const pageSize = 6;
@@ -104,7 +103,7 @@ export default function createArticlesRepository(db: Db) {
     async deleteArticle(articleId: number) {
       await db.delete(articleTable).where(eq(articleTable.id, articleId));
     },
-    async updateArticleStatus(articleId: number, status: ArticleStatusType) {
+    async updateArticleStatus(articleId: number, status: ArticleStatusEnums) {
       const result = await db
         .update(articleTable)
         .set({
@@ -126,7 +125,7 @@ export default function createArticlesRepository(db: Db) {
     },
     async updateArticleStatusPublished(
       articleId: number,
-      status: ArticleStatusType,
+      status: ArticleStatusEnums,
       published_at: Date
     ) {
       const result = await db
