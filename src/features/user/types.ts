@@ -1,7 +1,6 @@
 import createUserService from "./service";
 
 export type NewUser = {
-  id?: string;
   email: string;
   username: string;
   fullName: string;
