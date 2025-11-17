@@ -93,9 +93,9 @@ export default function AdminArticleStatus({ id, status }: Props) {
 
         {toggleMenu && (
           <div className="absolute top-full flex flex-col left-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-10 min-w-[120px] ">
-            {statusOptions.map((option) => (
+            {statusOptions.map((option, idx) => (
               <button
-                key={option.value}
+                key={idx}
                 onClick={() => selectStatus(option.value)}
                 className={`w-full text-left px-3 py-2 text-xs font-medium hover:bg-gray-50 transition-colors first:rounded-t-md last:rounded-b-md ${
                   status === option.value
