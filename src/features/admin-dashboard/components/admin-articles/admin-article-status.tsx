@@ -5,6 +5,7 @@ import { updateStatus } from "../../actions";
 import { ArticleStatusType } from "@/features/articles/types";
 import ToastContainer from "@/components/ToastContainer";
 import { useToast } from "../../../../../hooks/toast";
+import AdminArticleOptionButton from "./admin-article-option-button";
 
 type ArticleStatus = "draft" | "published" | "archived";
 
@@ -94,26 +95,11 @@ export default function AdminArticleStatus({ id, status }: Props) {
         {toggleMenu && (
           <div className="absolute top-full flex flex-col left-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-10 min-w-[120px] ">
             {statusOptions.map((option, idx) => (
-              <button
+              <AdminArticleOptionButton
                 key={idx}
-                onClick={() => selectStatus(option.value)}
-                className={`w-full text-left px-3 py-2 text-xs font-medium hover:bg-gray-50 transition-colors first:rounded-t-md last:rounded-b-md ${
-                  status === option.value
-                    ? "bg-blue-50 text-blue-700"
-                    : "text-gray-700"
-                }`}
-              >
-                <span
-                  className={`inline-block w-2 h-2 rounded-full mr-2 ${
-                    option.value === "draft"
-                      ? "bg-yellow-400"
-                      : option.value === "published"
-                      ? "bg-green-400"
-                      : "bg-gray-400"
-                  }`}
-                />
-                {option.label}
-              </button>
+                option={option}
+                selectStatus={selectStatus}
+              />
             ))}
           </div>
         )}
