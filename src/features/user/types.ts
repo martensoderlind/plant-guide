@@ -1,7 +1,5 @@
 import createUserService from "./service";
 
-export type NewUser = Omit<User, "id" | "created_at">;
-
 export type User = {
   id: string;
   email: string;
@@ -12,6 +10,8 @@ export type User = {
   role?: string;
   created_at?: Date;
 };
+export type NewUser = Omit<User, "id" | "created_at">;
+
 export type UpdateUser = Omit<
   User,
   "avatarUrl" | "roleId" | "role" | "created_at"
@@ -21,6 +21,7 @@ export type Roles = {
   id: string;
   description: string;
 };
+
 export type Author = {
   fullName: string | null;
   username: string;
