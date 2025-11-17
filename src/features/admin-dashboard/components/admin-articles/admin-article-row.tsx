@@ -22,7 +22,9 @@ export default function AdminArticleRow({ article }: Props) {
                 </span>
               )}
             </div>
-            <div className="text-sm text-gray-500">{article.excerpt}</div>
+            <div className="text-sm text-gray-500 line-clamp-2">
+              {article.excerpt}
+            </div>
           </div>
         </div>
       </td>
