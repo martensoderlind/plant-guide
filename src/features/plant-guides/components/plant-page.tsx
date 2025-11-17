@@ -2,7 +2,7 @@ import PlantPageHeader from "./plant-page-header";
 import PlantPageCareInformation from "./plant-page-care-information";
 import { plantGuidesService } from "../instance";
 import { RenderContent } from "@/components/render-content";
-import PlantGuidePageFallback from "./plant-guide-page-fallback";
+import PlantPageFallback from "./plant-page-fallback";
 
 type Props = {
   slug: string;
@@ -12,7 +12,7 @@ export default async function PlantPage({ slug }: Props) {
   const plant = await plantGuidesService.getPlantGuide(slug);
 
   if (!plant) {
-    return <PlantGuidePageFallback />;
+    return <PlantPageFallback />;
   }
   const { careLevel, lightRequirement, humidityPreference, category } = plant;
   return (

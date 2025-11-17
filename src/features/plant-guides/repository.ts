@@ -24,6 +24,9 @@ export default function createPlantGuidesRepository(db: Db) {
         .select()
         .from(plantTable)
         .where(eq(plantTable.slug, slug));
+      if (result.length === 0) {
+        return null;
+      }
       return result[0];
     },
     async deletePlant(PlantId: number) {

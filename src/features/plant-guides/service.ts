@@ -16,14 +16,17 @@ export default function createPlantGuidesService(db: Db) {
       return await repository.getAllPlantGuides(currentPage);
     },
     async getPlantGuide(slug: string) {
+      const plant = await repository.getPlantGuide(slug);
+      if (!plant) {
+        return null;
+      }
       const {
         care_level,
         light_requirement,
         humidity_preference,
         plant_category,
         ...rest
-      } = await repository.getPlantGuide(slug);
-
+      } = plant;
       return {
         ...rest,
         careLevel: formatCareLevel(care_level),
