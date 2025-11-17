@@ -37,6 +37,9 @@ export default function createUserService(db: Db) {
         });
         return result;
       } else {
+        if (!newUser.role) {
+          newUser.role = "USER";
+        }
         const roleId = await userService.getRoleId(newUser.role);
         const result = await repository.createUser({
           ...newUser,
