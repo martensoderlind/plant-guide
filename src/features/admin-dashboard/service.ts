@@ -108,13 +108,13 @@ export default function createAdminDashboardService(
     async updateArticleStatus(id: number, NewStatus: ArticleStatusType) {
       if (NewStatus === "published") {
         const published_at = new Date();
-        await articleService.updateArticleStatusPublished({
+        return await articleService.updateArticleStatusPublished({
           id,
           NewStatus,
           published_at,
         });
       }
-      await articleService.updateArticleStatus({ id, NewStatus });
+      return await articleService.updateArticleStatus({ id, NewStatus });
     },
     async updateUser(user: UpdateUser) {
       const result = await userService.updateUser(user);

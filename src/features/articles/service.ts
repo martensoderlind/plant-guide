@@ -47,7 +47,7 @@ export default function createArticlesService(
       await repository.deleteArticle(id);
     },
     async updateArticleStatusPublished(articleStatus: ArticleStatusPublished) {
-      repository.updateArticleStatusPublished(
+      return await repository.updateArticleStatusPublished(
         articleStatus.id,
         articleStatus.NewStatus,
         articleStatus.published_at
@@ -57,7 +57,10 @@ export default function createArticlesService(
       return await repository.updateArticle(updatedArticle);
     },
     async updateArticleStatus(articleStatus: ArticleStatus) {
-      repository.updateArticleStatus(articleStatus.id, articleStatus.NewStatus);
+      return repository.updateArticleStatus(
+        articleStatus.id,
+        articleStatus.NewStatus
+      );
     },
     async totalArticleCount() {
       const articleCount = await repository.getArticleCount();

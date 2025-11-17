@@ -105,20 +105,31 @@ export default function createArticlesRepository(db: Db) {
       await db.delete(articleTable).where(eq(articleTable.id, articleId));
     },
     async updateArticleStatus(articleId: number, status: ArticleStatusType) {
-      await db
+      const result = await db
         .update(articleTable)
         .set({
           status: status,
         })
         .where(eq(articleTable.id, articleId))
         .returning({ status: articleTable.status });
+      if (result.length > 0) {
+        return {
+          success: true,
+          message: "Article status updated successfully",
+        };
+      }
+      return {
+        success: false,
+        message:
+          "There was a problem with updating the article status, please try again.",
+      };
     },
     async updateArticleStatusPublished(
       articleId: number,
       status: ArticleStatusType,
       published_at: Date
     ) {
-      await db
+      const result = await db
         .update(articleTable)
         .set({
           status: status,
@@ -126,6 +137,17 @@ export default function createArticlesRepository(db: Db) {
         })
         .where(eq(articleTable.id, articleId))
         .returning({ status: articleTable.status });
+      if (result.length > 0) {
+        return {
+          success: true,
+          message: "Article status updated successfully",
+        };
+      }
+      return {
+        success: false,
+        message:
+          "There was a problem with updating the article status, please try again.",
+      };
     },
     async updateArticle(updatedArticle: UpdatedArticle) {
       const { id, ...updateData } = updatedArticle;
