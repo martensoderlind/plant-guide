@@ -6,8 +6,6 @@ import {
 } from "../articles/types";
 import { Plant } from "../plant-guides/schema";
 
-export type Plants = Plant;
-
 export type NewPlant = Omit<
   Plant,
   "id" | "created_at" | "updated_at" | "description"

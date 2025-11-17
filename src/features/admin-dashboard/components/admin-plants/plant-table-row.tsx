@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
 import { updatePlantFeaturedStatus } from "../../actions";
-import { Plants } from "../../types";
 import AdminPlantsButtons from "./admin-plants-buttons";
+import { Plant } from "@/features/plant-guides/schema";
 
 type Props = {
-  plant: Plants;
+  plant: Plant;
 };
 export default function PlantTableRow({ plant }: Props) {
   const [featureStatus, setFeatureStatus] = useState<boolean>(
