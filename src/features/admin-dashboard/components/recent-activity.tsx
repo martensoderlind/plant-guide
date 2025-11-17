@@ -1,6 +1,7 @@
 import { BookOpen, Leaf } from "lucide-react";
 
 export default function RecentActivity() {
+  // This is a placeholder component for recent activity in the admin dashboard.
   return (
     <div className="bg-white rounded-xl shadow-sm border p-6">
       <h3 className="text-lg font-semibold text-gray-900 mb-4">
