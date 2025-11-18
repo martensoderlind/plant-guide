@@ -33,6 +33,7 @@ export const authorProfilesTable = pgTable("author_profiles", {
     .references(() => usersTable.id, { onDelete: "cascade" })
     .unique(),
   bio: text("bio"),
+  slug: text("slug").notNull().unique(),
   isActive: boolean("is_active").default(true).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),

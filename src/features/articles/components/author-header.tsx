@@ -7,6 +7,9 @@ type Props = {
 
 export default async function AuthorHeader({ id }: Props) {
   const author = await articlesService.getArticleAuthor(id);
+  if (!author) {
+    return null;
+  }
   return (
     <div>
       <div className="flex items-center">

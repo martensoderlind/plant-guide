@@ -63,16 +63,22 @@ export default function createUserRepository(db: Db) {
         .from(usersTable);
       return userCount[0].count;
     },
-    async getArticleAuthor(id: string) {
-      const author = await db
+    async getArticleAuthor(authorId: string) {
+      const authorProfile = await db
         .select({
-          fullName: usersTable.fullName,
+          authorId: authorProfilesTable.id,
+          userId: usersTable.id,
           username: usersTable.username,
+          fullName: usersTable.fullName,
           avatarUrl: usersTable.avatarUrl,
         })
-        .from(usersTable)
-        .where(eq(usersTable.id, id));
-      return author[0];
+        .from(authorProfilesTable)
+        .innerJoin(usersTable, eq(authorProfilesTable.userId, usersTable.id))
+        .where(eq(authorProfilesTable.id, authorId));
+      if (authorProfile.length === 0) {
+        return undefined;
+      }
+      return authorProfile[0];
     },
     async getRoleId(role: string) {
       const roleId = await db

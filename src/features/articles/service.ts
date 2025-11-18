@@ -11,7 +11,7 @@ import { userService } from "../user/instance";
 
 export default function createArticlesService(
   db: Db,
-  getArticleAuthor: (id: string) => Promise<Author>
+  getArticleAuthor: (id: string) => Promise<Author | undefined>
 ) {
   const repository = createArticlesRepository(db);
   return {
