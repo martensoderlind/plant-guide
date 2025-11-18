@@ -86,7 +86,7 @@ export default function createUserRepository(db: Db) {
       const author = await db
         .select({ id: authorProfilesTable.id })
         .from(authorProfilesTable)
-        .where(eq(authorProfilesTable.id, authorId));
+        .where(eq(authorProfilesTable.userId, authorId));
 
       if (author.length > 0) {
         return author[0].id;
