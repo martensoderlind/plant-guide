@@ -42,7 +42,7 @@ export default function createArticlesService(
       await repository.incrementArticleViews(slug);
     },
     async addArticle(article: NewArticle) {
-      article.authorId = await userService.getAuthorId();
+      article.author_id = await userService.getAuthorId();
       return await repository.addArticle(article);
     },
     async deleteArticle(id: number) {

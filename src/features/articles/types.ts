@@ -32,7 +32,7 @@ export type NewArticle = Omit<
   | "author_id"
 > & {
   tag: string[];
-  authorId?: string;
+  author_id?: string;
 };
 
 export type UpdatedArticle = Omit<Article, "views" | "likes" | "author_id"> & {
