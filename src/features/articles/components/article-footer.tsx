@@ -30,14 +30,7 @@ export default function ArticleFooter({ article }: Props) {
         />
       </div>
       <div className="flex items-center pb-2">
-        {article.author_id && (
-          <div className="text-sm text-gray-500 flex flex-row items-center">
-            Author:
-            <span>
-              {article.author_id && <AuthorHeader id={article.author_id} />}
-            </span>
-          </div>
-        )}
+        {article.author_id && <AuthorHeader id={article.author_id} />}
       </div>
     </footer>
   );
