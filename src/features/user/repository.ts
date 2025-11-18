@@ -1,7 +1,12 @@
 import { Db } from "../../db/index";
 import { eq, sql } from "drizzle-orm";
 import { UpdateUser, User } from "./types";
-import { rolesTable, userRolesTable, usersTable } from "./schema";
+import {
+  authorProfilesTable,
+  rolesTable,
+  userRolesTable,
+  usersTable,
+} from "./schema";
 
 export default function createUserRepository(db: Db) {
   const pageSize = 6;
@@ -70,13 +75,23 @@ export default function createUserRepository(db: Db) {
       return author[0];
     },
     async getRoleId(role: string) {
-      console.log("role:", role);
       const roleId = await db
         .select({ id: rolesTable.id })
         .from(rolesTable)
         .where(eq(rolesTable.description, role));
 
       return roleId[0].id;
+    },
+    async getAuthorId(authorId: string) {
+      const author = await db
+        .select({ id: authorProfilesTable.id })
+        .from(authorProfilesTable)
+        .where(eq(authorProfilesTable.id, authorId));
+
+      if (author.length > 0) {
+        return author[0].id;
+      }
+      return undefined;
     },
     async createUser(newUser: User) {
       return await db.transaction(async (tx) => {

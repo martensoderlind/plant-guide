@@ -7,6 +7,7 @@ import {
   UpdatedArticle,
 } from "./types";
 import { Author } from "../user/types";
+import { userService } from "../user/instance";
 
 export default function createArticlesService(
   db: Db,
@@ -41,6 +42,7 @@ export default function createArticlesService(
       await repository.incrementArticleViews(slug);
     },
     async addArticle(article: NewArticle) {
+      article.authorId = await userService.getAuthorId();
       return await repository.addArticle(article);
     },
     async deleteArticle(id: number) {

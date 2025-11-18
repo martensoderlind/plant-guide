@@ -4,6 +4,7 @@ import { Db } from "@/db";
 import { userService } from "./instance";
 import createUserRepository from "./repository";
 import { NewUser, UpdateUser } from "./types";
+import { auth } from "@clerk/nextjs/server";
 
 export default function createUserService(db: Db) {
   const repository = createUserRepository(db);
@@ -56,6 +57,13 @@ export default function createUserService(db: Db) {
     async getRoleId(role: string) {
       const roleId = repository.getRoleId(role);
       return roleId;
+    },
+    async getAuthorId() {
+      const { userId } = await auth();
+      if (!userId) {
+        return undefined;
+      }
+      return await repository.getAuthorId(userId);
     },
     async updateUserRole(id: string, roleId?: string, role?: string) {
       if (roleId) {
