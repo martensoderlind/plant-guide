@@ -80,6 +80,16 @@ export default function createUserRepository(db: Db) {
       }
       return authorProfile[0];
     },
+    async getAuthorProfile(slug: string) {
+      const authorProfile = await db
+        .select()
+        .from(authorProfilesTable)
+        .where(eq(authorProfilesTable.slug, slug));
+      if (authorProfile.length > 0) {
+        return authorProfile;
+      }
+      return undefined;
+    },
     async getRoleId(role: string) {
       const roleId = await db
         .select({ id: rolesTable.id })

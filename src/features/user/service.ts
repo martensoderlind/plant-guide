@@ -29,6 +29,10 @@ export default function createUserService(db: Db) {
       const author = await repository.getArticleAuthor(id);
       return author;
     },
+    async getAuthorProfile(slug: string) {
+      const authorProfile = await repository.getAuthorProfile(slug);
+      return authorProfile;
+    },
     async createUser(newUser: NewUser) {
       const id = uuidv4();
       if (newUser.roleId !== undefined) {
