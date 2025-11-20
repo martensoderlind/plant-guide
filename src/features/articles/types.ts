@@ -35,6 +35,19 @@ export type NewArticle = Omit<
   author_id?: string;
 };
 
+export type AuthorArticleType = Pick<
+  Article,
+  | "published_at"
+  | "excerpt"
+  | "title"
+  | "category"
+  | "difficulty_level"
+  | "published_at"
+  | "slug"
+> & {
+  authorId: string;
+};
+
 export type UpdatedArticle = Omit<Article, "views" | "likes" | "author_id"> & {
   tag: string[];
 };
