@@ -8,7 +8,7 @@ type Props = {
 };
 export default function ArticleCard({ article }: Props) {
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer flex flex-col">
+    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
       <div className="relative h-48 w-full bg-gradient-to-br from-green-100 to-emerald-200">
         {article.featured_image_url ? (
           <Image

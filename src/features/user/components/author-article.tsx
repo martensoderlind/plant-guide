@@ -7,7 +7,7 @@ type Props = {
 
 export default async function AuthorArticle({ article }: Props) {
   return (
-    <li className="p-4 rounded-xl hover:shadow transition bg-gray-50">
+    <li className="p-4 bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       <h3 className="text-xl font-semibold">{article.title}</h3>
       {article.excerpt && (
         <p className="text-gray-600 mt-1">{article.excerpt}</p>
