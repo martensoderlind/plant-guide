@@ -7,6 +7,7 @@ import {
   userRolesTable,
   usersTable,
 } from "./schema";
+import { articleTable } from "../articles/schema";
 
 export default function createUserRepository(db: Db) {
   const pageSize = 6;
@@ -80,13 +81,43 @@ export default function createUserRepository(db: Db) {
       }
       return authorProfile[0];
     },
+    async getAuthorArticles(authorId: string) {
+      const authorProfile = await db
+        .select({
+          authorId: authorProfilesTable.id,
+          excerpt: articleTable.excerpt,
+          title: articleTable.title,
+          category: articleTable.category,
+          difficulty_level: articleTable.difficulty_level,
+          published_at: articleTable.published_at,
+          slug: articleTable.slug,
+        })
+        .from(authorProfilesTable)
+        .innerJoin(
+          articleTable,
+          eq(authorProfilesTable.id, articleTable.author_id)
+        )
+        .where(eq(authorProfilesTable.id, authorId));
+      if (authorProfile.length === 0) {
+        return undefined;
+      }
+      return authorProfile;
+    },
     async getAuthorProfile(slug: string) {
       const authorProfile = await db
-        .select()
+        .select({
+          authorId: authorProfilesTable.id,
+          bio: authorProfilesTable.bio,
+          userId: usersTable.id,
+          username: usersTable.username,
+          fullName: usersTable.fullName,
+          avatarUrl: usersTable.avatarUrl,
+        })
         .from(authorProfilesTable)
+        .innerJoin(usersTable, eq(authorProfilesTable.userId, usersTable.id))
         .where(eq(authorProfilesTable.slug, slug));
       if (authorProfile.length > 0) {
-        return authorProfile;
+        return authorProfile[0];
       }
       return undefined;
     },
