@@ -1,4 +1,5 @@
 import { AuthorArticleType } from "@/features/articles/types";
+import Link from "next/link";
 
 type Props = {
   article: AuthorArticleType;
@@ -18,6 +19,12 @@ export default async function AuthorArticle({ article }: Props) {
         {article.published_at && (
           <span>Published: {article.published_at.toLocaleDateString()}</span>
         )}
+        <Link
+          href={`/articles/${article.slug}`}
+          className="hover:text-gray-900 ml-auto"
+        >
+          <p>Go to article →</p>
+        </Link>
       </div>
     </li>
   );
