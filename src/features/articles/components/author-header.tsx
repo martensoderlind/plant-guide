@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { articlesService } from "../instance";
 import Image from "next/image";
 
@@ -13,7 +14,7 @@ export default async function AuthorHeader({ id }: Props) {
   return (
     <div className="text-sm text-gray-500 flex flex-row items-center">
       Author:
-      <span>
+      <Link href={`/articles/author/${author.slug}`}>
         <div className="flex items-center">
           <div className="mx-4">
             <div className="flex items-center space-x-2">
@@ -38,7 +39,7 @@ export default async function AuthorHeader({ id }: Props) {
             </div>
           )}
         </div>
-      </span>
+      </Link>
     </div>
   );
 }
