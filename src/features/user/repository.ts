@@ -71,6 +71,7 @@ export default function createUserRepository(db: Db) {
           userId: usersTable.id,
           username: usersTable.username,
           fullName: usersTable.fullName,
+          slug: authorProfilesTable.slug,
           avatarUrl: usersTable.avatarUrl,
         })
         .from(authorProfilesTable)

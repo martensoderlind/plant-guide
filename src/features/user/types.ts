@@ -28,6 +28,7 @@ export type Author = {
   fullName: string | null;
   username: string;
   avatarUrl: string | null;
+  slug: string;
 };
 type userService = ReturnType<typeof createUserService>;
 
