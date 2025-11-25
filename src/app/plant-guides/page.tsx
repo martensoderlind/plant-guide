@@ -1,4 +1,6 @@
+import ContainerFallback from "@/components/container-fallback";
 import PlantGuides from "@/features/plant-guides/components/plant-guides";
+import { Suspense } from "react";
 type Props = {
   searchParams: Promise<{ page?: string }>;
 };
@@ -9,7 +11,9 @@ export default async function Page({ searchParams }: Props) {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <PlantGuides currentPage={currentPage} />
+      <Suspense fallback={<ContainerFallback />}>
+        <PlantGuides currentPage={currentPage} />
+      </Suspense>
     </div>
   );
 }
