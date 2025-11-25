@@ -55,11 +55,23 @@ export default function createPlantGuidesRepository(db: Db) {
     },
 
     async updateFeaturedStatus(id: number, newStatus: boolean) {
-      await db
+      const result = await db
         .update(plantTable)
         .set({ is_featured: newStatus })
         .where(eq(plantTable.id, id))
         .returning();
+      if (result.length > 0) {
+        return {
+          success: true,
+          message: "status updated successfully",
+        };
+      } else {
+        return {
+          success: false,
+          message:
+            "There was a problem with updating the status in the database, please try again.",
+        };
+      }
     },
     async updatePlant(plant: Plant) {
       const { id, ...updateData } = plant;
