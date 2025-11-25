@@ -1,6 +1,6 @@
 import { Eye, Heart, Link } from "lucide-react";
 
-export default async function ArticleContainerFallback() {
+export default async function ContainerFallback() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
       {[...Array(6)].map((_, idx) => (
