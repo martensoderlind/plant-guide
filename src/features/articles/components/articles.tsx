@@ -26,8 +26,8 @@ export default async function Articles({ currentPage }: Props) {
             <ArticleContainer currentPage={currentPage} />
           </Suspense>
         </div>
-        <Pagination totalPages={totalPages(articleCount)} />
       </section>
+      <Pagination totalPages={totalPages(articleCount)} />
     </div>
   );
 }
