@@ -160,8 +160,14 @@ export default function createUserRepository(db: Db) {
       });
     },
     async deleteUser(userId: string) {
-      await db.delete(usersTable).where(eq(usersTable.id, userId));
-      return { success: true, message: "user removed." };
+      const result = await db
+        .delete(usersTable)
+        .where(eq(usersTable.id, userId))
+        .returning();
+      if (result.length > 0) {
+        return { success: true, message: "user removed." };
+      }
+      return { success: false, message: "problem deleting user" };
     },
     async updateUserRole(userId: string, newRoleId: string) {
       const roleExists = await db
