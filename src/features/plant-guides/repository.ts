@@ -30,7 +30,22 @@ export default function createPlantGuidesRepository(db: Db) {
       return result[0];
     },
     async deletePlant(PlantId: number) {
-      await db.delete(plantTable).where(eq(plantTable.id, PlantId));
+      const result = await db
+        .delete(plantTable)
+        .where(eq(plantTable.id, PlantId))
+        .returning();
+      if (result.length > 0) {
+        return {
+          success: true,
+          message: "Plant deleted successfully",
+        };
+      } else {
+        return {
+          success: false,
+          message:
+            "There was a problem deleting the plant in the database, please try again.",
+        };
+      }
     },
     async totalPlantGuideCount() {
       const plantGuideCount = await db
@@ -43,7 +58,8 @@ export default function createPlantGuidesRepository(db: Db) {
       await db
         .update(plantTable)
         .set({ is_featured: newStatus })
-        .where(eq(plantTable.id, id));
+        .where(eq(plantTable.id, id))
+        .returning();
     },
     async updatePlant(plant: Plant) {
       const { id, ...updateData } = plant;
