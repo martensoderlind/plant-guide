@@ -188,17 +188,22 @@ export default function createUserRepository(db: Db) {
       return { success: true, message: "role updated" };
     },
     async updateUser(user: UpdateUser) {
-      await db
+      const result = await db
         .update(usersTable)
         .set({
           fullName: user.fullName,
           email: user.email,
           username: user.username,
         })
-        .where(eq(usersTable.id, user.id));
-
-      // update error handling
-      return { success: true, message: "role updated" };
+        .where(eq(usersTable.id, user.id))
+        .returning();
+      if (result.length > 0) {
+        return { success: true, message: "role updated" };
+      }
+      return {
+        success: false,
+        message: "There was a problem updating the role. please try again",
+      };
     },
   };
 }
