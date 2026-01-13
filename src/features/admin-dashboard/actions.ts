@@ -73,9 +73,11 @@ export async function updateUser(user: UpdateUser) {
   });
 }
 export async function updatePlant(plant: Plant) {
-  const result = await adminDashboardService.updatePlant(plant);
-  revalidatePath("/admin-dashboard/plants");
-  return result;
+  return safeAction(async () => {
+    const result = await adminDashboardService.updatePlant(plant);
+    revalidatePath("/admin-dashboard/plants");
+    return result;
+  });
 }
 export async function updateArticle(updatedArticle: UpdatedArticle) {
   const result = await adminDashboardService.updateArticle(updatedArticle);
