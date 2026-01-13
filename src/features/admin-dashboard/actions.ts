@@ -27,9 +27,11 @@ export default async function addPlant(plant: NewPlant) {
 }
 
 export async function addArticle(article: NewArticle) {
-  const result = await adminDashboardService.addArticle(article);
-  revalidatePath("/admin-dashboard/articles");
-  return result;
+  return safeAction(async () => {
+    const result = await adminDashboardService.addArticle(article);
+    revalidatePath("/admin-dashboard/articles");
+    return result;
+  });
 }
 export async function addUser(user: NewUser) {
   const result = await adminDashboardService.addUser(user);

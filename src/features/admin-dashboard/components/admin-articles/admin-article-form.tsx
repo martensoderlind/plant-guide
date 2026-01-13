@@ -89,8 +89,10 @@ export default function AdminArticleForm() {
     };
 
     const result = await addArticle(article);
-
-    if (result.success) {
+    if (!result.ok) {
+      info(result.error.message, "follow the instructions in the form.");
+      return;
+    } else if (result.data.success) {
       setNewArticle({
         title: "",
         slug: "",
@@ -107,11 +109,11 @@ export default function AdminArticleForm() {
         tags: [],
         currentTag: "",
       });
-      success("Success!", result.message);
+      success("Success!", result.data.message);
       setIsAddingArticle(false);
     } else {
-      info("Validation Error.", result.message);
-      setErrors(result.error);
+      info("Validation Error.", result.data.message);
+      setErrors(result.data.error);
     }
   };
 
