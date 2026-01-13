@@ -53,14 +53,14 @@ export default function Header() {
             >
               Articles
             </Link>
-            <Link
+            {/* <Link
               href={"/tools"}
               className={`text-gray-200 hover:text-emerald-400 transition-colors ${
                 isActive("/tools") && "border-b border-b-gray-200 border-solid"
               } `}
             >
               Tools
-            </Link>
+            </Link> */}
             <Link
               href={"/about-us"}
               className={`text-gray-200 hover:text-emerald-400 transition-colors ${
