@@ -1,7 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { Db } from "@/db";
 
-import { userService } from "./instance";
 import createUserRepository from "./repository";
 import { NewUser, UpdateUser } from "./types";
 import { auth } from "@clerk/nextjs/server";
@@ -50,7 +49,7 @@ export default function createUserService(db: Db) {
         if (!newUser.role) {
           newUser.role = "USER";
         }
-        const roleId = await userService.getRoleId(newUser.role);
+        const roleId = await this.getRoleId(newUser.role);
         const result = await repository.createUser({
           ...newUser,
           id,

@@ -1,6 +1,6 @@
 import { Service } from "./types";
 import { auth } from "@clerk/nextjs/server";
-import { userService } from "../user/instance";
+import { insecureUserService } from "../user/instance";
 import { iamService } from "./instance";
 import { AccessDeniedError } from "../../shared/errors/access";
 
@@ -19,7 +19,7 @@ export function securedService<
       const { userId } = await auth();
       const roles: string[] = ["GUEST"];
       if (userId) {
-        const identityRoles = await userService.getUserRole(userId);
+        const identityRoles = await insecureUserService.getUserRole(userId);
         if (identityRoles) {
           roles.push(identityRoles);
         }
@@ -27,7 +27,6 @@ export function securedService<
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const hasAccess = await iamService.checkAccess(permission as any, roles);
       if (!hasAccess) {
-        //update to proper error handling
         console.warn("Access denied", {
           permission,
           featureName,
