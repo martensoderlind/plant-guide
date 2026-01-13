@@ -153,7 +153,7 @@ export default function EditUserForm({ user, setEditFormOpen }: Props) {
       <ToastContainer
         toasts={toasts}
         onRemove={removeToast}
-        position="bottom-right"
+        position="top-right"
       />
     </>
   );
