@@ -2,7 +2,7 @@ import { articlesService } from "../instance";
 import ArticleFooter from "./article-footer";
 import Image from "next/image";
 import ArticleInfo from "./article-info";
-import { RenderContent } from "../../../components/render-content";
+import { RenderContent } from "../../../shared/components/render-content";
 import ArticleHeader from "./article-header";
 import ArticleFallback from "./article-fallback";
 

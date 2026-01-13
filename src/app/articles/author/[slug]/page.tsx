@@ -1,4 +1,4 @@
-import Container from "@/components/container";
+import Container from "@/shared/components/container";
 import AuthorProfile from "@/features/user/components/author-profile";
 
 export default async function Page({

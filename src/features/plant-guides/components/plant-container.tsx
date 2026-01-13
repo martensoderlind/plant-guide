@@ -1,4 +1,4 @@
-import Pagination from "@/components/pagination";
+import Pagination from "@/shared/components/pagination";
 import { Plant } from "../schema";
 import PlantCard from "./plant-card";
 

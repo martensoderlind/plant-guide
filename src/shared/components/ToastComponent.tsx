@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Toast, ToastType } from "../../hooks/toast-types";
+import { Toast, ToastType } from "../../../hooks/toast-types";
 
 type Props = {
   toast: Toast;

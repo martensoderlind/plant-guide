@@ -1,4 +1,4 @@
-import Container from "@/components/container";
+import Container from "@/shared/components/container";
 import Article from "@/features/articles/components/article";
 
 export default async function Page({

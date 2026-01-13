@@ -1,4 +1,4 @@
-import ContainerFallback from "@/components/container-fallback";
+import ContainerFallback from "@/shared/components/container-fallback";
 import PlantGuides from "@/features/plant-guides/components/plant-guides";
 import { Suspense } from "react";
 type Props = {

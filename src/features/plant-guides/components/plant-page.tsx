@@ -1,7 +1,7 @@
 import PlantPageHeader from "./plant-page-header";
 import PlantPageCareInformation from "./plant-page-care-information";
 import { plantGuidesService } from "../instance";
-import { RenderContent } from "@/components/render-content";
+import { RenderContent } from "@/shared/components/render-content";
 import PlantPageFallback from "./plant-page-fallback";
 
 type Props = {

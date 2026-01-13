@@ -1,4 +1,4 @@
-import Container from "@/components/container";
+import Container from "@/shared/components/container";
 import PlantGuidePageFallback from "@/features/plant-guides/components/plant-guide-page-fallback";
 import PlantPage from "@/features/plant-guides/components/plant-page";
 import { Suspense } from "react";

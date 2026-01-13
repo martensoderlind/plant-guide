@@ -1,5 +1,5 @@
 import React from "react";
-import { Toast } from "../../hooks/toast-types";
+import { Toast } from "../../../hooks/toast-types";
 import { ToastComponent } from "./ToastComponent";
 
 interface Props {
