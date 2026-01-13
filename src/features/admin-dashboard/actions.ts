@@ -101,6 +101,12 @@ export async function getArticleCount() {
     return articleCount;
   });
 }
+export async function getAllUsers(currentPage: number) {
+  return safeAction(async () => {
+    const users = await adminDashboardService.getAllUsers(currentPage);
+    return users;
+  });
+}
 
 // Tag management actions
 export async function getAllTags() {

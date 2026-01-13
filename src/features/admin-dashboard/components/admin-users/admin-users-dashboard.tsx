@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import AdminDashboardFallback from "../admin-dashboard-fallback";
 import Pagination from "@/shared/components/pagination";
 import { getUserCount, getUserRoles } from "../../actions";
+import ErrorMessage from "@/shared/components/error";
 
 type Props = {
   currentPage: number;
@@ -14,10 +15,13 @@ export default async function AdminUserDashboard({ currentPage }: Props) {
   const userCount = await getUserCount();
 
   if (roles.ok === false || userCount.ok === false) {
-    return <div>Could not load data</div>;
+    if (roles.ok === false) {
+      return <ErrorMessage message={roles.error.message} />;
+    }
+    if (userCount.ok === false) {
+      return <ErrorMessage message={userCount.error.message} />;
+    }
   }
-  console.log("USER COUNT:", userCount.data);
-  console.log("ROLES:", roles.data);
 
   const totalPages = (totalPlants: number) => {
     if (totalPlants % 6 === 0) {

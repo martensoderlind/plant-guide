@@ -1,4 +1,5 @@
-import { adminDashboardService } from "../../instance";
+import ErrorMessage from "@/shared/components/error";
+import { getAllUsers } from "../../actions";
 import AdminUserRow from "./admin-user-row";
 
 type Props = {
@@ -10,7 +11,11 @@ export default async function AdminUserContainer({
   currentPage,
   userCount,
 }: Props) {
-  const users = await adminDashboardService.getAllUsers(currentPage);
+  const users = await getAllUsers(currentPage);
+
+  if (users.ok === false) {
+    return <ErrorMessage message={users.error.message} />;
+  }
 
   return (
     <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
@@ -38,7 +43,7 @@ export default async function AdminUserContainer({
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {users.map((user, idx) => (
+            {users.data.map((user, idx) => (
               <AdminUserRow key={idx} user={user} />
             ))}
           </tbody>
