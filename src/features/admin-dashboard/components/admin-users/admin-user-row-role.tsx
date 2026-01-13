@@ -3,7 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { updateUserRole } from "../../actions";
 import { useToast } from "../../../../../hooks/toast";
-import ToastContainer from "@/components/ToastContainer";
+import ToastContainer from "@/shared/components/ToastContainer";
 
 type UserRole = "USER" | "ADMIN" | "AUTHOR" | "MODERATOR";
 
