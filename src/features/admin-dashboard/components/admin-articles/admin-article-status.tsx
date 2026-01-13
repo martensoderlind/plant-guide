@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
-import ToastContainer from "@/components/ToastContainer";
+import ToastContainer from "@/shared/components/ToastContainer";
 import { useToast } from "../../../../../hooks/toast";
 import AdminArticleOptionButton from "./admin-article-option-button";
 import { updateStatus } from "../../actions";

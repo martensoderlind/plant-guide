@@ -5,14 +5,17 @@ import { NewPlant, NewArticle } from "./types";
 import { ArticleStatusEnums, UpdatedArticle } from "../articles/types";
 import { NewUser, UpdateUser } from "../user/types";
 import { Plant } from "../plant-guides/schema";
+import { safeAction } from "@/shared/actions/safeActions";
 
 export async function getAllPlantGuides(currentPage: number) {
   const plants = await adminDashboardService.getAllPlants(currentPage);
   return plants;
 }
 export async function getAllArticles(currentPage: number) {
-  const plants = await adminDashboardService.getAllArticles(currentPage);
-  return plants;
+  return safeAction(async () => {
+    const plants = await adminDashboardService.getAllArticles(currentPage);
+    return plants;
+  });
 }
 
 export default async function addPlant(plant: NewPlant) {
@@ -78,6 +81,25 @@ export async function updatePlantFeaturedStatus(
 ) {
   await adminDashboardService.updatePlantFeaturedStatus(id, newStatus);
   revalidatePath("/admin-dashboard/plant-guides");
+}
+
+export async function getUserRoles() {
+  return safeAction(async () => {
+    const roles = await adminDashboardService.getUserRoles();
+    return roles;
+  });
+}
+export async function getUserCount() {
+  return safeAction(async () => {
+    const userCount = await adminDashboardService.getUserCount();
+    return userCount;
+  });
+}
+export async function getArticleCount() {
+  return safeAction(async () => {
+    const articleCount = await adminDashboardService.getArticleCount();
+    return articleCount;
+  });
 }
 
 // Tag management actions

@@ -1,15 +1,21 @@
 import { Suspense } from "react";
 import ArticleContainer from "./article-container";
-import Pagination from "@/components/pagination";
-import { articlesService } from "../instance";
-import ContainerFallback from "../../../components/container-fallback";
+import Pagination from "@/shared/components/pagination";
+import ContainerFallback from "../../../shared/components/container-fallback";
+import { getArticleCount } from "../action";
 
 type Props = {
   currentPage: number;
 };
 
 export default async function Articles({ currentPage }: Props) {
-  const articleCount = await articlesService.getArticleCount();
+  const articleCount = await getArticleCount();
+
+  if (articleCount.ok === false) {
+    return (
+      <div className="text-center text-red-500">Failed to load articles.</div>
+    );
+  }
   const totalPages = (totalPlants: number) => {
     if (totalPlants % 6 === 0) {
       return totalPlants / 6;
@@ -27,7 +33,7 @@ export default async function Articles({ currentPage }: Props) {
           </Suspense>
         </div>
       </section>
-      <Pagination totalPages={totalPages(articleCount)} />
+      <Pagination totalPages={totalPages(articleCount.data)} />
     </div>
   );
 }

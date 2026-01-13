@@ -3,7 +3,7 @@
 import { Plus, Save, X } from "lucide-react";
 import { useState } from "react";
 import { addUser } from "../../actions";
-import ToastContainer from "@/components/ToastContainer";
+import ToastContainer from "@/shared/components/ToastContainer";
 import { useToast } from "../../../../../hooks/toast";
 import { NewUser, Roles } from "@/features/user/types";
 

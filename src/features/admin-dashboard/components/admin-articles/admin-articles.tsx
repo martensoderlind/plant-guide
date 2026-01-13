@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import AdminArticleContainer from "./admin-article-container";
 import AdminArticleForm from "./admin-article-form";
 import AdminDashboardFallback from "../admin-dashboard-fallback";
-import Pagination from "@/components/pagination";
+import Pagination from "@/shared/components/pagination";
 
 type Props = {
   currentPage: number;

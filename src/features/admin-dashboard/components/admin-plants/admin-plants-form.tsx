@@ -10,7 +10,7 @@ import {
   plantCategoryEnum,
 } from "../../../plant-guides/schema";
 import { useToast } from "../../../../../hooks/toast";
-import ToastContainer from "@/components/ToastContainer";
+import ToastContainer from "@/shared/components/ToastContainer";
 import { NewPlant } from "../../types";
 import addPlant from "../../actions";
 import TiptapEditor from "../admin-articles/tiptap-editor";

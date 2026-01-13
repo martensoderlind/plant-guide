@@ -2,7 +2,7 @@
 import { Edit3, Trash2 } from "lucide-react";
 import { deleteUser } from "../../actions";
 import { useToast } from "../../../../../hooks/toast";
-import ToastContainer from "@/components/ToastContainer";
+import ToastContainer from "@/shared/components/ToastContainer";
 import { useState } from "react";
 import EditUserForm from "./edit-user-form";
 import { User } from "@/features/user/types";

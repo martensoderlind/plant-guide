@@ -3,7 +3,7 @@ import AdminDashboardPlantContainer from "../admin-dashboard-plant-container";
 import AdminPlantForm from "./admin-plants-form";
 import AdminDashboardFallback from "../admin-dashboard-fallback";
 import { adminDashboardService } from "../../instance";
-import Pagination from "../../../../components/pagination";
+import Pagination from "../../../../shared/components/pagination";
 
 type Props = {
   currentPage: number;

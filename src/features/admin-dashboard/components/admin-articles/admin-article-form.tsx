@@ -10,7 +10,7 @@ import {
   articleStatusEnum,
 } from "../../../articles/schema";
 import { useToast } from "../../../../../hooks/toast";
-import ToastContainer from "@/components/ToastContainer";
+import ToastContainer from "@/shared/components/ToastContainer";
 import TiptapEditor from "./tiptap-editor";
 import {
   ArticleCategoryEnums,

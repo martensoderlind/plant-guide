@@ -1,17 +1,24 @@
 import AdminUserContainer from "./admin-user-container";
 import AdminUserForm from "./admin-user-form";
-import { adminDashboardService } from "../../instance";
 import { Suspense } from "react";
 import AdminDashboardFallback from "../admin-dashboard-fallback";
-import Pagination from "@/components/pagination";
+import Pagination from "@/shared/components/pagination";
+import { getUserCount, getUserRoles } from "../../actions";
 
 type Props = {
   currentPage: number;
 };
 
 export default async function AdminUserDashboard({ currentPage }: Props) {
-  const roles = await adminDashboardService.getUserRoles();
-  const userCount = await adminDashboardService.getUserCount();
+  const roles = await getUserRoles();
+  const userCount = await getUserCount();
+
+  if (roles.ok === false || userCount.ok === false) {
+    return <div>Could not load data</div>;
+  }
+  console.log("USER COUNT:", userCount.data);
+  console.log("ROLES:", roles.data);
+
   const totalPages = (totalPlants: number) => {
     if (totalPlants % 6 === 0) {
       return totalPlants / 6;
@@ -21,7 +28,7 @@ export default async function AdminUserDashboard({ currentPage }: Props) {
   };
   return (
     <div className="space-y-6">
-      <AdminUserForm roles={roles} />
+      <AdminUserForm roles={roles.data} />
       <Suspense
         fallback={
           <AdminDashboardFallback
@@ -31,9 +38,12 @@ export default async function AdminUserDashboard({ currentPage }: Props) {
           />
         }
       >
-        <AdminUserContainer currentPage={currentPage} userCount={userCount} />
+        <AdminUserContainer
+          currentPage={currentPage}
+          userCount={userCount.data}
+        />
       </Suspense>
-      <Pagination totalPages={totalPages(userCount)} />
+      <Pagination totalPages={totalPages(userCount.data)} />
     </div>
   );
 }
