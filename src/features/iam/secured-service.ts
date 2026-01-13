@@ -2,6 +2,7 @@ import { Service } from "./types";
 import { auth } from "@clerk/nextjs/server";
 import { userService } from "../user/instance";
 import { iamService } from "./instance";
+import { AccessDeniedError } from "../../shared/errors/access";
 
 export function securedService<
   TFeatureService extends string,
@@ -27,8 +28,14 @@ export function securedService<
       const hasAccess = await iamService.checkAccess(permission as any, roles);
       if (!hasAccess) {
         //update to proper error handling
-        console.log("Access Denied:", serviceMethodName, methodName);
-        throw new Error("Access Denied");
+        console.warn("Access denied", {
+          permission,
+          featureName,
+          methodName,
+          userId,
+          roles,
+        });
+        throw new AccessDeniedError({ kind: "UNAUTHORIZED", permission });
       }
       return service[methodName](args);
     }
