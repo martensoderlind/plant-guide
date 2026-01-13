@@ -34,10 +34,12 @@ export async function addArticle(article: NewArticle) {
   });
 }
 export async function addUser(user: NewUser) {
-  const result = await adminDashboardService.addUser(user);
-  console.log("error:", result);
-  revalidatePath("/admin-dashboard/users");
-  return result;
+  return safeAction(async () => {
+    const result = await adminDashboardService.addUser(user);
+    console.log("error:", result);
+    revalidatePath("/admin-dashboard/users");
+    return result;
+  });
 }
 
 export async function deletePlant(id: number) {

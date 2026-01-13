@@ -34,8 +34,9 @@ export default function AdminArticleForm({ roles }: Props) {
     };
 
     const result = await addUser(user);
-
-    if (result.success) {
+    if (!result.ok) {
+      info(result.error.message, "follow the instructions in the form.");
+    } else if (result.data.success) {
       setNewUser({
         email: "",
         username: "",
@@ -44,11 +45,11 @@ export default function AdminArticleForm({ roles }: Props) {
         role: "User",
         roleId: undefined,
       });
-      success("Success", result.message);
+      success("Success", result.data.message);
       setIsAddingUser(false);
     } else {
-      info("Validation problem", result.message);
-      setErrors(result.error);
+      info("Validation problem", result.data.message);
+      setErrors(result.data.error);
     }
   };
 
