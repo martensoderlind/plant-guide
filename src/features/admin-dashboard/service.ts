@@ -1,6 +1,11 @@
 import { Db } from "@/db";
 import { NewPlant, NewArticle } from "./types";
-import { plantSchema, articleSchema, newUserSchema } from "./validate";
+import {
+  plantSchema,
+  articleSchema,
+  newUserSchema,
+  updatedUserSchema,
+} from "./validate";
 import {
   ArticleService,
   ArticleStatusEnums,
@@ -117,8 +122,22 @@ export default function createAdminDashboardService(
       return await articleService.updateArticleStatus({ id, NewStatus });
     },
     async updateUser(user: UpdateUser) {
-      const result = await userService.updateUser(user);
-      return result;
+      const validatedUser = updatedUserSchema.safeParse(user);
+      if (validatedUser.success) {
+        const result = await userService.updateUser(user);
+        return {
+          success: true,
+          message: result.message,
+          error: { "": "" },
+        };
+      } else {
+        const errors = formatErrors(validatedUser.error._zod.def);
+        return {
+          success: false,
+          message: "Follow the instructions in the form.",
+          error: errors,
+        };
+      }
     },
     async updatePlant(plant: Plant) {
       const validatedPlant = plantSchema.safeParse(plant);

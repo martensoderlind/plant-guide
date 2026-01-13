@@ -43,24 +43,34 @@ export async function addUser(user: NewUser) {
 }
 
 export async function deletePlant(id: number) {
-  await adminDashboardService.deletePlant(id);
-  revalidatePath("/admin-dashboard/plants");
+  return safeAction(async () => {
+    await adminDashboardService.deletePlant(id);
+    revalidatePath("/admin-dashboard/plants");
+  });
 }
 
 export async function deleteArticle(id: number) {
-  await adminDashboardService.deleteArticle(id);
-  revalidatePath("/admin-dashboard/articles");
+  return safeAction(async () => {
+    await adminDashboardService.deleteArticle(id);
+    revalidatePath("/admin-dashboard/articles");
+  });
 }
 export async function deleteUser(id: string) {
-  const result = await adminDashboardService.deleteUser(id);
-  revalidatePath("/admin-dashboard/users");
-  return result;
+  return safeAction(async () => {
+    const result = await adminDashboardService.deleteUser(id);
+    revalidatePath("/admin-dashboard/users");
+    return result;
+  });
 }
 
 export async function updateUser(user: UpdateUser) {
-  const result = await adminDashboardService.updateUser(user);
-  revalidatePath("/admin-dashboard/users");
-  return result;
+  return safeAction(async () => {
+    const result = await adminDashboardService.updateUser(user);
+    if (result.success) {
+      revalidatePath("/admin-dashboard/users");
+    }
+    return result;
+  });
 }
 export async function updatePlant(plant: Plant) {
   const result = await adminDashboardService.updatePlant(plant);
