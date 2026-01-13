@@ -59,8 +59,9 @@ export default function AdminPlantForm() {
     };
 
     const result = await addPlant(plant);
-
-    if (result.success) {
+    if (!result.ok) {
+      info(result.error.message, "follow the instructions in the form.");
+    } else if (result.data.success) {
       setNewPlant({
         name: "",
         slug: "",
@@ -76,11 +77,11 @@ export default function AdminPlantForm() {
         humidity_preference: "medium" as const,
         plant_category: "indoor plant" as const,
       });
-      success("Success!", result.message);
+      success("Success!", result.data.message);
       setIsAddingPlant(false);
     } else {
-      info(result.message, "follow the instructions in the form.");
-      setErrors(result.error);
+      info(result.data.message, "follow the instructions in the form.");
+      setErrors(result.data.error);
     }
   };
 

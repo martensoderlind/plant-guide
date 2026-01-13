@@ -19,10 +19,13 @@ export async function getAllArticles(currentPage: number) {
 }
 
 export default async function addPlant(plant: NewPlant) {
-  const message = await adminDashboardService.addPlant(plant);
-  revalidatePath("/admin-dashboard/plants");
-  return message;
+  return safeAction(async () => {
+    const message = await adminDashboardService.addPlant(plant);
+    revalidatePath("/admin-dashboard/plants");
+    return message;
+  });
 }
+
 export async function addArticle(article: NewArticle) {
   const result = await adminDashboardService.addArticle(article);
   revalidatePath("/admin-dashboard/articles");
