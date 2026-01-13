@@ -110,7 +110,10 @@ export async function getAllUsers(currentPage: number) {
 
 // Tag management actions
 export async function getAllTags() {
-  return await adminDashboardService.getAllTags();
+  return safeAction(async () => {
+    const tags = await adminDashboardService.getAllTags();
+    return tags;
+  });
 }
 export async function getArticleTags(id: number) {
   return await adminDashboardService.getArticleTags(id);

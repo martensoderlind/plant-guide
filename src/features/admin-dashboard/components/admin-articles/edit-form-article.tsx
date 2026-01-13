@@ -67,7 +67,11 @@ export default function EditArticleForm({ article, setEditFormOpen }: Props) {
           currentTag: "",
         });
         const tags = await getAllTags();
-        setAvailableTags(tags);
+        if (tags.ok === false) {
+          setAvailableTags([]);
+          return;
+        }
+        setAvailableTags(tags.data);
       } catch (error) {
         console.error("Failed to load tags:", error);
       }

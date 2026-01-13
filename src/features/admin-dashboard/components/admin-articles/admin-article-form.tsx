@@ -55,12 +55,12 @@ export default function AdminArticleForm() {
 
   useEffect(() => {
     const loadTags = async () => {
-      try {
-        const tags = await getAllTags();
-        setAvailableTags(tags);
-      } catch (error) {
-        console.error("Failed to load tags:", error);
+      const tags = await getAllTags();
+      if (tags.ok === false) {
+        setAvailableTags([]);
+        return;
       }
+      setAvailableTags(tags.data);
     };
     loadTags();
   }, []);
