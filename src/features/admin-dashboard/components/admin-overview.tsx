@@ -73,7 +73,7 @@ export default async function AdminOverview() {
             <div>
               <p className="text-sm font-medium text-gray-600">Total Views</p>
               <p className="text-3xl font-bold text-gray-900">
-                {articleViews.toLocaleString()}
+                {articleViews.data.toLocaleString()}
               </p>
             </div>
             <TrendingUp className="h-12 w-12 text-purple-500" />
