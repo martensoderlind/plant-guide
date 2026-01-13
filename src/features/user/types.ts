@@ -10,6 +10,7 @@ export type User = {
   role?: string;
   created_at?: Date;
 };
+
 export type NewUser = Omit<User, "id" | "created_at" | "roleId"> & {
   roleId?: string;
 };
@@ -30,6 +31,7 @@ export type Author = {
   avatarUrl: string | null;
   slug: string;
 };
+
 type userService = ReturnType<typeof createUserService>;
 
 export type UserService = {
