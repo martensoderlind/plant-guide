@@ -45,12 +45,18 @@ export default function AdminArticleStatus({ id, status }: Props) {
 
   async function updateArticleStatus(newStatus: ArticleStatusEnums) {
     const result = await updateStatus(id, newStatus);
-    if (!result.success) {
+    if (!result.ok) {
+      info(
+        result.error?.message,
+        "An error occurred while updating the article status."
+      );
+    } else if (!result.data.success) {
       info("There was an error updating the article status.");
+    } else {
+      setCurrentStatus(newStatus);
+      setToggleMenu(false);
+      success("Article status updated successfully.");
     }
-    setCurrentStatus(newStatus);
-    setToggleMenu(false);
-    success("Article status updated successfully.");
   }
 
   useEffect(() => {

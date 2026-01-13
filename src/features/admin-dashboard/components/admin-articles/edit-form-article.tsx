@@ -119,7 +119,10 @@ export default function EditArticleForm({ article, setEditFormOpen }: Props) {
     } else if (result.data.success) {
       setEditFormOpen(false);
     } else {
-      info(result.data.message, "Follow the instructions in the form.");
+      info(
+        result.data.message,
+        "An error occurred while updating the article."
+      );
       setErrors(result.data.error);
     }
   }

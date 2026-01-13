@@ -87,9 +87,14 @@ export async function updateArticle(updatedArticle: UpdatedArticle) {
   });
 }
 export async function updateStatus(id: number, newStatus: ArticleStatusEnums) {
-  const result = await adminDashboardService.updateArticleStatus(id, newStatus);
-  revalidatePath("/admin-dashboard/articles");
-  return result;
+  return safeAction(async () => {
+    const result = await adminDashboardService.updateArticleStatus(
+      id,
+      newStatus
+    );
+    revalidatePath("/admin-dashboard/articles");
+    return result;
+  });
 }
 export async function updateUserRole(id: string, newRole: string) {
   const result = await adminDashboardService.updateUserRole(id, newRole);
