@@ -80,9 +80,11 @@ export async function updatePlant(plant: Plant) {
   });
 }
 export async function updateArticle(updatedArticle: UpdatedArticle) {
-  const result = await adminDashboardService.updateArticle(updatedArticle);
-  revalidatePath("/admin-dashboard/plants");
-  return result;
+  return safeAction(async () => {
+    const result = await adminDashboardService.updateArticle(updatedArticle);
+    revalidatePath("/admin-dashboard/plants");
+    return result;
+  });
 }
 export async function updateStatus(id: number, newStatus: ArticleStatusEnums) {
   const result = await adminDashboardService.updateArticleStatus(id, newStatus);
