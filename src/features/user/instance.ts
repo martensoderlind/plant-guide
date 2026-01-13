@@ -4,4 +4,4 @@ import { securedService } from "../iam/secured-service";
 
 export const insecureUserService = createUserService(db);
 
-export const userService = securedService("user", insecureUserService);
+export const userService = securedService("users", insecureUserService);
