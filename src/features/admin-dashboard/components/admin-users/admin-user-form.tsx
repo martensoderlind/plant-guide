@@ -35,7 +35,6 @@ export default function AdminArticleForm({ roles }: Props) {
 
     const result = await addUser(user);
 
-    console.log("result:", result);
     if (result.success) {
       setNewUser({
         email: "",
