@@ -107,6 +107,25 @@ export async function getAllUsers(currentPage: number) {
     return users;
   });
 }
+export async function getPlantGuideCount() {
+  return safeAction(async () => {
+    const plantGuideCount = await adminDashboardService.getPlantGuideCount();
+    return plantGuideCount;
+  });
+}
+export async function getPublishedArticleCount() {
+  return safeAction(async () => {
+    const publishedArticleCount =
+      await adminDashboardService.getPublishedArticleCount();
+    return publishedArticleCount;
+  });
+}
+export async function getArticleViews() {
+  return safeAction(async () => {
+    const articleViews = await adminDashboardService.getArticleViews();
+    return articleViews;
+  });
+}
 
 // Tag management actions
 export async function getAllTags() {
