@@ -107,8 +107,14 @@ export async function updatePlantFeaturedStatus(
   id: number,
   newStatus: boolean
 ) {
-  await adminDashboardService.updatePlantFeaturedStatus(id, newStatus);
-  revalidatePath("/admin-dashboard/plant-guides");
+  return safeAction(async () => {
+    await adminDashboardService.updatePlantFeaturedStatus(id, newStatus);
+    revalidatePath("/admin-dashboard/plant-guides");
+    return {
+      success: true,
+      message: "Plant featured status updated successfully",
+    };
+  });
 }
 
 export async function getUserRoles() {

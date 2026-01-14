@@ -11,9 +11,10 @@ export default function PlantTableRow({ plant }: Props) {
   const [featureStatus, setFeatureStatus] = useState<boolean>(
     plant.is_featured
   );
+
   function updateFeatureStatus() {
-    setFeatureStatus(!featureStatus);
     updatePlantFeaturedStatus(plant.id, plant.is_featured);
+    setFeatureStatus(!featureStatus);
   }
   return (
     <tr key={plant.id} className="hover:bg-gray-50">
