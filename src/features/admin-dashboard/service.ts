@@ -176,7 +176,15 @@ export default function createAdminDashboardService(
       }
     },
     async updateUserRole(id: string, newRole: string) {
-      const result = await userService.updateUserRole(id, undefined, newRole);
+      console.log("AdminDashboardService: updateUserRole called with", {
+        id,
+        newRole,
+      });
+      const result = await userService.updateUserRole({
+        id,
+        roleId: undefined,
+        role: newRole,
+      });
       return result;
     },
     async updatePlantFeaturedStatus(id: number, status: boolean) {

@@ -50,15 +50,16 @@ export default function AdminUserRowRole({ id, role }: Props) {
     setCurrentStatus(newRole);
 
     const result = await updateUserRole(id, newRole);
+    console.log("Update role result:", result);
     if (!result.ok) {
       info(
         result.error.message,
         "An error occurred while updating the user role."
       );
-    } else if (result.data?.success) {
+    } else if (result.data.success) {
       success("Success!", result.data.message);
     } else {
-      info("Unsuccessful!", result.data?.message);
+      info("Unsuccessful!", result.data.message);
     }
   }
 

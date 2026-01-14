@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Db } from "@/db";
 
 import createUserRepository from "./repository";
-import { NewUser, UpdateUser } from "./types";
+import { NewUser, RoleInfo, UpdateUser } from "./types";
 import { auth } from "@clerk/nextjs/server";
 
 export default function createUserService(db: Db) {
@@ -73,16 +73,21 @@ export default function createUserService(db: Db) {
       }
       return await repository.getAuthorId(userId);
     },
-    async updateUserRole(id: string, roleId?: string, role?: string) {
-      if (roleId) {
-        const result = await repository.updateUserRole(id, roleId);
+    async updateUserRole(roleInfo: RoleInfo) {
+      console.log("Updating user role:", roleInfo.roleId, roleInfo.role);
+      if (roleInfo.roleId) {
+        const result = await repository.updateUserRole(
+          roleInfo.id,
+          roleInfo.roleId
+        );
         return result;
       }
-      if (role) {
-        const roleId = await repository.getRoleId(role);
-        const result = await repository.updateUserRole(id, roleId);
+      if (roleInfo.role) {
+        const roleId = await repository.getRoleId(roleInfo.role);
+        const result = await repository.updateUserRole(roleInfo.id, roleId);
         return result;
       }
+      return { success: false, message: "No roleId or role provided" };
     },
     async updateUser(user: UpdateUser) {
       const result = await repository.updateUser(user);

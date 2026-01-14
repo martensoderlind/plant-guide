@@ -32,6 +32,12 @@ export type Author = {
   slug: string;
 };
 
+export type RoleInfo = {
+  id: string;
+  roleId?: string;
+  role?: string;
+};
+
 type userService = ReturnType<typeof createUserService>;
 
 export type UserService = {
