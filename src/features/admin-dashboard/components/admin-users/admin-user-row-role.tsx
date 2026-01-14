@@ -48,11 +48,17 @@ export default function AdminUserRowRole({ id, role }: Props) {
   async function selectStatus(newRole: UserRole) {
     setToggleMenu(false);
     setCurrentStatus(newRole);
+
     const result = await updateUserRole(id, newRole);
-    if (result?.success) {
-      success("Success!", result.message);
+    if (!result.ok) {
+      info(
+        result.error.message,
+        "An error occurred while updating the user role."
+      );
+    } else if (result.data?.success) {
+      success("Success!", result.data.message);
     } else {
-      info("Unsuccessful!", result?.message);
+      info("Unsuccessful!", result.data?.message);
     }
   }
 

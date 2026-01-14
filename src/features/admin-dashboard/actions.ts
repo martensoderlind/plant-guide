@@ -97,9 +97,11 @@ export async function updateStatus(id: number, newStatus: ArticleStatusEnums) {
   });
 }
 export async function updateUserRole(id: string, newRole: string) {
-  const result = await adminDashboardService.updateUserRole(id, newRole);
-  revalidatePath("/admin-dashboard/users");
-  return result;
+  return safeAction(async () => {
+    const result = await adminDashboardService.updateUserRole(id, newRole);
+    revalidatePath("/admin-dashboard/users");
+    return result;
+  });
 }
 export async function updatePlantFeaturedStatus(
   id: number,
