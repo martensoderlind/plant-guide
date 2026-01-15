@@ -4,7 +4,7 @@ export default function ContainerR({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="max-w-4xl mx-auto overflow-hidden text-gray-800">
+    <div className="max-w-6xl mx-auto overflow-hidden text-gray-800">
       {children}
     </div>
   );

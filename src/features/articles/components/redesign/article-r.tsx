@@ -32,7 +32,7 @@ export default async function ArticleR({ slug }: Prop) {
       )}
       <div className="flex flex-row">
         <ArticleInfoR article={article} />
-        <article className="max-w-3xl mx-auto flex-1">
+        <article className="max-w-3xl">
           <section className="border-b border-gray-200">
             {article.excerpt && (
               <p className="text-lg mb-4 leading-relaxed text-gray-500">
