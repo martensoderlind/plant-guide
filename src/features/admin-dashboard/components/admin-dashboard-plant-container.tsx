@@ -13,24 +13,24 @@ export default async function AdminDashboardPlantContainer({
   return (
     <div className="overflow-x-auto rounded-xl shadow-sm border">
       <table className="w-full">
-        <thead className="bg-gray-50">
+        <thead className="bg-gray-50 font-semibold">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs text-gray-700 uppercase tracking-wider">
               Plant
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs text-gray-700 uppercase tracking-wider">
               Care Level
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs text-gray-700 uppercase tracking-wider">
               Light
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs text-gray-700 uppercase tracking-wider">
               Water Frequency
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs text-gray-700 uppercase tracking-wider">
               Featured
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs text-gray-700 uppercase tracking-wider">
               Actions
             </th>
           </tr>
