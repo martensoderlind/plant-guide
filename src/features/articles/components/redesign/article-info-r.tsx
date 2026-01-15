@@ -1,0 +1,41 @@
+import { Clock, Eye } from "lucide-react";
+import { Article } from "../../schema";
+import ArticleLikeButton from "../article-like-button";
+import AuthorHeaderR from "./author-header-r";
+import ArticleMetric from "./article-metrics";
+
+type Props = {
+  article: Article;
+};
+
+export default function ArticleInfoR({ article }: Props) {
+  const date = article.updated_at
+    ? new Date(article.updated_at)
+    : new Date(article.created_at);
+  return (
+    <aside className="w-1/4 pr-8 hidden lg:block">
+      <div>
+        {article.author_id && (
+          <AuthorHeaderR id={article.author_id} updated_at={date} />
+        )}
+      </div>
+      <div className="mb-4 text-sm text-gray-500 my-2">
+        <ArticleMetric
+          header="Reading time"
+          text={`${article.reading_time_minutes} min`}
+          icon={<Clock size={16} />}
+        />
+        <ArticleMetric
+          header="views"
+          text={`${article.views}`}
+          icon={<Eye size={16} />}
+        />
+        <ArticleLikeButton
+          likes={article.likes ? article.likes : 0}
+          id={article.id}
+          slug={article.slug}
+        />
+      </div>
+    </aside>
+  );
+}

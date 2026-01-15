@@ -20,7 +20,7 @@ export default function ArticleLikeButton({ likes, id, slug }: Props) {
     <div className="flex items-center gap-4">
       <button
         onClick={() => incrementLikes(id, slug)}
-        className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-emerald-600 transition-colors"
+        className="flex items-center gap-2 pr-4 py-2 text-gray-600 hover:text-emerald-600 transition-colors"
       >
         <Heart size={18} />
         <span>Like ({articleLikes})</span>
