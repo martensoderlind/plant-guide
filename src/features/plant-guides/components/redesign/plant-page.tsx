@@ -1,8 +1,8 @@
-import PlantPageCareInformation from "./plant-page-care-information";
-import { plantGuidesService } from "../instance";
 import { RenderContent } from "@/shared/components/render-content";
-import PlantPageFallback from "./plant-page-fallback";
-import PlantPageHeaderR from "./redesign/plant-header-r";
+import PlantPageFallback from "../plant-page-fallback";
+import { plantGuidesService } from "../../instance";
+import PlantPageCareInformation from "./plant-page-care-information";
+import PlantPageHeader from "./plant-header";
 
 type Props = {
   slug: string;
@@ -31,25 +31,27 @@ export default async function PlantPage({ slug }: Props) {
             </span>
           </div>
         </div>
-        <PlantPageHeaderR
+        <PlantPageHeader
           imageUrl={plant.image_url}
           name={plant.name}
           careLevel={careLevel}
         />
-        <article className="max-w-3xl mb-4">
-          <section className="text-gray-700 text-lg leading-relaxed">
-            <RenderContent content={plant.content} />
-          </section>
-        </article>
-        <PlantPageCareInformation
-          water_frequency_days={plant.water_frequency_days}
-          lightReq={lightRequirement}
-          careLevel={careLevel}
-          temperature_min={plant.temperature_min}
-          temperature_max={plant.temperature_max}
-          humidity={humidityPreference}
-          updatedAt={plant.updated_at}
-        />
+        <div className="flex flex-col md:flex-row lg:flex-row">
+          <PlantPageCareInformation
+            water_frequency_days={plant.water_frequency_days}
+            lightReq={lightRequirement}
+            careLevel={careLevel}
+            temperature_min={plant.temperature_min}
+            temperature_max={plant.temperature_max}
+            humidity={humidityPreference}
+            updatedAt={plant.updated_at}
+          />
+          <article className="max-w-3xl mb-4 mx-auto">
+            <section className="text-gray-700 text-lg leading-relaxed">
+              <RenderContent content={plant.content} />
+            </section>
+          </article>
+        </div>
       </div>
     </>
   );

@@ -19,7 +19,7 @@ type Props = {
   updatedAt: Date | null;
 };
 
-export default function PlantPageCareInformationR({
+export default function PlantPageCareInformation({
   water_frequency_days,
   lightReq,
   temperature_min,
