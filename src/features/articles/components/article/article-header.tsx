@@ -5,7 +5,7 @@ type Props = {
   tags: Tag[];
 };
 
-export default function ArticleHeaderR({ article, tags }: Props) {
+export default function ArticleHeader({ article, tags }: Props) {
   const categoryNames = {
     basics: "Basics",
     watering: "Watering",

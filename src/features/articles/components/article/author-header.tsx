@@ -7,7 +7,7 @@ type Props = {
   updated_at: Date;
 };
 
-export default async function AuthorHeaderR({ id, updated_at }: Props) {
+export default async function AuthorHeader({ id, updated_at }: Props) {
   const author = await articlesService.getArticleAuthor(id);
   if (!author) {
     return null;

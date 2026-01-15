@@ -1,14 +1,14 @@
 import { Clock, Eye } from "lucide-react";
 import { Article } from "../../schema";
 import ArticleLikeButton from "../article-like-button";
-import AuthorHeaderR from "./author-header-r";
 import ArticleMetric from "./article-metrics";
+import AuthorHeader from "./author-header";
 
 type Props = {
   article: Article;
 };
 
-export default function ArticleInfoR({ article }: Props) {
+export default function ArticleInfo({ article }: Props) {
   const date = article.updated_at
     ? new Date(article.updated_at)
     : new Date(article.created_at);
@@ -16,7 +16,7 @@ export default function ArticleInfoR({ article }: Props) {
     <aside className="w-full md:w-64 shrink-0 pl-2 flex flex-row md:flex-col">
       <div>
         {article.author_id && (
-          <AuthorHeaderR id={article.author_id} updated_at={date} />
+          <AuthorHeader id={article.author_id} updated_at={date} />
         )}
       </div>
       <div className="mb-4 text-sm text-gray-500 my-2">

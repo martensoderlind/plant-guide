@@ -2,14 +2,14 @@ import Image from "next/image";
 import { RenderContent } from "@/shared/components/render-content";
 import { articlesService } from "../../instance";
 import ArticleFallback from "../article-fallback";
-import ArticleHeaderR from "./article-header-r";
-import ArticleInfoR from "./article-info-r";
+import ArticleHeader from "./article-header";
+import ArticleInfo from "./article-info";
 
 type Prop = {
   slug: string;
 };
 
-export default async function ArticleR({ slug }: Prop) {
+export default async function Article({ slug }: Prop) {
   await articlesService.incrementArticleViews(slug);
   const article = await articlesService.getArticle(slug);
   if (!article) {
@@ -18,7 +18,7 @@ export default async function ArticleR({ slug }: Prop) {
 
   return (
     <div className="max-w-8xl mx-auto px-4 py-8">
-      <ArticleHeaderR article={article} tags={article.tags} />
+      <ArticleHeader article={article} tags={article.tags} />
       {article.featured_image_url && (
         <div className="mb-4 rounded-lg overflow-hidden shadow-lg">
           <Image
@@ -31,7 +31,7 @@ export default async function ArticleR({ slug }: Prop) {
         </div>
       )}
       <div className="flex flex-col md:flex-row">
-        <ArticleInfoR article={article} />
+        <ArticleInfo article={article} />
         <article className="max-w-3xl">
           <section className="border-b border-gray-200">
             {article.excerpt && (
