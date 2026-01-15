@@ -13,7 +13,7 @@ export default function ArticleInfoR({ article }: Props) {
     ? new Date(article.updated_at)
     : new Date(article.created_at);
   return (
-    <aside className="w-full md:w-64 lg:w-72 shrink-0 pl-2 flex flex-row md:flex-col">
+    <aside className="w-full md:w-64 shrink-0 pl-2 flex flex-row md:flex-col">
       <div>
         {article.author_id && (
           <AuthorHeaderR id={article.author_id} updated_at={date} />

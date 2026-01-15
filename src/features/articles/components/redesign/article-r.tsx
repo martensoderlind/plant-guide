@@ -30,7 +30,7 @@ export default async function ArticleR({ slug }: Prop) {
           />
         </div>
       )}
-      <div className="flex flex-col md:flex-row gap-8">
+      <div className="flex flex-col md:flex-row">
         <ArticleInfoR article={article} />
         <article className="max-w-3xl">
           <section className="border-b border-gray-200">
