@@ -17,10 +17,16 @@ export default function AdminUserButtons({ user }: Props) {
 
   async function handleDeleteUser(id: string) {
     const result = await deleteUser(id);
-    if (result.success) {
-      success("Success!", result.message);
+
+    if (!result.ok) {
+      warning(
+        "Error!",
+        "There was an error deleting the user, please try again."
+      );
+    } else if (result.data.success) {
+      success("Success!", result.data.message);
     } else {
-      warning("unsuccessful", result.message);
+      warning("unsuccessful", result.data.message);
     }
   }
 
