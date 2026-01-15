@@ -13,7 +13,7 @@ export default function ArticleInfoR({ article }: Props) {
     ? new Date(article.updated_at)
     : new Date(article.created_at);
   return (
-    <aside className="w-1/5 lg:block">
+    <aside className="w-1/5 lg:block pl-2">
       <div>
         {article.author_id && (
           <AuthorHeaderR id={article.author_id} updated_at={date} />
