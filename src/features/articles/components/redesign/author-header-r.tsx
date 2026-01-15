@@ -21,7 +21,7 @@ export default async function AuthorHeaderR({ id, updated_at }: Props) {
     });
   };
   return (
-    <div className="flex flex-col mr-4 border-b border-gray-300 w-50">
+    <div className="flex flex-col mr-4 md:border-b border-gray-300 w-50">
       <div className="text-sm text-gray-500 flex flex-row items-center">
         Author
       </div>
