@@ -10,4 +10,6 @@ export const users: PermissionSchema<"users", UserService> = {
   getArticleAuthor: "users.getArticleAuthor",
   getUserCount: "users.getUserCount",
   updateUser: "users.updateUser",
+  getAuthorProfile: "users.getAuthorProfile",
+  getAuthorArticles: "users.getAuthorArticles",
 };

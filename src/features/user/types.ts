@@ -48,5 +48,7 @@ export type UserService = {
   getUserRoles: userService["getUserRoles"];
   getArticleAuthor: userService["getArticleAuthor"];
   getUserCount: userService["getUserCount"];
+  getAuthorProfile: userService["getAuthorProfile"];
+  getAuthorArticles: userService["getAuthorArticles"];
   updateUser: userService["updateUser"];
 };

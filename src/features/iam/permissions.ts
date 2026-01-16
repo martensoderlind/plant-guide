@@ -22,6 +22,9 @@ export const rolesPermissions = {
     articles.getArticleViews,
     users.getArticleAuthor,
     articles.getArticleViews,
+    users.getArticleAuthor,
+    users.getAuthorProfile,
+    users.getAuthorArticles,
   ]),
   AUTHOR: new Set([
     plantGuides.getAllPlantGuides,
@@ -35,6 +38,8 @@ export const rolesPermissions = {
     articles.incrementArticleViews,
     articles.getArticleAuthor,
     users.getArticleAuthor,
+    users.getAuthorProfile,
+    users.getAuthorArticles,
   ]),
   MODERATOR: new Set([
     plantGuides.getAllPlantGuides,
@@ -48,6 +53,8 @@ export const rolesPermissions = {
     articles.incrementArticleViews,
     articles.getArticleAuthor,
     users.getArticleAuthor,
+    users.getAuthorProfile,
+    users.getAuthorArticles,
   ]),
   GUEST: new Set([
     plantGuides.getAllPlantGuides,
@@ -62,5 +69,7 @@ export const rolesPermissions = {
     articles.incrementArticleViews,
     articles.getArticleAuthor,
     users.getArticleAuthor,
+    users.getAuthorProfile,
+    users.getAuthorArticles,
   ]),
 } as const;
