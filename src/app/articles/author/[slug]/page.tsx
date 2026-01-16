@@ -1,5 +1,5 @@
-import Container from "@/shared/components/container";
 import AuthorProfile from "@/features/user/components/author-profile";
+import ContainerR from "@/shared/components/container-r";
 
 export default async function Page({
   params,
@@ -8,10 +8,10 @@ export default async function Page({
 }) {
   const { slug } = await params;
   return (
-    <div>
-      <Container>
+    <div className="bg-gray-100">
+      <ContainerR>
         <AuthorProfile slug={slug} />
-      </Container>
+      </ContainerR>
     </div>
   );
 }

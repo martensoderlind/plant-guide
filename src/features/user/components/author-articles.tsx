@@ -16,7 +16,7 @@ export default async function AuthorArticles({ authorId }: Props) {
     );
   }
   return (
-    <div className="rounded-2xl p-6 bg-white">
+    <div className="rounded-2xl p-6">
       <h2 className="text-2xl font-semibold mb-4">Articles by this author</h2>
       <ul className="space-y-4">
         {articles.map((article, idx: number) => (

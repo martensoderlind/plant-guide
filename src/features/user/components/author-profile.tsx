@@ -14,7 +14,7 @@ export default async function AuthorProfile({ slug }: Props) {
   }
   return (
     <div className="p-6 max-w-3xl mx-auto space-y-8">
-      <div className="p-6 bg-white flex gap-6 items-center">
+      <div className="p-6 flex gap-6 items-center">
         {author.avatarUrl && (
           <Image
             width={500}
