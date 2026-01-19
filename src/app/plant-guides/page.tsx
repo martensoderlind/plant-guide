@@ -10,7 +10,7 @@ export default async function Page({ searchParams }: Props) {
   const currentPage = Number(params?.page) || 1;
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="bg-gray-100 min-h-screen p-8">
       <Suspense fallback={<ContainerFallback />}>
         <PlantGuides currentPage={currentPage} />
       </Suspense>

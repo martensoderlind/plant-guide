@@ -40,7 +40,7 @@ export default function SearchBar({
     setSelectedCategories((prev) =>
       prev.includes(categoryValue)
         ? prev.filter((cat) => cat !== categoryValue)
-        : [...prev, categoryValue]
+        : [...prev, categoryValue],
     );
   };
 
@@ -50,7 +50,7 @@ export default function SearchBar({
 
   const removeCategoryFilter = (categoryValue: string) => {
     setSelectedCategories((prev) =>
-      prev.filter((cat) => cat !== categoryValue)
+      prev.filter((cat) => cat !== categoryValue),
     );
   };
 
@@ -60,11 +60,11 @@ export default function SearchBar({
         <div className="flex flex-col lg:flex-row gap-6">
           <div className="flex-1">
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-800 w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search for plants"
-                className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="w-full pl-12 pr-4 py-3 text-gray-800 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-800 focus:border-transparent"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -74,17 +74,17 @@ export default function SearchBar({
           <div className="lg:w-64 relative">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-left bg-white"
+              className="w-full px-4 py-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-800 focus:border-transparent text-left"
             >
               <div className="flex justify-between items-center">
                 <span className="text-gray-700">
                   {selectedCategories.length === 0
                     ? "Select categories"
                     : selectedCategories.length === 1
-                    ? `${selectedCategories.length} Category selected`
-                    : `${selectedCategories.length} Categories selected`}
+                      ? `${selectedCategories.length} Category selected`
+                      : `${selectedCategories.length} Categories selected`}
                 </span>
-                <span className="text-gray-400">▼</span>
+                <span className="text-gray-800">▼</span>
               </div>
             </button>
 
@@ -139,7 +139,7 @@ export default function SearchBar({
             )}
             {selectedCategories.map((categoryValue) => {
               const category = categories.find(
-                (c) => c.value === categoryValue
+                (c) => c.value === categoryValue,
               );
               return (
                 <span

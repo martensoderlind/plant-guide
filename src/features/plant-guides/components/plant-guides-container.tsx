@@ -29,7 +29,9 @@ export default function PlantGuidesContainer({
 
   return (
     <div>
-      <p className="font-bold text-3xl">Plants</p>
+      <h1 className="text-3xl md:text-4xl mb-4 text-gray-800 leading-tight text-center">
+        Plants
+      </h1>
       <SearchBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
