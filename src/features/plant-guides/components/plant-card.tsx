@@ -49,18 +49,18 @@ export default function PlantCard({ plant }: Props) {
             </span>
           </div>
         </div>
+        <div className="flex justify-between items-center mt-auto">
+          <span className="text-xs font-medium uppercase tracking-wide px-2 py-1 rounded-full bg-gray-100 text-gray-800">
+            {plant.care_level}
+          </span>
 
-        <span className="text-xs font-medium uppercase tracking-wide px-2 py-1 rounded-full bg-emerald-100 text-emerald-800 self-start">
-          {plant.care_level}
-        </span>
-
-        <div className="flex-1"></div>
-        <Link
-          href={"/plant-guides/" + plant.slug}
-          className="mt-4 text-gray-700 hover:underline text-sm font-medium self-start"
-        >
-          Learn more →
-        </Link>
+          <Link
+            href={"/plant-guides/" + plant.slug}
+            className="text-gray-700 hover:underline text-sm font-medium"
+          >
+            Learn more →
+          </Link>
+        </div>
       </div>
     </div>
   );
