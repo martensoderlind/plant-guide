@@ -12,13 +12,13 @@ export default function PlantContainer({ plantGuides, plantCount }: Props) {
     if (totalPlants % 6 === 0) {
       return totalPlants / 6;
     } else {
-      return totalPlants / 6 + 1;
+      return Math.floor(totalPlants / 6) + 1;
     }
   };
 
   return (
     <>
-      <section className="relative px-4 sm:px-6 lg:px-8 py-12">
+      <section className="relative px-4 sm:px-6 lg:px-8">
         <div className="relative z-10 p-8 max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {plantGuides.map((plant, idx) => (
