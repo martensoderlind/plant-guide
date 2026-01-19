@@ -173,10 +173,10 @@ export default function AdminPlantForm() {
               </label>
               <TiptapEditor
                 value={newPlant.content}
-                onChange={(e) =>
+                onChange={(content) =>
                   setNewPlant({
                     ...newPlant,
-                    content: e.target.value,
+                    content: content,
                   })
                 }
               />
