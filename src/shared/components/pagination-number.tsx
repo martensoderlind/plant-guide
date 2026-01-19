@@ -13,19 +13,11 @@ export default function PaginationNumber({
   isActive,
   position,
 }: Props) {
-  const className = `flex h-10 w-10 items-center justify-center text-sm border",
-    ${position === "first" || (position === "single" && "rounded-l-md")}
-        ${
-          isActive &&
-          "z-10 bg-emerald-600 text-white border-emerald-600 rounded-md"
-        }
-        ${!isActive && position !== "middle" && "hover:bg-gray-100 rounded-md"}
-        ${
-          position === "single" ||
-          (position === "last" &&
-            "hover:bg-gray-100 hover:text-gray-900 rounded-md")
-        }
-        ${position === "middle" && "text-gray-300"}`;
+  const className = `flex h-10 w-10 items-center justify-center text-sm text-gray-700 transition-colors mx-2
+    ${position === "first" || position === "single" ? "rounded-l-md" : ""}
+    ${position === "last" || position === "single" ? "rounded-r-md" : ""}
+    ${isActive ? "z-10 bg-emerald-600 text-white border-emerald-600 rounded-md" : ""}
+    ${!isActive ? "hover:bg-gray-200 hover:border-gray-400" : ""}`;
 
   return isActive || position === "middle" ? (
     <div className={className}>{page}</div>

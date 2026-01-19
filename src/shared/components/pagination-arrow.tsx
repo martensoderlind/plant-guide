@@ -12,9 +12,7 @@ export default function PaginationArrow({
   direction,
   isDisabled,
 }: Props) {
-  const className = `flex h-10 w-10 items-center justify-center rounded-md border,
-    ${direction === "left" ? "mr-2 md:mr-4" : "ml-2 md:ml-4"}
-    ${isDisabled ? "pointer-events-none text-gray-600" : "hover:bg-gray-800"}`;
+  const className = `flex h-10 w-10 items-center justify-center rounded-md transition-colors ${direction === "left" ? "mr-2 md:mr-4" : "ml-2 md:ml-4"} ${isDisabled ? "pointer-events-none text-gray-400" : "text-gray-700 hover:bg-gray-200"}`;
 
   const icon = direction === "left" ? <ChevronLeft /> : <ChevronRight />;
 
