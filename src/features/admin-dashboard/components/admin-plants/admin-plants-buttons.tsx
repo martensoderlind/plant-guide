@@ -22,21 +22,18 @@ export default function AdminPlantsButtons({ id, slug, plant }: Props) {
   }
   return (
     <div className="flex space-x-2">
-      <button
-        onClick={onclick}
-        className="text-emerald-600 hover:text-emerald-900"
-      >
+      <button onClick={onclick} className="text-gray-600 hover:text-gray-900">
         <Edit3 className="w-4 h-4" />
       </button>
       <Link
         href={`/plant-guides/${slug}`}
-        className="text-blue-600 hover:text-blue-900"
+        className="text-gray-600 hover:text-gray-900"
       >
         <Eye className="w-4 h-4" />
       </Link>
       <button
         onClick={() => handleDeletePlant(id)}
-        className="text-red-600 hover:text-red-900"
+        className="text-gray-600 hover:text-gray-900"
       >
         <Trash2 className="w-4 h-4" />
       </button>
