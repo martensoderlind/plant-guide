@@ -21,7 +21,7 @@ export default function AdminUserButtons({ user }: Props) {
     if (!result.ok) {
       warning(
         "Error!",
-        "There was an error deleting the user, please try again."
+        "There was an error deleting the user, please try again.",
       );
     } else if (result.data.success) {
       success("Success!", result.data.message);
@@ -39,13 +39,13 @@ export default function AdminUserButtons({ user }: Props) {
       <div className="flex space-x-2">
         <button
           onClick={() => handleEditUser()}
-          className="text-emerald-600 hover:text-emerald-900"
+          className="text-gray-600 hover:text-gray-900"
         >
           <Edit3 className="w-4 h-4" />
         </button>
         <button
           onClick={() => handleDeleteUser(user.id)}
-          className="text-red-600 hover:text-red-900"
+          className="text-gray-600 hover:text-gray-900"
         >
           <Trash2 className="w-4 h-4" />
         </button>
