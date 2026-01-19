@@ -26,8 +26,10 @@ export default async function Articles({ currentPage }: Props) {
   return (
     <div>
       <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <p className="font-bold text-3xl py-4">Articles</p>
-        <div className="relative z-10 bg-white rounded-3xl p-8 shadow-2xl ">
+        <h1 className="text-3xl md:text-4xl mb-4 text-gray-900 leading-tight text-center">
+          Articles
+        </h1>
+        <div className="relative z-10 p-8">
           <Suspense fallback={<ContainerFallback />}>
             <ArticleContainer currentPage={currentPage} />
           </Suspense>
