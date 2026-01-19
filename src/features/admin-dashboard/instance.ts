@@ -44,5 +44,8 @@ export const adminDashboardService = createAdminDashboardService(
     getArticleAuthor: userService.getArticleAuthor,
     getUserCount: userService.getUserCount,
     updateUser: userService.updateUser,
-  }
+    getAuthorProfile: userService.getAuthorProfile,
+    getAuthorId: userService.getAuthorId,
+    getAuthorArticles: userService.getAuthorArticles,
+  },
 );
