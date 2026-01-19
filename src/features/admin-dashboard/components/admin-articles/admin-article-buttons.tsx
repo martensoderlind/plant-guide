@@ -21,22 +21,25 @@ export default function AdminArticleButtons({ article }: Props) {
     setEditFormOpen(!editFormOpen);
   }
   return (
-    <div className="flex space-x-2">
+    <div className="flex flex-col space-x-2">
       <button
         onClick={handleEditArticle}
-        className="text-emerald-600 hover:text-emerald-900"
+        className="text-gray-600 hover:text-gray-900"
+        title="Edit"
       >
         <Edit3 className="w-4 h-4" />
       </button>
       <Link
         href={`/articles/${article.slug}`}
-        className="text-blue-600 hover:text-blue-900"
+        className="text-gray-600 hover:text-gray-900"
+        title="View"
       >
         <Eye className="w-4 h-4" />
       </Link>
       <button
         onClick={() => handleDeleteArticle(article.id)}
-        className="text-red-600 hover:text-red-900"
+        className="text-gray-600 hover:text-gray-900"
+        title="Delete"
       >
         <Trash2 className="w-4 h-4" />
       </button>
